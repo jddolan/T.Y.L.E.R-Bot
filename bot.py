@@ -186,20 +186,19 @@ def response(messages):
             "Tyler, even though nobody else is reading your messages I'm forced to suffer through each one so please end my suffering and stop typing",
         ]
     }
-    severity = "mild"
+    responses["moderate"] = responses["moderate"] + responses["mild"]
+    responses["severe"] = responses["severe"] + responses["moderate"]
 
-    if tyler.msgCount >= 5 and tyler.msgCount <= 8:
-        response = random.choice(responses["moderate"] + responses["mild"])
-        while response == tyler.lastResponse:
-            response = random.choice(responses["moderate"] + responses["mild"])
-    elif tyler.msgCount > 8:
-        response = random.choice(responses["severe"] + responses["moderate"] + responses["mild"])
-        while response == tyler.lastResponse:
-            response = random.choice(responses["severe"] + responses["moderate"] + responses["mild"])
+    if tyler.msgCount <= 5: 
+        severity = "mild"
+    elif tyler.msgCount > 5 and tyler.msgCount <= 8:
+        severity = "moderate"
     else:
-        response = random.choice(responses["mild"])
-        while response == tyler.lastResponse:
-            response = random.choice(responses["mild"])
+        severity = "severe"
+
+    response = random.choice(responses[severity])
+    while response == tyler.lastResponse:
+        response = random.choice(responses[severity])
 
     tyler.lastResponse = response
     return response
