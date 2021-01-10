@@ -116,9 +116,8 @@ async def on_message(message):
                         #     await tyler.channel.send(response(tyler.messages))
                         #     tyler.waiting = True
                     except asyncio.TimeoutError:
-                        if tyler.msgCount >= msgLimit and not tyler.waiting:
-                            await tyler.channel.send(response(tyler.messages))
-                            tyler.waiting = True
+                        await tyler.channel.send(response(tyler.messages))
+                    tyler.waiting = False
                 # except TylerSpamError:
                 #     print("test4\n")
                 #     if tyler.msgCount >= msgLimit:
