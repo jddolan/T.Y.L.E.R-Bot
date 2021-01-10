@@ -73,7 +73,7 @@ class Tyler:
 
 
 class TylerSpamError(Exception):
-    pass
+    msg = "test"
 
 tyler = Tyler()
 
@@ -110,11 +110,11 @@ async def on_message(message):
                 print("test3\n")
                 if tyler.msgCount >= msgLimit:
                     await tyler.channel.send(response(tyler.messages))
-            # except TylerSpamError:
-            #     print("test4\n")
-            #     tyler.subtract()
-            #     if tyler.msgCount == 1:
-            #         await tyler.channel.send(response(tyler.messages))
+            except TylerSpamError:
+                print("test4\n")
+                tyler.subtract()
+                if tyler.msgCount == 1:
+                    await tyler.channel.send(response(tyler.messages))
 
 
 
