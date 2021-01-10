@@ -1,0 +1,24 @@
+{
+    "name": "T.Y.L.E.R-Bot",
+    "version": "1.0.0",
+    "description": "",
+    "main": "bot.py",
+    "scripts": {
+        "start": "python bot.py"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/jddolan/T.Y.L.E.R-Bot.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/jddolan/T.Y.L.E.R-Bot/issues"
+    },
+    "homepage": "https://github.com/jddolan/T.Y.L.E.R-Bot#readme",
+    "dependencies": {
+        "discord": "^1.6.0",
+        "async_timeout": "^3.0.1"
+    }
+}
