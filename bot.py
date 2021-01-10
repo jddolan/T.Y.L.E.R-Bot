@@ -42,7 +42,7 @@ adjectives = [
     "great",
     "cool",
     "awesome",
-    "amazing"
+    "amazing",
     "weird",
     "crazy",
     "wacky",
