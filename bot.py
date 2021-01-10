@@ -94,7 +94,7 @@ async def on_message(message):
 
         if tyler.msgCount == msgLimit:
             diff = int(message.created_at.timestamp()) - int(tyler.startTime.timestamp())
-            if diff >= timeoutLength or (msgCount >= msgLimit + 2 and diff <= 20):
+            if diff >= timeoutLength or (tyler.msgCount >= msgLimit + 2 and diff <= 20):
                 await tyler.channel.send(response(tyler.messages))
             try:
                 msg = await client.wait_for('message', timeout=timeoutLength - diff, check=check)
