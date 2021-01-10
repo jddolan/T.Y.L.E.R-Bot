@@ -119,9 +119,11 @@ async def on_message(message):
                             tyler.reset()
                         else:
                             print("sending message")
+                            tyler.msgsSinceLastResponse = 0
                             await tyler.channel.send(response(tyler.messages))
                     except asyncio.TimeoutError:
                         print("timed out, sending message")
+                        tyler.msgsSinceLastResponse = 0
                         await tyler.channel.send(response(tyler.messages))
                     print("resetting the waiting variable")
                     tyler.waiting = False
