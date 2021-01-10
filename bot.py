@@ -97,6 +97,7 @@ async def on_message(message):
             # if msg.author.id == tyler.id:
             #     if tyler.msgCount >= int(msgLimit - 1) or (tyler.msgCount >= msgLimit + 2 and tyler.diff <= 20):
             #         raise TylerSpamError
+            print(f"check test: \nmsgCount: {tyler.msgCount}\nmsgLimit: {msgLimit}\nauthor id: {msg.author.id}\ntyler id: {tyler.id}\n")
             return msg.author.id != tyler.id or (tyler.msgCount >= msgLimit + 2)
 
         if tyler.msgCount >= msgLimit:
