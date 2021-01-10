@@ -92,7 +92,7 @@ async def on_message(message):
                     raise TylerSpamError
             return msg.author.id != tyler.id
 
-        if tyler.msgCount == msgLimit:
+        if tyler.msgCount >= msgLimit:
             diff = int(message.created_at.timestamp()) - int(tyler.startTime.timestamp())
             if diff >= timeoutLength or (tyler.msgCount >= msgLimit + 2 and diff <= 20):
                 await tyler.channel.send(response(tyler.messages))
