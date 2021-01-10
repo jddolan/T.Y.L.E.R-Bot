@@ -6,6 +6,7 @@
 # Bot
 
 # joe_id=139785944009015296
+# tyler_id=130402289755095041
 
 import os
 
@@ -50,7 +51,7 @@ adjectives = [
 ]
 
 class Tyler:
-    id: int = 130402289755095041
+    id: int = 139785944009015296
     msgCount: int = 0
     channel = None
     startTime: datetime = None
