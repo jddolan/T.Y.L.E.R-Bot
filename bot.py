@@ -93,9 +93,9 @@ async def on_message(message):
         def check(msg):
             print("test5\n")
             if msg.author.id == tyler.id:
-                if tyler.msgCount >= (msgLimit - 1):
-                    raise TylerSpamError
-            return msg.author.id != tyler.id or (tyler.msgCount >= msgLimit + 2 and tyler.diff <= 20)
+                if tyler.msgCount >= int(msgLimit - 1) or (tyler.msgCount >= msgLimit + 2 and tyler.diff <= 20):
+                    await tyler.channel.send(response(tyler.messages))
+            return msg.author.id != tyler.id
 
         if tyler.msgCount >= msgLimit:
             print("test1\n")
@@ -110,11 +110,11 @@ async def on_message(message):
                 print("test3\n")
                 if tyler.msgCount >= msgLimit:
                     await tyler.channel.send(response(tyler.messages))
-            except TylerSpamError:
-                print("test4\n")
-                tyler.subtract()
-                if tyler.msgCount == 1:
-                    await tyler.channel.send(response(tyler.messages))
+            # except TylerSpamError:
+            #     print("test4\n")
+            #     tyler.subtract()
+            #     if tyler.msgCount == 1:
+            #         await tyler.channel.send(response(tyler.messages))
 
 
 
