@@ -96,7 +96,7 @@ async def on_message(message):
 
         def check(msg):
             print(f"went in the check, variables: \nmsgCount: {tyler.msgCount}\nmsgLimit: {msgLimit}\nauthor id: {msg.author.id}\ntyler id: {tyler.id}\n")
-            return msg.author.id != tyler.id or (tyler.msgCount >= msgLimit + 2)
+            return msg.author.id != tyler.id or (tyler.msgCount >= msgLimit + 1)
 
         if tyler.msgCount >= msgLimit:
             print("msgCount is higher than the limit")
