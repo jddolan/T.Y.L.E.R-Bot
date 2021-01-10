@@ -16,7 +16,7 @@ from datetime import datetime, timedelta, time
 import random
 
 
-token = Nzk3NjE5NDUwMTI3ODQzMzg4.X_pG_w.WC-PkunlOkVlYH5_R5NU8VyIBfE
+token = "Nzk3NjE5NDUwMTI3ODQzMzg4.X_pG_w.WC-PkunlOkVlYH5_R5NU8VyIBfE"
 guild = 'Flat Earf Rules'
 
 msgLimit = 2
