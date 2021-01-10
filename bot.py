@@ -111,6 +111,7 @@ async def on_message(message):
                 if (msg.author.id != tyler.id):
                     tyler.reset()
                 elif (tyler.msgCount >= msgLimit + 2 and tyler.diff <= 20) and not tyler.waiting:
+                    print("test6\n")
                     await tyler.channel.send(response(tyler.messages))
                     tyler.waiting = True
             except asyncio.TimeoutError:
