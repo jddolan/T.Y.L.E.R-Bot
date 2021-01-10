@@ -21,7 +21,7 @@ token = "Nzk3NjE5NDUwMTI3ODQzMzg4.X_pG_w.WC-PkunlOkVlYH5_R5NU8VyIBfE"
 guild = 'Flat Earf Rules'
 
 msgLimit = 2
-timeoutLength = 300
+timeoutLength = 20
 
 intents = discord.Intents.all()
 client = discord.Client(intents=intents)
