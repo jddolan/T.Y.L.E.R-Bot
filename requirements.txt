@@ -1,0 +1,3 @@
+discord
+async_timeout
+dotenv
