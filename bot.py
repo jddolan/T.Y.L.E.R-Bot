@@ -93,37 +93,36 @@ async def on_message(message):
         print(tyler.msgCount)
 
         def check(msg):
-            print("test5\n")
+            # print("test5\n")
             # if msg.author.id == tyler.id:
             #     if tyler.msgCount >= int(msgLimit - 1) or (tyler.msgCount >= msgLimit + 2 and tyler.diff <= 20):
             #         raise TylerSpamError
-            return msg.author.id != tyler.id or (tyler.msgCount >= msgLimit + 2 and tyler.diff <= 20)
+            return msg.author.id != tyler.id or (tyler.msgCount >= msgLimit + 2)
 
         if tyler.msgCount >= msgLimit:
             print("test1\n")
             tyler.diff = int(message.created_at.timestamp()) - int(tyler.startTime.timestamp())
-            if tyler.diff >= timeoutLength and not tyler.waiting:
+            if tyler.diff >= timeoutLength and tyler.waiting == False:
                 await tyler.channel.send(response(tyler.messages))
-                tyler.waiting = True
-            try:
-                print("test2\n")
-                tyler.waiting = True
-                msg = await client.wait_for('message', timeout=timeoutLength - tyler.diff, check=check)
-                if (msg.author.id != tyler.id):
-                    tyler.reset()
-                elif (tyler.msgCount >= msgLimit + 2 and tyler.diff <= 20) and not tyler.waiting:
-                    print("test6\n")
-                    await tyler.channel.send(response(tyler.messages))
-                    tyler.waiting = True
-            except asyncio.TimeoutError:
-                print("test3\n")
-                if tyler.msgCount >= msgLimit and not tyler.waiting:
-                    await tyler.channel.send(response(tyler.messages))
-                    tyler.waiting = True
-            # except TylerSpamError:
-            #     print("test4\n")
-            #     if tyler.msgCount >= msgLimit:
-            #         await tyler.channel.send(response(tyler.messages))
+            else:
+                if tyler.waiting == False:
+                    try:
+                        tyler.waiting = True
+                        msg = await client.wait_for('message', timeout=timeoutLength - tyler.diff, check=check)
+                        # if (msg.author.id != tyler.id):
+                        #     tyler.reset()
+                        # elif (tyler.msgCount >= msgLimit + 2 and tyler.diff <= 20) and not tyler.waiting:
+                        #     print("test6\n")
+                        #     await tyler.channel.send(response(tyler.messages))
+                        #     tyler.waiting = True
+                    except asyncio.TimeoutError:
+                        if tyler.msgCount >= msgLimit and not tyler.waiting:
+                            await tyler.channel.send(response(tyler.messages))
+                            tyler.waiting = True
+                # except TylerSpamError:
+                #     print("test4\n")
+                #     if tyler.msgCount >= msgLimit:
+                #         await tyler.channel.send(response(tyler.messages))
 
 
     elif message.author != client.user:
