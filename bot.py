@@ -98,7 +98,7 @@ async def on_message(message):
             print(f"went in the check, variables: \nmsgCount: {tyler.msgCount}\nmsgLimit: {msgLimit}\nauthor id: {msg.author.id}\ntyler id: {tyler.id}\n")
             return msg.author.id != tyler.id or (tyler.msgCount >= msgLimit + 1)
 
-        if tyler.msgCount >= msgLimit:
+        if tyler.msgCount >= msgLimit and tyler.msgsSinceLastResponse >= responseRateCap:
             print("msgCount is higher than the limit")
             tyler.diff = int(message.created_at.timestamp()) - int(tyler.startTime.timestamp())
             if tyler.diff >= timeoutLength and tyler.waiting == False:
