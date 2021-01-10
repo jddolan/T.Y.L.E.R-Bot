@@ -56,6 +56,7 @@ class Tyler:
     channel = None
     startTime: datetime = None
     messages = []
+    diff: int = 0
 
     def add(self):
         self.msgCount += 1
@@ -68,6 +69,7 @@ class Tyler:
         self.startTime = None
         self.channel = None
         self.messages = []
+        self.diff = 0
 
 
 class TylerSpamError(Exception):
@@ -92,14 +94,14 @@ async def on_message(message):
             if msg.author.id == tyler.id:
                 if tyler.msgCount >= (msgLimit - 1):
                     raise TylerSpamError
-            return msg.author.id != tyler.id
+            return msg.author.id != tyler.id or (tyler.msgCount >= msgLimit + 2 and tyler.diff <= 20)
 
         if tyler.msgCount >= msgLimit:
-            diff = int(message.created_at.timestamp()) - int(tyler.startTime.timestamp())
-            if diff >= timeoutLength or (tyler.msgCount >= msgLimit + 2 and diff <= 20):
+            tyler.diff = int(message.created_at.timestamp()) - int(tyler.startTime.timestamp())
+            if tyler.diff >= timeoutLength or (tyler.msgCount >= msgLimit + 2 and tyler.diff <= 20):
                 await tyler.channel.send(response(tyler.messages))
             try:
-                msg = await client.wait_for('message', timeout=timeoutLength - diff, check=check)
+                msg = await client.wait_for('message', timeout=timeoutLength - tyler.diff, check=check)
             except asyncio.TimeoutError:
                 if tyler.msgCount >= msgLimit:
                     await tyler.channel.send(response(tyler.messages))
