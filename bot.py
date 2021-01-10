@@ -105,7 +105,10 @@ async def on_message(message):
             try:
                 print("test2\n")
                 msg = await client.wait_for('message', timeout=timeoutLength - tyler.diff, check=check)
-                tyler.reset()
+                if (msg.author.id != tyler.id):
+                    tyler.reset()
+                elif (tyler.msgCount >= msgLimit + 2 and tyler.diff <= 20):
+                    await tyler.channel.send(response(tyler.messages))
             except asyncio.TimeoutError:
                 print("test3\n")
                 if tyler.msgCount >= msgLimit:
