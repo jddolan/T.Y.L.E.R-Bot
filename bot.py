@@ -196,7 +196,10 @@ def response(messages):
         response = random.choice(responses["severe"] + responses["moderate"] + responses["mild"])
         while response == tyler.lastResponse:
             response = random.choice(responses["severe"] + responses["moderate"] + responses["mild"])
-    
+    else:
+        response = random.choice(responses["mild"])
+        while response == tyler.lastResponse:
+            response = random.choice(responses["mild"])
 
     tyler.lastResponse = response
     return response
