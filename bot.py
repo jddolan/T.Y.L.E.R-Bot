@@ -82,7 +82,9 @@ tyler = Tyler()
 @client.event
 async def on_message(message):
     if message.author.id == tyler.id:
+        print("it's a message from tyler")
         if tyler.msgCount == 0:
+            print("it's the first one")
             tyler.channel = message.channel
             tyler.startTime = message.created_at
 
@@ -90,34 +92,44 @@ async def on_message(message):
 
         tyler.add()
 
-        print(tyler.msgCount)
+        print(f"tyler has now sent {tyler.msgCount} messages in a row")
 
         def check(msg):
             # print("test5\n")
             # if msg.author.id == tyler.id:
             #     if tyler.msgCount >= int(msgLimit - 1) or (tyler.msgCount >= msgLimit + 2 and tyler.diff <= 20):
             #         raise TylerSpamError
-            print(f"check test: \nmsgCount: {tyler.msgCount}\nmsgLimit: {msgLimit}\nauthor id: {msg.author.id}\ntyler id: {tyler.id}\n")
+            print(f"went in the check, variables: \nmsgCount: {tyler.msgCount}\nmsgLimit: {msgLimit}\nauthor id: {msg.author.id}\ntyler id: {tyler.id}\n")
             return msg.author.id != tyler.id or (tyler.msgCount >= msgLimit + 2)
 
         if tyler.msgCount >= msgLimit:
-            print("test1\n")
+            print("msgCount is higher than the limit")
             tyler.diff = int(message.created_at.timestamp()) - int(tyler.startTime.timestamp())
             if tyler.diff >= timeoutLength and tyler.waiting == False:
+                print("the time difference was higher than the time limit and we are not waiting on another message to be sent")
                 await tyler.channel.send(response(tyler.messages))
             else:
+                print("the messages were sent within the time limit")
                 if tyler.waiting == False:
+                    print("we are not waiting on another message")
                     try:
+                        print("now waiting on the check...")
                         tyler.waiting = True
                         msg = await client.wait_for('message', timeout=timeoutLength - tyler.diff, check=check)
-                        # if (msg.author.id != tyler.id):
-                        #     tyler.reset()
+                        if (msg.author.id != tyler.id):
+                            print("someone else sent a message, abort mission")
+                            tyler.reset()
+                        else:
+                            print("sending message")
+                            await tyler.channel.send(response(tyler.messages))
                         # elif (tyler.msgCount >= msgLimit + 2 and tyler.diff <= 20) and not tyler.waiting:
                         #     print("test6\n")
                         #     await tyler.channel.send(response(tyler.messages))
                         #     tyler.waiting = True
                     except asyncio.TimeoutError:
+                        print("timed out, sending message")
                         await tyler.channel.send(response(tyler.messages))
+                    print("resetting the waiting variable")
                     tyler.waiting = False
                 # except TylerSpamError:
                 #     print("test4\n")
@@ -126,6 +138,7 @@ async def on_message(message):
 
 
     elif message.author != client.user:
+        print("message not from tyler found, abort mission")
         tyler.reset()
         if message.content == 'pee' or message.content == 'poo':
             await message.channel.send("Stop saying pee and poo please it's not as funny as you think it is.")
