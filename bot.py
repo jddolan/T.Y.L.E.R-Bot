@@ -92,10 +92,10 @@ async def on_message(message):
 
         def check(msg):
             print("test5\n")
-            if msg.author.id == tyler.id:
-                if tyler.msgCount >= int(msgLimit - 1) or (tyler.msgCount >= msgLimit + 2 and tyler.diff <= 20):
-                    raise TylerSpamError
-            return msg.author.id != tyler.id
+            # if msg.author.id == tyler.id:
+            #     if tyler.msgCount >= int(msgLimit - 1) or (tyler.msgCount >= msgLimit + 2 and tyler.diff <= 20):
+            #         raise TylerSpamError
+            return msg.author.id != tyler.id or (tyler.msgCount >= msgLimit + 2 and tyler.diff <= 20)
 
         if tyler.msgCount >= msgLimit:
             print("test1\n")
@@ -110,12 +110,10 @@ async def on_message(message):
                 print("test3\n")
                 if tyler.msgCount >= msgLimit:
                     await tyler.channel.send(response(tyler.messages))
-            except TylerSpamError:
-                print("test4\n")
-                if tyler.msgCount >= msgLimit:
-                    await tyler.channel.send(response(tyler.messages))
-
-
+            # except TylerSpamError:
+            #     print("test4\n")
+            #     if tyler.msgCount >= msgLimit:
+            #         await tyler.channel.send(response(tyler.messages))
 
     elif message.author != client.user:
         tyler.reset()
@@ -128,14 +126,14 @@ def response(messages):
         "stfu Richard",
         "Nobody cares, Tyler",
         "Very cool, Tyler",
-        f"That's {'fucking' if random.random() < 0.5 else ''} {random.choice(adjectives)}, Tyler",
-        f"That's {'fucking' if random.random() < 0.5 else ''} {random.choice(adjectives)}, Tyler",
-        f"That's {'fucking' if random.random() < 0.5 else ''} {random.choice(adjectives)}, Tyler",
-        f"That's {'fucking' if random.random() < 0.5 else ''} {random.choice(adjectives)}, Tyler",
-        f"That's {'fucking' if random.random() < 0.5 else ''} {random.choice(adjectives)}, Tyler",
-        f"That's {'fucking' if random.random() < 0.5 else ''} {random.choice(adjectives)}, Tyler",
-        f"That's {'fucking' if random.random() < 0.5 else ''} {random.choice(adjectives)}, Tyler",
-        f"That's {'fucking' if random.random() < 0.5 else ''} {random.choice(adjectives)}, Tyler",
+        f"That's {'fucking ' if random.random() < 0.5 else ''}{random.choice(adjectives)}, Tyler",
+        f"That's {'fucking ' if random.random() < 0.5 else ''}{random.choice(adjectives)}, Tyler",
+        f"That's {'fucking ' if random.random() < 0.5 else ''}{random.choice(adjectives)}, Tyler",
+        f"That's {'fucking ' if random.random() < 0.5 else ''}{random.choice(adjectives)}, Tyler",
+        f"That's {'fucking ' if random.random() < 0.5 else ''}{random.choice(adjectives)}, Tyler",
+        f"That's {'fucking ' if random.random() < 0.5 else ''}{random.choice(adjectives)}, Tyler",
+        f"That's {'fucking ' if random.random() < 0.5 else ''}{random.choice(adjectives)}, Tyler",
+        f"That's {'fucking ' if random.random() < 0.5 else ''}{random.choice(adjectives)}, Tyler",
         "I'm sure everyone is just busy and that's why they didn't respond",
         "ew..",
         "Tl;dr",
@@ -161,7 +159,7 @@ def response(messages):
         "Looks like you got DonoWalled, Tyler",
         "nice play fucking idiot"
         "Tyler, try to be more positive. You are a good player, just dont insult other for nothing and you'll have better game"
-        f"Shouldn't you be {activities} or something, Tyler?"
+        f"Shouldn't you be {random.choice(activities)} or something, Tyler?"
     ]
     return random.choice(responses)
 
