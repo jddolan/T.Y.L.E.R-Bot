@@ -57,7 +57,7 @@ class Tyler:
     startTime: datetime = None
     messages = []
     diff: int = 0
-    waiting: bool = True
+    waiting: bool = False
 
     def add(self):
         self.msgCount += 1
