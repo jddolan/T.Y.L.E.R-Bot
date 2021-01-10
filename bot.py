@@ -71,6 +71,7 @@ class Tyler:
         self.channel = None
         self.messages = []
         self.diff = 0
+        self.waiting = False
 
 
 class TylerSpamError(Exception):
