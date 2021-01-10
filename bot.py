@@ -86,6 +86,8 @@ async def on_message(message):
 
         tyler.add()
 
+        print(tyler.msgCount)
+
         def check(msg):
             if msg.author.id == tyler.id:
                 if tyler.msgCount >= (msgLimit - 1):
