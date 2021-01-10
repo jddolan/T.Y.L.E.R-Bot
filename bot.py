@@ -174,13 +174,13 @@ def response(messages):
             "Tyler, try to be more positive. You are a good player, just dont insult other for nothing and you'll have better game"
             f"Shouldn't you be {random.choice(activities)} or something, Tyler?"
         ],
-        "moderate": responses["mild"] + [
+        "moderate": [
             "Seriously, Tyler, you need to stop",
             "Looking like a Trump supporter out here with this wall of text you're building",
             "Will you stop, pretty please?",
             "If somebody was going to respond they probably would have done it by now, just saying"
         ],
-        "severe": responses["moderate"] + [
+        "severe": [
             "Get the hint and shut the fuck up dude",
             "Clearly nobody else is interested in what you're talking about right now",
             "Tyler, even though nobody else is reading your messages I'm forced to suffer through each one so please end my suffering and stop typing",
@@ -189,13 +189,14 @@ def response(messages):
     severity = "mild"
 
     if tyler.msgCount >= 5 and tyler.msgCount <= 8:
-        severity = "moderate"
+        response = random.choice(responses["moderate"] + responses["mild"])
+        while response == tyler.lastResponse:
+            response = random.choice(responses["moderate"] + responses["mild"])
     elif tyler.msgCount > 8:
-        severity = "severe"
-
-    response = random.choice(responses[severity])
-    while response == tyler.lastResponse:
-        response = random.choice(responses[severity])
+        response = random.choice(responses["severe"] + responses["moderate"] + responses["mild"])
+        while response == tyler.lastResponse:
+            response = random.choice(responses["severe"] + responses["moderate"] + responses["mild"])
+    
 
     tyler.lastResponse = response
     return response
