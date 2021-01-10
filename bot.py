@@ -5,6 +5,8 @@
 # Response
 # Bot
 
+# joe_id=139785944009015296
+
 import os
 
 import discord
@@ -13,11 +15,9 @@ import datetime
 from datetime import datetime, timedelta, time
 import random
 
-from dotenv import load_dotenv
 
-load_dotenv()
-token = os.getenv('DISCORD_TOKEN')
-guild = os.getenv('DISCORD_GUILD')
+token = Nzk3NjE5NDUwMTI3ODQzMzg4.X_pG_w.WC-PkunlOkVlYH5_R5NU8VyIBfE
+guild = 'Flat Earf Rules'
 
 msgLimit = 2
 timeoutLength = 300
@@ -50,7 +50,7 @@ adjectives = [
 ]
 
 class Tyler:
-    id: int = int(os.getenv('TYLER_ID'))
+    id: int = 130402289755095041
     msgCount: int = 0
     channel = None
     startTime: datetime = None
