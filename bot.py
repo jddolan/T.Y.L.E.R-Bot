@@ -107,6 +107,7 @@ async def on_message(message):
                 tyler.waiting = True
             try:
                 print("test2\n")
+                tyler.waiting = True
                 msg = await client.wait_for('message', timeout=timeoutLength - tyler.diff, check=check)
                 if (msg.author.id != tyler.id):
                     tyler.reset()
