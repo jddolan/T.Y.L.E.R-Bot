@@ -22,7 +22,7 @@ guild = 'Flat Earf Rules'
 
 msgLimit = 2
 responseRateCap = 2
-timeoutLength = 20
+timeoutLength = 300
 
 intents = discord.Intents.all()
 client = discord.Client(intents=intents)
@@ -52,7 +52,7 @@ adjectives = [
 ]
 
 class Tyler:
-    id: int = 139785944009015296
+    id: int = 130402289755095041
     msgCount: int = 0
     msgsSinceLastResponse: int = 0
     channel = None
