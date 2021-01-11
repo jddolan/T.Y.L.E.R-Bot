@@ -72,6 +72,8 @@ class Tyler:
         self.lastResponse = None
         self.msgsSinceLastResponse = 0
 
+tyler = Tyler()
+
 @client.event
 async def on_message(message):
     if tyler.channel == None or tyler.channel == message.channel:
