@@ -75,7 +75,7 @@ class Tyler:
 @client.event
 async def on_message(message):
     if tyler.channel == None or tyler.channel == message.channel:
-        if message.author.id == tyler.id
+        if message.author.id == tyler.id:
             print("it's a message from tyler")
             if tyler.msgCount == 0:
                 print("it's the first one")
