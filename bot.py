@@ -55,7 +55,7 @@ tyler = Tyler()
 @client.event
 async def on_message(message):
     if message.content[0] == '!':
-        if message.content[1:] in commands:
+        if message.content[1:] in commands.keys():
             await tyler.channel.send(commands[message.content[1:]])
         else:
             await tyler.channel.send("Command not found, type !help for a list of all valid commands")
