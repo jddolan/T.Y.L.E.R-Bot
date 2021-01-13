@@ -61,7 +61,7 @@ quote me on that""",
 
 commands: dict = {
     'about': "This is a bot designed to respond to Tyler when other people aren't. Created by Joe",
-    'quote': f'{getQuote(quotes)}',
+    'quote': getQuote(quotes),
     'help': '''Valid Commands: 
 
 !about: More information about the bot
