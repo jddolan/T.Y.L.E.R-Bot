@@ -25,35 +25,44 @@ adjectives = [
 ]
 
 quotes = [
-    "You add a meet and cheese board to anything and you up the class by 3 points",
-    "Im a top 3 defender at my home courts quote it",
-    "Water electric quote it - Tyler speculating on the typing of Sobble",
-    "Knicks making room for kyrie and KD quote me on it",
-    "Lebron is dropping 55 in game 7 quote me",
-    "leffen's not dropping a GAME tomorrow quote it",
-    "I just want to wear a fucking kimono",
-    "3 Danish teams in the top 10 by the end of 2017 for csgo",
-    "belgium vs france in the world cup final quote it",
-    "G2 is winning world's quote me on it",
+    "You add a meet and cheese board to anything and you up the class by 3 points - Tyler",
+    "Im a top 3 defender at my home courts quote it - Tyler",
+    "Water electric quote it - Tyler speculating on the typing of Sobble - Tyler",
+    "Knicks making room for kyrie and KD quote me on it - Tyler",
+    "Lebron is dropping 55 in game 7 quote me - Tyler",
+    "leffen's not dropping a GAME tomorrow quote it - Tyler",
+    "I just want to wear a fucking kimono - Tyler",
+    "3 Danish teams in the top 10 by the end of 2017 for csgo - Tyler",
+    "belgium vs france in the world cup final quote it - Tyler",
+    "G2 is winning world's quote me on it - Tyler",
     """Liquid vs EG grand final
 EG from losers
-Quote it""",
+Quote it
+- Tyler""",
     """LFY that team who fucked shit up in the groups
 out in semis
 actually quarters
-quote it""",
-    "DND was the best game mode quote that one",
-    "this is the time g2 won't choke at an international event",
-    "you may have gotten more kills than me",
-    "ill have it done by tonight quote me on that",
-    "quote me on this im gonna win joe's family group",
+quote it
+- Tyler""",
+    "DND was the best game mode quote that one - Tyler",
+    "this is the time g2 won't choke at an international event - Tyler",
+    "you may have gotten more kills than me - Tyler",
+    "ill have it done by tonight quote me on that - Tyler",
+    "quote me on this im gonna win joe's family group - Tyler",
     """corey we're playing tonight
 ok
 ?
-quote me on that""",
-    "I guess I'm just a weeb guys.",
-    "Piss play is to 2021 as eating ass was to 2019",
-    "JUST WAIT TIL THEY MAKE A SPELL ONLY AGENT",
+quote me on that
+- Tyler""",
+    "I guess I'm just a weeb guys. - Tyler",
+    "Piss play is to 2021 as eating ass was to 2019 - Tyler",
+    "JUST WAIT TIL THEY MAKE A SPELL ONLY AGENT - Tyler",
+    "i will never play a shiek main on netplay again - Joe",
+    "im never playing a puff on netplay again - Joe",
+    "if phreak starts casting nba games ill never watch one again - Joe",
+    "Quote me on this.  Riot will forget to make it so stoneplate stacks with locket. - Ximing reading the patch notes",
+    "If pp isnt back by the end of 2017 im gonna just work my ass off and replace him as the falco god - Joe",
+    "Trist adc - Joe"
 ]
 
 commands: dict = {
