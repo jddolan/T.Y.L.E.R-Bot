@@ -16,6 +16,8 @@ import datetime
 from datetime import datetime, timedelta, time
 import random
 
+from response_lists import activities, adjectives, commands, responses
+
 
 token = "Nzk3NjE5NDUwMTI3ODQzMzg4.X_pG_w.WC-PkunlOkVlYH5_R5NU8VyIBfE"
 guild = 'Flat Earf Rules'
@@ -26,30 +28,6 @@ timeoutLength = 300
 
 intents = discord.Intents.all()
 client = discord.Client(intents=intents)
-
-activities = [
-    "playing runescape",
-    "playing WoW",
-    "watching porn",
-    "talking about Isreal",
-    "playing league",
-    "flaking on people",
-    "playing volleyball",
-    "watching The Sopranos"
-]
-
-adjectives = [
-    "great",
-    "cool",
-    "awesome",
-    "amazing",
-    "weird",
-    "crazy",
-    "wacky",
-    "unbelievable",
-    "nutty",
-    "Pog",
-]
 
 class Tyler:
     id: int = 130402289755095041
@@ -76,7 +54,12 @@ tyler = Tyler()
 
 @client.event
 async def on_message(message):
-    if tyler.channel == None or tyler.channel == message.channel:
+    if message.content[0] == '!':
+        if message.content[1:] in commands:
+            await tyler.channel.send(commands[message.content[1:]])
+        else:
+            await tyler.channel.send("Command not found, type !help for a list of all valid commands")
+    elif tyler.channel == None or tyler.channel == message.channel:
         if message.author.id == tyler.id:
             print("it's a message from tyler")
             if tyler.msgCount == 0:
@@ -133,64 +116,10 @@ async def on_message(message):
                 await message.channel.send("Stop saying pee and poo it's not as funny as you think it is.")
 
 def response(messages):
-    responses = {
-        "mild": [
-            f"stfu {'Tyler' if random.random() < 0.75 else 'Richard'}",
-            "Nobody cares, Tyler",
-            "Very cool, Tyler",
-            f"That's {'fucking ' if random.random() < 0.5 else ''}{random.choice(adjectives)}, Tyler",
-            f"That's {'fucking ' if random.random() < 0.5 else ''}{random.choice(adjectives)}, Tyler",
-            f"That's {'fucking ' if random.random() < 0.5 else ''}{random.choice(adjectives)}, Tyler",
-            f"That's {'fucking ' if random.random() < 0.5 else ''}{random.choice(adjectives)}, Tyler",
-            f"That's {'fucking ' if random.random() < 0.5 else ''}{random.choice(adjectives)}, Tyler",
-            f"That's {'fucking ' if random.random() < 0.5 else ''}{random.choice(adjectives)}, Tyler",
-            f"That's {'fucking ' if random.random() < 0.5 else ''}{random.choice(adjectives)}, Tyler",
-            f"That's {'fucking ' if random.random() < 0.5 else ''}{random.choice(adjectives)}, Tyler",
-            "I'm sure everyone is just busy and that's why they didn't respond",
-            "ew..",
-            "Tl;dr",
-            "Tell me more...",
-            "Get it, king!",
-            "Nice cut, G",
-            "oof",
-            "What the fuck, Tyler?",
-            "Let's fucking go, Tyler!",
-            "stop.",
-            "thanks!",
-            "Why are you like this?",
-            "Good shit dude",
-            "Why would you say that?",
-            spongebob(messages),
-            "I appreciate you taking the time to write that, Tyler.",
-            "That's a cool story Tyler, you should tell it at parties",
-            "That's not very Pog of you, Tyler",
-            "You're never going to find a big titty goth gf who plays volleyball if you say things like that",
-            "?",
-            "Wow!",
-            "nmn",
-            "Looks like you got DonoWalled, Tyler",
-            "nice play fucking idiot"
-            "Tyler, try to be more positive. You are a good player, just dont insult other for nothing and you'll have better game"
-            f"Shouldn't you be {random.choice(activities)} or something, Tyler?"
-        ],
-        "moderate": [
-            "Seriously, Tyler, you need to stop",
-            "Looking like a Trump supporter out here with this wall of text you're building",
-            "Will you stop, pretty please?",
-            "If somebody was going to respond they probably would have done it by now, just saying"
-        ],
-        "severe": [
-            "Get the hint and shut the fuck up dude",
-            "Clearly nobody else is interested in what you're talking about right now",
-            "Tyler, even though nobody else is reading your messages I'm forced to suffer through each one so please end my suffering and stop typing",
-        ]
-    }
-    responses["moderate"] = responses["moderate"] + responses["mild"]
-    responses["severe"] = responses["severe"] + responses["moderate"]
 
     if tyler.msgCount <= 5: 
         severity = "mild"
-    elif tyler.msgCount > 5 and tyler.msgCount <= 8:
+    elif tyler.msgCount > 5 and tyler.msgCount <= 10:
         severity = "moderate"
     else:
         severity = "severe"
@@ -200,6 +129,8 @@ def response(messages):
         response = random.choice(responses[severity])
 
     tyler.lastResponse = response
+    if response == "spongebob":
+        response = spongebob(messages)
     return response
 
 def spongebob(messages):
