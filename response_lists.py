@@ -24,11 +24,6 @@ adjectives = [
     "Pog",
 ]
 
-def getQuote(quotes):
-    quote = random.choice(quotes)
-    print(f"quote: {quote}\n")
-    return quote
-
 quotes = [
     "You add a meet and cheese board to anything and you up the class by 3 points",
     "Im a top 3 defender at my home courts quote it",
@@ -62,9 +57,9 @@ quote me on that""",
 ]
 
 commands: dict = {
-    'about': "This is a bot designed to respond to Tyler when other people aren't. Created by Joe",
-    'quote': getQuote(quotes),
-    'help': '''Valid Commands: 
+    '!about': "This is a bot designed to respond to Tyler when other people aren't. Created by Joe",
+    '!quote': "provides a quote"
+    '!help': '''Valid Commands: 
 
 !about: More information about the bot
 !help: A list of valid commands for the bot
