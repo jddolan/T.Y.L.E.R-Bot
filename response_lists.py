@@ -24,9 +24,12 @@ adjectives = [
     "Pog",
 ]
 
+def getQuote(quotes):
+    return random.choice(quotes)
+
 commands: dict = {
     'about': "This is a bot designed to respond to Tyler when other people aren't. Created by Joe",
-    "quote": getQuote(quotes),
+    'quote': f'{getQuote(quotes)}',
     'help': '''Valid Commands: 
 
 !about: More information about the bot
@@ -34,8 +37,7 @@ commands: dict = {
 !quote: Provides a random quote from a time when Tyler said "quote me on that"'''
 }
 
-def getQuote(quotes):
-    return random.choice(quotes)
+
 
 quotes = [
     "You add a meet and cheese board to anything and you up the class by 3 points",
