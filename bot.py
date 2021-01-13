@@ -57,7 +57,7 @@ async def on_message(message):
     if message.content[0] == '!':
         if message.content in commands.keys():
             if message.content == '!quote':
-                message.channel.send(random.choice(quotes))
+                await message.channel.send(random.choice(quotes))
             else:
                 await message.channel.send(commands[message.content])
         else:
