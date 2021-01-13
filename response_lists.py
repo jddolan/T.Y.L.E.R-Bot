@@ -58,7 +58,7 @@ quote me on that""",
 
 commands: dict = {
     '!about': "This is a bot designed to respond to Tyler when other people aren't. Created by Joe",
-    '!quote': "provides a quote"
+    '!quote': "provides a quote",
     '!help': '''Valid Commands: 
 
 !about: More information about the bot
