@@ -24,6 +24,9 @@ adjectives = [
     "Pog",
 ]
 
+def getQuote(quotes):
+    return random.choice(quotes)
+
 quotes = [
     "You add a meet and cheese board to anything and you up the class by 3 points",
     "Im a top 3 defender at my home courts quote it",
@@ -52,10 +55,9 @@ ok
 ?
 quote me on that""",
     "I guess I'm just a weeb guys.",
+    "Piss play is to 2021 as eating ass was to 2019",
+    "JUST WAIT TIL THEY MAKE A SPELL ONLY AGENT",
 ]
-
-def getQuote(quotes):
-    return random.choice(quotes)
 
 commands: dict = {
     'about': "This is a bot designed to respond to Tyler when other people aren't. Created by Joe",
@@ -64,7 +66,7 @@ commands: dict = {
 
 !about: More information about the bot
 !help: A list of valid commands for the bot
-!quote: Provides a random quote from a time when Tyler said "quote me on that"'''
+!quote: Provides a random quote from a time when Tyler said quote me on it, pin it, or something along those lines'''
 }
 
 responses = {

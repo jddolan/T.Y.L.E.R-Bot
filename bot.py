@@ -16,7 +16,7 @@ import datetime
 from datetime import datetime, timedelta, time
 import random
 
-from response_lists import activities, adjectives, commands, responses
+from response_lists import activities, adjectives, commands, responses, quotes, getQuote
 
 
 token = "Nzk3NjE5NDUwMTI3ODQzMzg4.X_pG_w.WC-PkunlOkVlYH5_R5NU8VyIBfE"
