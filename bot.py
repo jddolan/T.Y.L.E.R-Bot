@@ -56,9 +56,9 @@ tyler = Tyler()
 async def on_message(message):
     if message.content[0] == '!':
         if message.content[1:] in commands.keys():
-            await tyler.channel.send(commands[message.content[1:]])
+            await message.channel.send(commands[message.content[1:]])
         else:
-            await tyler.channel.send("Command not found, type !help for a list of all valid commands")
+            await message.channel.send("Command not found, type !help for a list of all valid commands")
     elif tyler.channel == None or tyler.channel == message.channel:
         if message.author.id == tyler.id:
             print("it's a message from tyler")
