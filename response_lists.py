@@ -62,7 +62,11 @@ quote me on that
     "if phreak starts casting nba games ill never watch one again - Joe",
     "Quote me on this.  Riot will forget to make it so stoneplate stacks with locket. - Ximing reading the patch notes",
     "If pp isnt back by the end of 2017 im gonna just work my ass off and replace him as the falco god - Joe",
-    "Trist adc - Joe"
+    "Trist adc - Joe",
+    """preseason azir with grasp morello
+broken
+- Ximing""",
+    
 ]
 
 commands: dict = {

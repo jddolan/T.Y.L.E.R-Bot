@@ -55,6 +55,9 @@ tyler = Tyler()
 @client.event
 async def on_message(message):
     if message.content[0] == '!':
+        if message.content == "!scan":
+            async for msg in message.channel.history(limit=10000):
+                print(msg.content)
         if message.content in commands.keys():
             if message.content == '!quote':
                 await message.channel.send(random.choice(quotes))
@@ -148,6 +151,5 @@ def spongebob(messages):
         newmessage = newmessage + "".join(msg) + "\n"
         
     return(newmessage)
-
 
 client.run(token)
