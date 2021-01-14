@@ -1,7 +1,7 @@
 # Tyler's
 # Yammering
-# Lonesomeness
-# Evasion
+# Loneliness
+# Emergency
 # Response
 # Bot
 
