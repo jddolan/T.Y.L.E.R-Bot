@@ -56,7 +56,6 @@ tyler = Tyler()
 async def on_message(message):
     if message.content[0] == '!':
         if message.content == "!scan":
-            print(len(message.channel.history()))
             async for msg in message.channel.history():
                 print(msg.content)
         if message.content in commands.keys():
