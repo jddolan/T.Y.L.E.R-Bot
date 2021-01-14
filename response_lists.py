@@ -66,7 +66,7 @@ quote me on that
     """preseason azir with grasp morello
 broken
 - Ximing""",
-    
+
 ]
 
 commands: dict = {
