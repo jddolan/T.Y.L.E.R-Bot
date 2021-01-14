@@ -57,7 +57,7 @@ async def on_message(message):
     if message.content[0] == '!':
         if message.content == "!scan":
             count = 0
-            async for msg in message.channel.history():
+            async for msg in message.channel.history(limit=100000):
                 count += 1
                 print(msg.content)
                 print(f"count: {count}\n")
