@@ -9,7 +9,6 @@
 # tyler_id=130402289755095041
 
 import os
-import JSON
 
 import discord
 import asyncio
