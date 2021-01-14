@@ -57,14 +57,18 @@ async def on_message(message):
     if message.content[0] == '!':
         if message.content == "!scan":
             count = 0
-            async for msg in message.channel.history(limit=9999999999):
-                count += 1
-                if '"-' in msg.content or '" -' in msg.content:
-                    #  or "-" in msg.content:
-                    print(msg.content)
-                    print(f"count: {count}\n")
-
-            print("done scanning")
+            msgId = 388743515041038338
+            while(True):
+                async for msg in message.channel.history(limit=9999999999,before=msgId):
+                    count += 1
+                    if msgId == message.id:
+                        print("done scanning")
+                    msgId = msgId
+                    if '"-' in msg.content or '" -' in msg.content:
+                        #  or "-" in msg.content:
+                        print(msg.content)
+                        print(f"count: {count}\n")
+                print("fetching more results")
         elif message.content in commands.keys():
             if message.content == '!quote':
                 await message.channel.send(random.choice(quotes))

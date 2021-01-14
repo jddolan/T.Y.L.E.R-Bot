@@ -66,6 +66,12 @@ quote me on that
     """preseason azir with grasp morello
 broken
 - Ximing""",
+    "i fucking hate this tyler kid so much - Mattbarry",
+    "you should try a big juicy asian pair - Ximing",
+    "you can piss in my mouth for $15k - Micah",
+    "sasuke is cool - Matt",
+    "I'm so hungry I haven't eaten since 6:30 - Ximing at 6:45",
+    "If you ever bring bomberman back down I will snap the disc -Tyler",
 
 ]
 
