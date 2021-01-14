@@ -57,7 +57,7 @@ async def on_message(message):
     if message.content[0] == '!':
         if message.content == "!scan":
             count = 0
-            async for msg in message.channel.history(limit=100000):
+            async for msg in message.channel.history(limit=9999999999):
                 count += 1
                 if '"-' in msg.content or '" -' in msg.content:
                     #  or "-" in msg.content:
