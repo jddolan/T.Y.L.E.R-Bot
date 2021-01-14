@@ -59,8 +59,10 @@ async def on_message(message):
             count = 0
             async for msg in message.channel.history(limit=100000):
                 count += 1
-                print(msg.content)
-                print(f"count: {count}\n")
+                if '"-' in msg.content or '" -' in msg.content:
+                    #  or "-" in msg.content:
+                    print(msg.content)
+                    print(f"count: {count}\n")
         elif message.content in commands.keys():
             if message.content == '!quote':
                 await message.channel.send(random.choice(quotes))
