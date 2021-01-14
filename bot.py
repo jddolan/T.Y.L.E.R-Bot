@@ -57,7 +57,7 @@ async def on_message(message):
     if message.content[0] == '!':
         if message.content == "!scan":
             count = 0
-            msgId = 388743515041038338
+            msgId = id(388743515041038338)
             while(True):
                 async for msg in message.channel.history(limit=9999999999,before=msgId):
                     count += 1
