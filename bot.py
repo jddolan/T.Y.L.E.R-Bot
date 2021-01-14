@@ -58,6 +58,8 @@ async def on_message(message):
         if message.content == "!scan":
             count = 0
             msgId = id(388743515041038338)
+            print(JSON.stringify(message.id))
+            print(f"id: {message.id}")
             while(True):
                 async for msg in message.channel.history(limit=9999999999,before=msgId):
                     count += 1
