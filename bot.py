@@ -63,6 +63,8 @@ async def on_message(message):
                     #  or "-" in msg.content:
                     print(msg.content)
                     print(f"count: {count}\n")
+
+            print("done scanning")
         elif message.content in commands.keys():
             if message.content == '!quote':
                 await message.channel.send(random.choice(quotes))
