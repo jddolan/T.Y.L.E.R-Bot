@@ -62,7 +62,7 @@ async def on_message(message):
             while(True):
                 async for msg in message.channel.history(limit=9999999999,before=iterator):
                     count += 1
-                    if iterator == msg.created_at.timestamp():
+                    if iterator == msg:
                         print("done scanning")
                         return
                     iterator = msg
