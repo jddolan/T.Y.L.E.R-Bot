@@ -58,13 +58,14 @@ async def on_message(message):
         if message.content == "!scan":
             count = 0
             print(f"id: {message.id}")
+            iterator = datetime.datetime.utcnow()
             while(True):
-                async for msg in message.channel.history(limit=9999999999,before=message.id):
+                async for msg in message.channel.history(limit=9999999999,before=iterator):
                     count += 1
-                    if msgId == message.id:
+                    if iterator == msg.created_at.timestamp():
                         print("done scanning")
                         return
-                    msgId = msgId
+                    iterator = msg.created_at.timestamp()
                     if '"-' in msg.content or '" -' in msg.content:
                         #  or "-" in msg.content:
                         print(msg.content)
