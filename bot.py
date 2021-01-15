@@ -164,7 +164,7 @@ async def quote(message):
     return
 
 async def addQuote(message):
-    quote = re.match('(.*) \<(.*)\>', message.content.split('!addquote ')[1])
+    quote = re.match('(.*) \<@(.*)\>', message.content.split('!addquote ')[1])
     test = quote.group(1)
     test2 = quote.group(2)
     print(f"quote: {quote}")
