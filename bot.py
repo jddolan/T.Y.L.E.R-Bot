@@ -84,7 +84,7 @@ async def on_message(message):
             elif command == '!addquote':
                 quote = message.content.split('!addquote ')[1]
                 print(f"quote: {quote}")
-                await client.get_user(joeId).send(f"quote submission from {message.author.username}: {quote}")
+                await client.get_user(joeId).send(f"quote submission from {message.author._user.name}: {quote}")
             else:
                 await message.channel.send(commands[command])
         else:
