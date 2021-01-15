@@ -164,8 +164,12 @@ async def quote(message):
     return
 
 async def addQuote(message):
-    quote = re.search('(.*) \<(.*)\>', message.content.split('!addquote ')[1])
+    quote = re.match('(.*) \<(.*)\>', message.content.split('!addquote ')[1])
+    test = quote.group(1)
+    test2 = quote.group(2)
     print(f"quote: {quote}")
+    print(f"test group 1: {test}")
+    print(f"test group 2: {test2}")
     await client.get_user(joeId).send(f"quote submission from {message.author._user.name}: {quote}")
     return
 
