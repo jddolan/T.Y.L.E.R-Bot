@@ -65,7 +65,7 @@ async def on_message(message):
                     if iterator == msg.created_at.timestamp():
                         print("done scanning")
                         return
-                    iterator = msg.created_at.timestamp()
+                    iterator = msg
                     if '"-' in msg.content or '" -' in msg.content:
                         #  or "-" in msg.content:
                         print(msg.content)
