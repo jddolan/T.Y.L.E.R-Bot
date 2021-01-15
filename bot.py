@@ -59,19 +59,23 @@ async def on_message(message):
             count = 0
             print(f"id: {message.id}")
             iterator = message
+            oldIterator = "temp"
             while(True):
                 async for msg in message.channel.history(limit=9999999999,before=iterator):
                     count += 1
                     print(int(iterator.id))
                     print(int(msg.id))
                     if int(iterator.id) == int(msg.id) or iterator == None:
-                        print("done scanning")
-                        return
+                        
                     iterator = msg
                     if '"-' in msg.content or '" -' in msg.content:
                         #  or "-" in msg.content:
                         print(msg.content)
                         print(f"count: {count}\n")
+                if oldIterator == iterator:
+                    print("done scanning")
+                    return
+                oldIterator = iterator
                 print(f"last message: {msg}")
                 print(msg.content)
                 print("fetching more results")
