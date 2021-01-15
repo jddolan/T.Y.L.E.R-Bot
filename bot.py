@@ -70,6 +70,8 @@ async def on_message(message):
                         #  or "-" in msg.content:
                         print(msg.content)
                         print(f"count: {count}\n")
+                print(f"last message: {msg}")
+                print(msg.content)
                 print("fetching more results")
         elif message.content in commands.keys():
             if message.content == '!quote':
