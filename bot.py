@@ -63,10 +63,6 @@ async def on_message(message):
             while(True):
                 async for msg in message.channel.history(limit=9999999999,before=iterator):
                     count += 1
-                    print(int(iterator.id))
-                    print(int(msg.id))
-                    if int(iterator.id) == int(msg.id) or iterator == None:
-                        
                     iterator = msg
                     if '"-' in msg.content or '" -' in msg.content:
                         #  or "-" in msg.content:

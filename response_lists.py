@@ -81,7 +81,8 @@ broken
     """trash talk Ximing is not good - Ximing
 Yeah you should probably unplug yourself - Ximing 1 min later""",
     "I put ketchup on my steaks - Joe (To be clear I don't do that anymore)",
-    "It sucks - Tyler"
+    "It sucks - Tyler",
+    "True - Ximing when asked about him hating Tyler"
 ]
 
 commands: dict = {
