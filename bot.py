@@ -58,7 +58,7 @@ async def on_message(message):
         if message.content == "!scan":
             count = 0
             print(f"id: {message.id}")
-            iterator = datetime.datetime.utcnow()
+            iterator = datetime.utcnow()
             while(True):
                 async for msg in message.channel.history(limit=9999999999,before=iterator):
                     count += 1
