@@ -73,6 +73,7 @@ async def on_message(message):
                 print(f"last message: {msg}")
                 print(msg.content)
                 print("fetching more results")
+                print(f"iterator: {iterator}")
         elif message.content in commands.keys():
             if message.content == '!quote':
                 await message.channel.send(random.choice(quotes))
