@@ -21,6 +21,7 @@ from response_lists import activities, adjectives, commands, responses, quotes
 
 token = "Nzk3NjE5NDUwMTI3ODQzMzg4.X_pG_w.WC-PkunlOkVlYH5_R5NU8VyIBfE"
 guild = 'Flat Earf Rules'
+joeId: int = 139785944009015296
 
 msgLimit = 3
 responseRateCap = 2
@@ -79,6 +80,10 @@ async def on_message(message):
         elif message.content in commands.keys():
             if message.content == '!quote':
                 await message.channel.send(random.choice(quotes))
+            elif message.content == '!addquote':
+                quote = message.content.split('!addquote')[1]
+                print(f"quote: {quote}")
+                await joeId.send(f"quote submission from {message.author.username}: {quote}")
             else:
                 await message.channel.send(commands[message.content])
         else:
