@@ -81,7 +81,7 @@ broken
     """trash talk Ximing is not good - Ximing
 Yeah you should probably unplug yourself - Ximing 1 min later""",
     "I put ketchup on my steaks - Joe",
-    "It sucks - Tyler on adcs using going targons shield"
+    "It sucks - Tyler"
 ]
 
 commands: dict = {
