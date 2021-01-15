@@ -56,7 +56,8 @@ tyler = Tyler()
 @client.event
 async def on_message(message):
     if message.content[0] == '!':
-        if message.content == "!scan":
+        command = message.content.split(' ')[0]
+        if command == "!scan":
             count = 0
             print(f"id: {message.id}")
             iterator = message
@@ -77,15 +78,15 @@ async def on_message(message):
                 print(msg.content)
                 print("fetching more results")
                 print(f"iterator: {iterator}")
-        elif message.content.split(' ')[0] in commands.keys():
-            if message.content == '!quote':
+        elif command in commands.keys():
+            if command == '!quote':
                 await message.channel.send(random.choice(quotes))
-            elif message.content == '!addquote':
+            elif command == '!addquote':
                 quote = message.content.split('!addquote')[1]
                 print(f"quote: {quote}")
                 await joeId.send(f"quote submission from {message.author.username}: {quote}")
             else:
-                await message.channel.send(commands[message.content])
+                await message.channel.send(commands[command])
         else:
             await message.channel.send("Command not found, type !help for a list of all valid commands")
     elif tyler.channel == None or tyler.channel == message.channel:
