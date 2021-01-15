@@ -72,7 +72,7 @@ async def on_message(message):
                         print(f"count: {count}\n")
                 if oldIterator == iterator:
                     print("done scanning")
-                    return
+                    break
                 oldIterator = iterator
                 print(f"last message: {msg}")
                 print(msg.content)
