@@ -144,15 +144,7 @@ async def on_message(message):
                 await message.channel.send("Stop saying pee and poo it's not as funny as you think it is.")
 
 
-    def quote(message):
-        await message.channel.send(random.choice(quotes))
-        return
-
-    def addQuote(message):
-        quote = message.content.split('!addquote ')[1]
-        print(f"quote: {quote}")
-        await client.get_user(joeId).send(f"quote submission from {message.author._user.name}: {quote}")
-        return
+    
 
 def response(messages):
 
@@ -184,5 +176,15 @@ def spongebob(messages):
         newmessage = newmessage + "".join(msg) + "\n"
         
     return(newmessage)
+
+async def quote(message):
+    await message.channel.send(random.choice(quotes))
+    return
+
+async def addQuote(message):
+    quote = message.content.split('!addquote ')[1]
+    print(f"quote: {quote}")
+    await client.get_user(joeId).send(f"quote submission from {message.author._user.name}: {quote}")
+    return
 
 client.run(token)
