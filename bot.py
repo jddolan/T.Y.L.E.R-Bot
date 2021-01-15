@@ -57,7 +57,7 @@ async def on_message(message):
     if message.content[0] == '!':
         if message.content == "!scan":
             count = 0
-            msgId = id(388743515041038338)
+            msgId: int = 388743515041038338
             # print(JSON.stringify(message.id))
             print(f"id: {message.id}")
             while(True):
