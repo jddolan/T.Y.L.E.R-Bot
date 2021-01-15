@@ -80,11 +80,9 @@ async def on_message(message):
                 print(f"iterator: {iterator}")
         elif command in commands.keys():
             if command == '!quote':
-                await message.channel.send(random.choice(quotes))
+                quote(message)
             elif command == '!addquote':
-                quote = message.content.split('!addquote ')[1]
-                print(f"quote: {quote}")
-                await client.get_user(joeId).send(f"quote submission from {message.author._user.name}: {quote}")
+                addQuote(message)
             else:
                 await message.channel.send(commands[command])
         else:
@@ -175,5 +173,15 @@ def spongebob(messages):
         newmessage = newmessage + "".join(msg) + "\n"
         
     return(newmessage)
+
+def quote(message):
+    await message.channel.send(random.choice(quotes))
+    return
+
+def addQuote(message):
+    quote = message.content.split('!addquote ')[1]
+    print(f"quote: {quote}")
+    await client.get_user(joeId).send(f"quote submission from {message.author._user.name}: {quote}")
+    return
 
 client.run(token)
