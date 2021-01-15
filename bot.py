@@ -58,31 +58,12 @@ async def on_message(message):
     if message.content[0] == '!':
         command = message.content.split(' ')[0]
         if command == "!scan":
-            count = 0
-            print(f"id: {message.id}")
-            iterator = message
-            oldIterator = "temp"
-            while(True):
-                async for msg in message.channel.history(limit=9999999999,before=iterator):
-                    count += 1
-                    iterator = msg
-                    if '"-' in msg.content or '" -' in msg.content:
-                        #  or "-" in msg.content:
-                        print(msg.content)
-                        print(f"count: {count}\n")
-                if oldIterator == iterator:
-                    print("done scanning")
-                    break
-                oldIterator = iterator
-                print(f"last message: {msg}")
-                print(msg.content)
-                print("fetching more results")
-                print(f"iterator: {iterator}")
+            await scan(message)
         elif command in commands.keys():
             if command == '!quote':
-                quote(message)
+                await quote(message)
             elif command == '!addquote':
-                addQuote(message)
+                await addQuote(message)
             else:
                 await message.channel.send(commands[command])
         else:
@@ -186,5 +167,27 @@ async def addQuote(message):
     print(f"quote: {quote}")
     await client.get_user(joeId).send(f"quote submission from {message.author._user.name}: {quote}")
     return
+
+async def scan(message):
+    count = 0
+    print(f"id: {message.id}")
+    iterator = message
+    oldIterator = "temp"
+    while(True):
+        async for msg in message.channel.history(limit=9999999999,before=iterator):
+            count += 1
+            iterator = msg
+            if '"-' in msg.content or '" -' in msg.content:
+                #  or "-" in msg.content:
+                print(msg.content)
+                print(f"count: {count}\n")
+        if oldIterator == iterator:
+            print("done scanning")
+            break
+        oldIterator = iterator
+        print(f"last message: {msg}")
+        print(msg.content)
+        print("fetching more results")
+        print(f"iterator: {iterator}")
 
 client.run(token)
