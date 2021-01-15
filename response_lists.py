@@ -93,7 +93,8 @@ commands: dict = {
 
 !about: More information about the bot
 !help: A list of valid commands for the bot
-!quote: Provides a random quote from a time when Tyler said quote me on it, pin it, or something along those lines'''
+!quote: Provides a random quote from a time when Tyler said quote me on it, pin it, or something along those lines
+!addquote: !addquote <quote> <user> submits the quote to be added to the bot's list of randomly generated quotes. Must be approved by Joe and the person being quoted'''
 }
 
 responses = {
