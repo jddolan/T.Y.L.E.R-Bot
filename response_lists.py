@@ -72,7 +72,16 @@ broken
     "sasuke is cool - Matt",
     "I'm so hungry I haven't eaten since 6:30 - Ximing at 6:45",
     "If you ever bring bomberman back down I will snap the disc -Tyler",
-
+    "Luigi's weird - he's like, in space -Tyler talking about smash",
+    "This matchup is pretty much Fox Marth, but Falco Marth Falco Fox but Fox is Marth - Mang0 on falco v fox",
+    "why does orange juice expire - Ximing's sister",
+    "Dude funerals suck - Tyler",
+    "CLG doesn't lose a series this season during the playoffs - Tyler",
+    "It's gonna depend on the draft - Tyler",
+    """trash talk Ximing is not good - Ximing
+Yeah you should probably unplug yourself - Ximing 1 min later""",
+    "I put ketchup on my steaks - Joe",
+    "It sucks - Tyler on adcs using going targons shield"
 ]
 
 commands: dict = {
