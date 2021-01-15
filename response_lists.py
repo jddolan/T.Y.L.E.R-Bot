@@ -88,7 +88,7 @@ Yeah you should probably unplug yourself - Ximing 1 min later""",
 commands: dict = {
     '!about': "This is a bot designed to respond to Tyler when other people aren't. Created by Joe",
     '!quote': "provides a quote",
-    '!addquote': "!addquote <quote> submits the quote to be added to the bot's list of randomly generated quotes"
+    '!addquote': "!addquote <quote> submits the quote to be added to the bot's list of randomly generated quotes",
     '!help': '''Valid Commands: 
 
 !about: More information about the bot
