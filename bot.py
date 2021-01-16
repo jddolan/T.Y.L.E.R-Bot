@@ -190,17 +190,19 @@ async def roll(message):
         rollInput = message.content.split('!roll ')[1]
         print(f"rollInput: {rollInput}")
         match = re.match('([0-9]+)d([0-9]+)', rollInput)
-        try:
-            rolls = int(match.group(1))
-        except:
-            rolls = 1
+        rolls = int(match.group(1))
         sides = int(match.group(2))
         print(f"rolls: {rolls}")
         print(f"sides: {sides}")
     except:
-        print("first roll error")
-        await message.channel.send(f"Invalid format. Example of a valid submission: !roll 3d6")
-        return
+        try:
+            match = re.match('d([0-9]+)', rollInput)
+            rolls = 1
+            sides = int(match.group(2))
+        except:
+            print("first roll error")
+            await message.channel.send(f"Invalid format. Example of a valid submission: !roll 3d6")
+            return
     
     try:
         total = 0
