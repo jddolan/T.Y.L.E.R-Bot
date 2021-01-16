@@ -170,7 +170,8 @@ async def addQuote(message):
     
     print(f"quote: {quote}")
     print(f"user: {user}")
-    await client.get_user(joeId).send(f"quote submission from {message.author._user.name}: {quote} <!@{user}>")
+    await client.get_user(joeId).send(f"quote submission from {message.author._user.name}: {quote} <@{user}>")
+    # await client.get_user(joeId).send(f"quote submission from {message.author._user.name}: {quote} <@{client.get_user(joeId).mention}>")
     return
 
 async def scan(message):
