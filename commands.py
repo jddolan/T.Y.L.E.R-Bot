@@ -6,13 +6,13 @@ import responses
 async def command(message, client):
     commandStr = message.content.split(' ')[0]
     commands = {
-        '!help': help(message),
-        '!about': about(message),
-        '!quote': quote(message),
-        '!addquote': addQuote(message, client),
-        '!scan': scan(message),
-        '!roll': roll(message),
-        '!rps': rps(message)
+        '!help': await help(message),
+        '!about': await about(message),
+        '!quote': await quote(message),
+        '!addquote': await addQuote(message, client),
+        '!scan': await scan(message),
+        '!roll': await roll(message),
+        '!rps': await rps(message)
     }
     command = commands.get(commandStr, lambda: invalidCommand(message))
     command
