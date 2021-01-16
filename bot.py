@@ -173,7 +173,7 @@ async def addQuote(message):
 
     newMessage = await message.channel.send(f"""<@{message.author._user.id}> submitted the following quote: 
 
-"{quote}"
+"{quote}" - <@{userId}>
 
 Adding the quote requires permission from the quote's source. <@{userId}>, please react to this message with :yea: or :nay: to approve or deny adding this quote.""")
 
@@ -186,7 +186,7 @@ Adding the quote requires permission from the quote's source. <@{userId}>, pleas
     if reaction.emoji.name == 'yea':
         await newMessage.edit(content=f"""<@{message.author._user.id}> submitted the following quote: 
 
-"{quote}" - <@{userId}> 
+"{quote}" - <@{userId}>
 
 Permission to add this quote was approved!""")
         await client.get_user(joeId).send(f"quote submission from {message.author._user.name}: {quote} - <@{userId}>")
