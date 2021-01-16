@@ -58,13 +58,15 @@ async def on_message(message):
     print(f"int(message.author.id: {int(message.author.id)}")
     if message.content[0] == '!':
         command(message)
-    elif int(message.author.id) == tylerId:
+    elif message.author.id == tylerId:
+        print("test")
         if tyler.get(message.channel.name, None) == None:
             # New channel found, create new dict entry
             tyler[message.channel.name] = Tyler()
             tyler[message.channel.name].channel = message.channel
         tylerMessage(message)
     elif message.author != client.user:
+        print("test2")
         print("message not from tyler found, abort mission")
         if tyler.get(message.channel.name, None) != None:
             tyler[message.channel.name].reset()
