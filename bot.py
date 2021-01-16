@@ -23,6 +23,7 @@ from response_lists import activities, adjectives, commands, responses, quotes
 token = "Nzk3NjE5NDUwMTI3ODQzMzg4.X_pG_w.WC-PkunlOkVlYH5_R5NU8VyIBfE"
 guild = 'Flat Earf Rules'
 joeId: int = 139785944009015296
+botId: int = 797619450127843388
 
 msgLimit = 3
 responseRateCap = 2
@@ -167,6 +168,10 @@ async def addQuote(message):
     match = re.match('(.*) \<@!(.*)\>', message.content.split('!addquote ')[1])
     quote = match.group(1)
     userId = int(match.group(2))
+
+    if not quote or not userId:
+        await message.channel.send(f"""Invalid format. Example of a valid submission:
+!addquote this is an example quote <@{botId}>""")
     
     print(f"quote: {quote}")
     print(f"userId: {userId}")
