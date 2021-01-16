@@ -177,14 +177,14 @@ Adding the quote requires permission from the quote's source. <@{userId}>, pleas
 
     def check(reaction, user):
         print(f'reaction: {reaction}')
-        return user == client.get_user(userId) and (reaction.emoji.name == 'yea' or reaction.emoji.name == 'nay')
+        return user == client.get_user(userId) and (str(reaction.emoji) == 'yea' or str(reaction.emoji) == 'nay')
 
     try:
         reaction, user = await client.wait_for('reaction_add', check=check)
-    if reaction.emoji.name == 'yea':
+    if str(reaction.emoji) == 'yea':
         await client.get_user(joeId).send(f"quote submission from {message.author._user.name}: {quote} - <@{user}>")
-    elif reaction.emoji.name == 'nay':
-        
+    elif str(reaction.emoji) == 'nay':
+        await message.channel.send(f"quote denied")
     
     return
 
