@@ -192,6 +192,8 @@ Permission to add this quote was denied.""")
 async def roll(message):
     try:
         match = re.match('([:digit:]*)d[:digit:]', message.content.split('!roll ')[1])
+        print(f"rolls: {rolls}")
+        print(f"sides: {sides}")
         rolls = int(match.group(1))
         sides = int(match.group(2))
     except:
