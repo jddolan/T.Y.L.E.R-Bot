@@ -5,9 +5,6 @@
 # Response
 # Bot
 
-# joe_id=139785944009015296
-# tyler_id=130402289755095041
-
 import os
 
 import discord
@@ -20,10 +17,10 @@ import re
 from response_lists import activities, adjectives, commands, responses, quotes
 
 
-token = "Nzk3NjE5NDUwMTI3ODQzMzg4.X_pG_w.WC-PkunlOkVlYH5_R5NU8VyIBfE"
-guild = 'Flat Earf Rules'
-joeId: int = 139785944009015296
-botId: int = 797619450127843388
+token = os.environ.get('TOKEN')
+joeId: int = os.environ.get('JOEID')
+botId: int = os.environ.get('BOTID')
+tylerId: int = os.environ.get('TYLERID')
 
 msgLimit = 3
 responseRateCap = 2
