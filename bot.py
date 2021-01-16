@@ -164,13 +164,13 @@ async def quote(message):
     return
 
 async def addQuote(message):
-    quote = re.match('(.*) \<@!(.*)\>', message.content.split('!addquote ')[1])
-    test = quote.group(1)
-    test2 = quote.group(2)
+    match = re.match('(.*) \<@!(.*)\>', message.content.split('!addquote ')[1])
+    quote = match.group(1)
+    user = int(quote.group(2))
+    
     print(f"quote: {quote}")
-    print(f"test group 1: {test}")
-    print(f"test group 2: {test2}")
-    await client.get_user(joeId).send(f"quote submission from {message.author._user.name}: {quote}")
+    print(f"user: {user}")
+    await client.get_user(joeId).send(f"quote submission from {message.author._user.name}: {quote} <!@{user}>")
     return
 
 async def scan(message):
