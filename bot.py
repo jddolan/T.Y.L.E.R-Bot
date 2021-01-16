@@ -29,7 +29,7 @@ timeoutLength = 600
 intents = discord.Intents.all()
 client = discord.Client(intents=intents)
 
-class Tyler:
+class Tyler():
     msgCount: int = 0
     msgsSinceLastResponse: int = 0
     channel = None
