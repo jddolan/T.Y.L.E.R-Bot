@@ -20,7 +20,7 @@ from response_lists import activities, adjectives, commands, responses, quotes
 token = os.environ.get('TOKEN')
 joeId: int = os.environ.get('JOEID')
 botId: int = os.environ.get('BOTID')
-tylerId: int = os.environ.get('TYLERID')
+tylerId: int = int(os.environ.get('TYLERID'))
 
 msgLimit = 3
 responseRateCap = 2
