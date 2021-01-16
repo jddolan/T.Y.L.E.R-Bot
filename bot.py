@@ -218,7 +218,10 @@ async def roll(message):
         await message.channel.send(f"Invalid values. Example of a valid submission: !roll 3d6")
         return
 
-    await message.channel.send(f"<@{message.author._user.id}> rolled {total}. ({' + '.join(dice)}) = {total}")
+    if len(dice) == 1:
+        await message.channel.send(f"<@{message.author._user.id}> rolled {total}.")
+    else:
+        await message.channel.send(f"<@{message.author._user.id}> rolled {total}. ({' + '.join(dice)}) = {total}")
     return
 
 async def tylerMessage(message):
