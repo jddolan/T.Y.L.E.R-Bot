@@ -202,7 +202,7 @@ async def tylerMessage(message):
 
     def check(msg):
         print(f"went in the check, variables: \nmsgCount: {tyler[message.channel.name].msgCount}\nmsgLimit: {msgLimit}\nauthor id: {msg.author.id}\ntyler id: {tylerId}\n")
-        return msg.author.id != tylerId or (tyler[message.channel.name].msgCount >= msgLimit + 1)
+        return msg.channel == tyler[message.channel.name].channel and (msg.author.id != tylerId or (tyler[message.channel.name].msgCount >= msgLimit + 1))
 
     if tyler[message.channel.name].msgCount >= msgLimit and tyler[message.channel.name].msgsSinceLastResponse >= responseRateCap:
         print("msgCount is higher than the limit")
