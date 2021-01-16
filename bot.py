@@ -202,7 +202,7 @@ async def roll(message):
     try:
         dice: list = []
         for i in range(1,rolls):
-            dice.append(random.uniform(1,sides))
+            dice.append(str(random.uniform(1,sides)))
         total = sum(dice)
     except:
         print("second roll error")
