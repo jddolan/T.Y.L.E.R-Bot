@@ -53,12 +53,8 @@ tyler: dict = {}
 
 @client.event
 async def on_message(message):
-    print(f"tylerId: {tylerId}")
-    print(f"message.author.id: {message.author.id}")
-    print(f"int(message.author.id: {int(message.author.id)}")
-    print(f"equal? {tylerId == message.author.id}")
     if message.content[0] == '!':
-        command(message)
+        await command(message)
     elif message.author.id == tylerId:
         if tyler.get(message.channel.name, None) == None:
             # New channel found, create new dict entry
