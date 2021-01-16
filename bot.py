@@ -202,7 +202,7 @@ async def roll(message):
     try:
         total = 0
         dice: list = []
-        for i in range(1,rolls):
+        for i in range(0,rolls):
             dice.append(f"{random.randrange(1,sides+1,1)}")
         print(f"dice: {dice}")
         for die in dice:
