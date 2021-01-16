@@ -57,18 +57,17 @@ tyler: dict = {}
 async def on_message(message):
     if message.content[0] == '!':
         command(message)
-    elif tyler.get(message.channel.name, None) == None:
-        # New channel found, create new dict entry
-        tyler[message.channel.name] = Tyler(channel=message.channel)
-    else:
-        if message.author.id == tylerId:
-            tylerMessage(message)
-
-        elif message.author != client.user:
-            print("message not from tyler found, abort mission")
-            tyler[message.channel.name].reset()
-            if message.content == 'pee' or message.content == 'poo':
-                await message.channel.send("Stop saying pee and poo it's not as funny as you think it is.")
+    elif message.author.id == tylerId:
+        if tyler.get(message.channel.name, None) == None:
+            # New channel found, create new dict entry
+            tyler[message.channel.name] = Tyler()
+            tyler[message.channel.name].channel = message.channel
+        tylerMessage(message)
+    elif message.author != client.user:
+        print("message not from tyler found, abort mission")
+        tyler[message.channel.name].reset()
+        if message.content == 'pee' or message.content == 'poo':
+            await message.channel.send("Stop saying pee and poo it's not as funny as you think it is.")
 
 def response(messages):
 
