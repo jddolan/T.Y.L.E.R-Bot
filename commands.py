@@ -14,7 +14,7 @@ async def command(message, client):
         '!roll': roll(message),
         '!rps': rps(message)
     }
-    command = commands.get(commandStr, lambda: await message.channel.send("Command not found, type !help for a list of all valid commands"))
+    command = commands.get(commandStr, async lambda: await message.channel.send("Command not found, type !help for a list of all valid commands"))
     command
     return
 
