@@ -105,13 +105,16 @@ def spongebob(messages):
 
 async def command(message):
     command = message.content.split(' ')[0]
-    if command == "!scan":
-        await scan(message)
-    elif command in commands.keys():
+    
+    if command in commands.keys():
         if command == '!quote':
             await quote(message)
         elif command == '!addquote':
             await addQuote(message)
+        elif command == "!scan":
+            await scan(message)
+        elif command == '!roll':
+            await roll(message)
         else:
             await message.channel.send(commands[command])
     else:
@@ -184,6 +187,27 @@ Permission to add this quote was approved!""")
 
 Permission to add this quote was denied.""")
     
+    return
+
+async def roll(message):
+    try:
+        match = re.match('([:digit:]*)d[:digit:]', message.content.split('!roll ')[1])
+        rolls = int(match.group(1))
+        sides = int(match.group(2))
+    except:
+        await message.channel.send(f"Invalid format. Example of a valid submission: !roll 3d6")
+        return
+    
+    try:
+        dice: list = []
+        for i in [1:rolls]:
+            dice.append(random.uniform(1,sides))
+        total = sum(dice)
+    except:
+        await message.channel.send(f"Invalid values. Example of a valid submission: !roll 3d6")
+        return
+
+    await message.channel.send(f"<@{message.author._user.id}> rolled {total}. ({" + ".join(dice)} = {total}")
     return
 
 async def tylerMessage(message):
