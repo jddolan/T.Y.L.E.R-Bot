@@ -171,8 +171,10 @@ async def addQuote(message):
     print(f"quote: {quote}")
     print(f"userId: {userId}")
 
-    newMessage = await message.channel.send(f"""<@{message.author._user.id}> submitted the following quote to be added to the list of randomly generated quotes: 
+    newMessage = await message.channel.send(f"""<@{message.author._user.id}> submitted the following quote: 
+
 "{quote}"
+
 Adding the quote requires permission from the quote's source. <@{userId}>, please react to this message with :yea: or :nay: to approve or deny adding this quote.""")
 
     def check(reaction, user):
@@ -182,8 +184,10 @@ Adding the quote requires permission from the quote's source. <@{userId}>, pleas
     reaction, user = await client.wait_for('reaction_add', check=check)
 
     if reaction.emoji.name == 'yea':
-        await newMessage.edit(content=f"""<@{message.author._user.id}> submitted the following quote to be added to the list of randomly generated quotes: 
+        await newMessage.edit(content=f"""<@{message.author._user.id}> submitted the following quote: 
+
 "{quote}"
+
 Permission to add this quote was approved!""")
         await client.get_user(joeId).send(f"quote submission from {message.author._user.name}: {quote} - <@{userId}>")
     elif reaction.emoji.name == 'nay':
