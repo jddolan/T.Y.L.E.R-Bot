@@ -193,6 +193,7 @@ async def roll(message):
         rolls = int(match.group(1))
         sides = int(match.group(2))
     except:
+        print("first roll error")
         await message.channel.send(f"Invalid format. Example of a valid submission: !roll 3d6")
         return
     
@@ -202,6 +203,7 @@ async def roll(message):
             dice.append(random.uniform(1,sides))
         total = sum(dice)
     except:
+        print("second roll error")
         await message.channel.send(f"Invalid values. Example of a valid submission: !roll 3d6")
         return
 
