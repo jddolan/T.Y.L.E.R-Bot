@@ -1,3 +1,6 @@
+import random
+import responses
+
 commands: dict = {
     '!help': '''Valid Commands: 
 
