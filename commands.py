@@ -1,24 +1,25 @@
 import random
 import re
 import responses
+from bot import botId, joeId
 
 
 async def command(message, client):
     commandStr = message.content.split(' ')[0]
     commands = {
-        '!help': await help(message),
-        '!about': await about(message),
-        '!quote': await quote(message),
-        '!addquote': await addQuote(message, client),
-        '!scan': await scan(message),
-        '!roll': await roll(message),
-        '!rps': await rps(message)
+        '!help': help,
+        '!about': about,
+        '!quote': quote,
+        '!addquote': addQuote,
+        '!scan': scan,
+        '!roll': roll,
+        '!rps': rps
     }
     command = commands.get(commandStr, lambda: invalidCommand(message))
-    command
+    command(message, client)
     return
 
-async def help(message):
+async def help(message, client):
     await message.channel.send('''Valid Commands: 
 
 !about: More information about the bot
@@ -28,15 +29,15 @@ async def help(message):
 !roll: !roll <XdY> will roll a Y-sided die X times''')
     return
 
-async def about(message):
+async def about(message, client):
     await message.channel.send("This is a bot designed to respond to Tyler when other people aren't. Created by Joe")
     return
 
-async def invalidCommand(message):
+async def invalidCommand(message, client):
     await message.channel.send("Command not found, type !help for a list of all valid commands")
     return
 
-async def scan(message):
+async def scan(message, client):
     count = 0
     print(f"id: {message.id}")
     iterator = message
@@ -58,7 +59,7 @@ async def scan(message):
         print("fetching more results")
         print(f"iterator: {iterator}")
 
-async def quote(message):
+async def quote(message, client):
     await message.channel.send(random.choice(responses.quotes))
     return
 
@@ -104,7 +105,7 @@ Permission to add this quote was denied.""")
     
     return
 
-async def roll(message):
+async def roll(message, client):
     try:
         rollInput = message.content.split('!roll ')[1]
         print(f"rollInput: {rollInput}")
@@ -143,5 +144,5 @@ async def roll(message):
         await message.channel.send(f"<@{message.author._user.id}> rolled {total}. ({' + '.join(dice)}) = {total}")
     return
 
-async def rps(message):
+async def rps(message, client):
     await message.channel.send("work in progress")
