@@ -18,6 +18,9 @@ from response_lists import activities, adjectives, commands, responses, quotes
 
 
 token = os.environ.get('TOKEN')
+token2 = "Nzk3NjE5NDUwMTI3ODQzMzg4.X_pG_w.WC-PkunlOkVlYH5_R5NU8VyIBfE"
+print(f"token: {token}")
+print(f"token2: {token2}")
 joeId: int = os.environ.get('JOEID')
 botId: int = os.environ.get('BOTID')
 tylerId: int = os.environ.get('TYLERID')

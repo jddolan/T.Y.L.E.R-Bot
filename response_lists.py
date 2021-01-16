@@ -27,7 +27,7 @@ adjectives = [
 quotes = [
     "You add a meet and cheese board to anything and you up the class by 3 points - Tyler",
     "Im a top 3 defender at my home courts quote it - Tyler",
-    "Water electric quote it - Tyler speculating on the typing of Sobble - Tyler",
+    "Water electric quote it - Tyler speculating on the typing of Sobble",
     "Knicks making room for kyrie and KD quote me on it - Tyler",
     "Lebron is dropping 55 in game 7 quote me - Tyler",
     "leffen's not dropping a GAME tomorrow quote it - Tyler",
