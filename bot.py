@@ -204,8 +204,10 @@ async def roll(message):
         dice: list = []
         for i in range(1,rolls):
             dice.append(f"{random.uniform(1,sides)}")
+        print(f"dice: {dice}")
         for die in dice:
             total += int(die)
+        print(f"total: {total}")
     except:
         print("second roll error")
         await message.channel.send(f"Invalid values. Example of a valid submission: !roll 3d6")
