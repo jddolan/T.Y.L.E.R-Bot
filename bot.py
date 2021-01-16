@@ -54,7 +54,7 @@ tyler: dict = {}
 @client.event
 async def on_message(message):
     if message.content[0] == '!':
-        await commands.command(message)
+        await commands.command(message, client)
     elif message.author.id == tylerId:
         if tyler.get(message.channel.name, None) == None:
             # New channel found, create new dict entry

@@ -16,14 +16,14 @@ commands: dict = {
     '!roll': "!roll <XdY> will roll a Y-sided die X times"
 }
 
-async def command(message):
+async def command(message, client):
     command = message.content.split(' ')[0]
     
     if command in commands.keys():
         if command == '!quote':
             await quote(message)
         elif command == '!addquote':
-            await addQuote(message)
+            await addQuote(message, client)
         elif command == "!scan":
             await scan(message)
         elif command == '!roll':
