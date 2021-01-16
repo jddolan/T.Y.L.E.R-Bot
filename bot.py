@@ -191,7 +191,11 @@ Adding the quote requires permission from the quote's source. <@{userId}>, pleas
 Permission to add this quote was approved!""")
         await client.get_user(joeId).send(f"quote submission from {message.author._user.name}: {quote} - <@{userId}>")
     elif reaction.emoji.name == 'nay':
-        await newMessage.edit(content="Permission to add this quote was denied.")
+        await newMessage.edit(content=f"""<@{message.author._user.id}> submitted the following quote: 
+
+"{quote}"
+
+Permission to add this quote was denied.""")
     
     return
 
