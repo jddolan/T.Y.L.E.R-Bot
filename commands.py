@@ -2,35 +2,34 @@ import random
 import re
 import responses
 
-commands: dict = {
-    '!help': '''Valid Commands: 
+
+async def command(message, client):
+    commandStr = message.content.split(' ')[0]
+    commands = {
+        '!help': help(message),
+        '!about': about(message),
+        '!quote': quote(message),
+        '!addquote': addQuote(message, client),
+        '!scan': scan(message),
+        '!roll': roll(message),
+        '!rps': rps(message)
+    }
+    command = commands.get(commandStr, lambda: await message.channel.send("Command not found, type !help for a list of all valid commands"))
+    command
+    return
+
+async def help(message):
+    await message.channel.send('''Valid Commands: 
 
 !about: More information about the bot
 !help: A list of valid commands for the bot
 !quote: Provides a quote
 !addquote: !addquote <quote> <user> submits the quote to be added to the bot's list of randomly generated quotes. Must be approved by Joe and the person being quoted
-!roll: !roll <XdY> will roll a Y-sided die X times''',
-    '!about': "This is a bot designed to respond to Tyler when other people aren't. Created by Joe"
-}
+!roll: !roll <XdY> will roll a Y-sided die X times''')
+    return
 
-async def command(message, client):
-    command = message.content.split(' ')[0]
-    
-    if command in commands.keys():
-        if command == '!quote':
-            await quote(message)
-        elif command == '!addquote':
-            await addQuote(message, client)
-        elif command == "!scan":
-            await scan(message)
-        elif command == '!roll':
-            await roll(message)
-        elif command == '!rps':
-            await rps(message)
-        else:
-            await message.channel.send(commands[command])
-    else:
-        await message.channel.send("Command not found, type !help for a list of all valid commands")
+async def about(message):
+    await message.channel.send("This is a bot designed to respond to Tyler when other people aren't. Created by Joe")
     return
 
 async def scan(message):
