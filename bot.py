@@ -175,7 +175,7 @@ async def addQuote(message):
 
 "{quote}" - <@{userId}>
 
-Adding the quote requires permission from the quote's source. <@{userId}>, please react to this message with <:yea:> or <:nay:> to approve or deny adding this quote.""")
+Adding the quote requires permission from the quote's source. <@{userId}>, please react to this message with <:yea:750400833946124429> or <:nay:750400843097964608> to approve or deny adding this quote.""")
 
     def check(reaction, user):
         print(f'reaction: {reaction}')
