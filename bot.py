@@ -18,8 +18,8 @@ from response_lists import activities, adjectives, commands, responses, quotes
 
 
 token = os.environ.get('TOKEN')
-joeId: int = os.environ.get('JOEID')
-botId: int = os.environ.get('BOTID')
+joeId: int = int(os.environ.get('JOEID'))
+botId: int = int(os.environ.get('BOTID'))
 tylerId: int = int(os.environ.get('TYLERID'))
 
 msgLimit = 3
@@ -64,7 +64,7 @@ async def on_message(message):
             # New channel found, create new dict entry
             tyler[message.channel.name] = Tyler()
             tyler[message.channel.name].channel = message.channel
-        tylerMessage(message)
+        await tylerMessage(message)
     elif message.author != client.user:
         print("message not from tyler found, abort mission")
         if tyler.get(message.channel.name, None) != None:
