@@ -53,6 +53,9 @@ tyler: dict = {}
 
 @client.event
 async def on_message(message):
+    print(f"tylerId: {tylerId}")
+    print(f"message.author.id: {message.author.id}")
+    print(f"int(message.author.id: {int(message.author.id)}")
     if message.content[0] == '!':
         command(message)
     elif int(message.author.id) == tylerId:
