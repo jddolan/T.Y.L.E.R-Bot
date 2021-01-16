@@ -166,14 +166,26 @@ async def quote(message):
 async def addQuote(message):
     match = re.match('(.*) \<@!(.*)\>', message.content.split('!addquote ')[1])
     quote = match.group(1)
-    user = int(match.group(2))
+    userId = int(match.group(2))
     
     print(f"quote: {quote}")
-    print(f"user: {user}")
+    print(f"userId: {userId}")
 
+    await message.channel.send(f"""User {message.author._user.name} submitted the following quote to be added to the list of randomly generated quotes: 
+"{quote}"
+Adding the quote requires permission from the quote's source. <@{userId}>, please react to this message with :yea: or :nay: to approve or deny adding this quote.""")
+
+    def check(reaction, user):
+        print(f'reaction: {reaction}')
+        return user == client.get_user(userId) and (reaction.emoji.name == 'yea' or reaction.emoji.name == 'nay')
+
+    try:
+        reaction, user = await client.wait_for('reaction_add', check=check)
+    if reaction.emoji.name == 'yea':
+        await client.get_user(joeId).send(f"quote submission from {message.author._user.name}: {quote} - <@{user}>")
+    elif reaction.emoji.name == 'nay':
+        
     
-
-    await client.get_user(joeId).send(f"quote submission from {message.author._user.name}: {quote} - <@{user}> $+1 :+1:")
     return
 
 async def scan(message):
