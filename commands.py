@@ -10,10 +10,7 @@ commands: dict = {
 !quote: Provides a quote
 !addquote: !addquote <quote> <user> submits the quote to be added to the bot's list of randomly generated quotes. Must be approved by Joe and the person being quoted
 !roll: !roll <XdY> will roll a Y-sided die X times''',
-    '!about': "This is a bot designed to respond to Tyler when other people aren't. Created by Joe",
-    '!quote': "provides a quote",
-    '!addquote': "!addquote <quote> <user> submits the quote to be added to the bot's list of randomly generated quotes. Must be approved by Joe and the person being quoted",
-    '!roll': "!roll <XdY> will roll a Y-sided die X times"
+    '!about': "This is a bot designed to respond to Tyler when other people aren't. Created by Joe"
 }
 
 async def command(message, client):
@@ -28,6 +25,8 @@ async def command(message, client):
             await scan(message)
         elif command == '!roll':
             await roll(message)
+        elif command == '!rps':
+            await rps(message)
         else:
             await message.channel.send(commands[command])
     else:
@@ -140,3 +139,6 @@ async def roll(message):
     else:
         await message.channel.send(f"<@{message.author._user.id}> rolled {total}. ({' + '.join(dice)}) = {total}")
     return
+
+async def rps(message):
+    await message.channel.send("work in progress")
