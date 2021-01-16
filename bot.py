@@ -14,6 +14,7 @@ from datetime import datetime, timedelta, time
 import random
 import re
 
+from dataclasses import dataclass
 from response_lists import activities, adjectives, commands, responses, quotes
 
 
@@ -29,6 +30,7 @@ timeoutLength = 600
 intents = discord.Intents.all()
 client = discord.Client(intents=intents)
 
+@dataclass
 class Tyler():
     msgCount: int = 0
     msgsSinceLastResponse: int = 0
