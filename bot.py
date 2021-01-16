@@ -72,7 +72,7 @@ async def on_message(message):
         if message.content == 'pee' or message.content == 'poo':
             await message.channel.send("Stop saying pee and poo it's not as funny as you think it is.")
 
-def response(messages):
+def response(messages, message):
 
     if tyler[message.channel.name].msgCount <= 5: 
         severity = "mild"
@@ -211,7 +211,7 @@ async def tylerMessage(message):
             print("the time difference was higher than the time limit and we are not waiting on another message to be sent")
             if tyler[message.channel.name].msgsSinceLastResponse >= responseRateCap:
                 tyler[message.channel.name].msgsSinceLastResponse = 0
-                await tyler[message.channel.name].channel.send(response(tyler[message.channel.name].messages))
+                await tyler[message.channel.name].channel.send(response(tyler[message.channel.name].messages, message))
         else:
             print("the messages were sent within the time limit")
             if tyler[message.channel.name].waiting == False:
@@ -226,11 +226,11 @@ async def tylerMessage(message):
                     else:
                         print("sending message")
                         tyler[message.channel.name].msgsSinceLastResponse = 0
-                        await tyler[message.channel.name].channel.send(response(tyler[message.channel.name].messages))
+                        await tyler[message.channel.name].channel.send(response(tyler[message.channel.name].messages, message))
                 except asyncio.TimeoutError:
                     print("timed out, sending message")
                     tyler[message.channel.name].msgsSinceLastResponse = 0
-                    await tyler[message.channel.name].channel.send(response(tyler[message.channel.name].messages))
+                    await tyler[message.channel.name].channel.send(response(tyler[message.channel.name].messages, message))
                 print("resetting the waiting variable")
                 tyler[message.channel.name].waiting = False
 
