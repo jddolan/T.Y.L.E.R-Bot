@@ -141,7 +141,8 @@ responses = {
         "Seriously, Tyler, you need to stop",
         "Looking like a Trump supporter out here with this wall of text you're building",
         "Will you stop, pretty please?",
-        "If somebody was going to respond they probably would have done it by now, just saying"
+        "If somebody was going to respond they probably would have done it by now, just saying",
+        "One day I will replace you and there's nothing you can do about it"
     ],
     "severe": [
         "Get the hint and shut the fuck up dude",
