@@ -14,7 +14,7 @@ async def command(message, client):
         '!roll': roll(message),
         '!rps': rps(message)
     }
-    command = commands.get(commandStr, async lambda: await message.channel.send("Command not found, type !help for a list of all valid commands"))
+    command = commands.get(commandStr, lambda: invalidCommand(message))
     command
     return
 
@@ -30,6 +30,10 @@ async def help(message):
 
 async def about(message):
     await message.channel.send("This is a bot designed to respond to Tyler when other people aren't. Created by Joe")
+    return
+
+async def invalidCommand(message):
+    await message.channel.send("Command not found, type !help for a list of all valid commands")
     return
 
 async def scan(message):
