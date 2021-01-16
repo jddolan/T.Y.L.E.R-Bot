@@ -190,7 +190,10 @@ async def roll(message):
         rollInput = message.content.split('!roll ')[1]
         print(f"rollInput: {rollInput}")
         match = re.match('([0-9]+)d([0-9]+)', rollInput)
-        rolls = int(match.group(1))
+        try:
+            rolls = int(match.group(1))
+        except:
+            rolls = 1
         sides = int(match.group(2))
         print(f"rolls: {rolls}")
         print(f"sides: {sides}")
