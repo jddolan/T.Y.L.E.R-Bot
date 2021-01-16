@@ -187,7 +187,9 @@ Permission to add this quote was denied.""")
 
 async def roll(message):
     try:
-        match = re.match('([0-9]+)d([0-9]+)', message.content.split('!roll ')[1])
+        rollInput = message.content.split('!roll ')[1]
+        print(f"rollInput: {rollInput}")
+        match = re.match('([0-9]+)d([0-9]+)', rollInput)
         print(f"rolls: {rolls}")
         print(f"sides: {sides}")
         rolls = int(match.group(1))
