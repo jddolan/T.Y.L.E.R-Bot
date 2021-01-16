@@ -181,6 +181,7 @@ Adding the quote requires permission from the quote's source. <@{userId}>, pleas
 
     try:
         reaction, user = await client.wait_for('reaction_add', check=check)
+        
     if str(reaction.emoji) == 'yea':
         await client.get_user(joeId).send(f"quote submission from {message.author._user.name}: {quote} - <@{user}>")
     elif str(reaction.emoji) == 'nay':
