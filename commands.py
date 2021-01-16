@@ -62,7 +62,7 @@ async def quote(message):
     await message.channel.send(random.choice(responses.quotes))
     return
 
-async def addQuote(message):
+async def addQuote(message, client):
     try:
         match = re.match('(.*) \<@!(.*)\>', message.content.split('!addquote ')[1])
         quote = match.group(1)
