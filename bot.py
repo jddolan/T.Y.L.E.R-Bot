@@ -165,13 +165,15 @@ async def quote(message):
     return
 
 async def addQuote(message):
-    match = re.match('(.*) \<@!(.*)\>', message.content.split('!addquote ')[1])
-    quote = match.group(1)
-    userId = int(match.group(2))
-
-    if not quote or not userId:
+    try:
+        match = re.match('(.*) \<@!(.*)\>', message.content.split('!addquote ')[1])
+        quote = match.group(1)
+        userId = int(match.group(2))
+    except:
         await message.channel.send(f"""Invalid format. Example of a valid submission:
 !addquote this is an example quote <@{botId}>""")
+        return
+        
     
     print(f"quote: {quote}")
     print(f"userId: {userId}")
