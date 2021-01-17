@@ -24,7 +24,8 @@ adjectives = [
     "Pog",
 ]
 
-tyler = [
+def tyler():
+    return [
     "You add a meet and cheese board to anything and you up the class by 3 points - Tyler",
     "Im a top 3 defender at my home courts quote it - Tyler",
     "Water electric quote it - Tyler speculating on the typing of Sobble",
@@ -95,22 +96,22 @@ def matt():
         "sasuke is cool - Matt"
     ]
 
-def matthew() =
+def matthew():
     return [
         "i fucking hate this tyler kid so much - Mattbarry"
     ]
 
-def micah() =
+def micah():
     return [
         "you can piss in my mouth for $15k - Micah"
     ]
 
-def landon() =
+def landon():
     return [
         "Caustic can suck my nuts - Landon"
     ]
 
-def mango() =
+def mango():
     return [
         "This matchup is pretty much Fox Marth, but Falco Marth Falco Fox but Fox is Marth - Mang0 on falco v fox"
     ]
