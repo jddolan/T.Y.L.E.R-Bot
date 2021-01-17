@@ -18,7 +18,7 @@ async def command(message, client):
         '!rps': rps
     }
     command = commands.get(commandStr, lambda: invalidCommand(message))
-    command(message, client)
+    await command(message, client)
     return
 
 async def help(message, client):
