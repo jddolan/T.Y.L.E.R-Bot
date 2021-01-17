@@ -82,6 +82,7 @@ async def quote(message, client):
                 if func == None:
                     raise func
                 quotes = func() + quotes
+                print(f"quotes: {quotes}"
             quote = random.choice(quotes)
         except:
             quote = "An invalid name was submitted. Valid options are tyler, joe, ximing, matt, matthew, micah, landon, and mango. Please try again with one of those names, or type just !quote to get a quote from a random person."
