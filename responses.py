@@ -122,11 +122,11 @@ quotes = tyler() + joe() + ximing() + matt() + matthew() + micah() + landon() + 
 def links():
     return [
         """https://www.youtube.com/watch?v=kpk2tdsPh0A
-What makes Watch for Rolling Rocks a great video? A lot of things. But to answer that, we need to talk about parallel universes.""",
+But to answer that, we need to talk about parallel universes.""",
         """https://www.fanfiction.net/s/6829556/1/My-Immortal
-The best fanfic of all time AN: Special fangz (get it, coz Im goffik) 2 my gf (ew not in that way) raven, bloodytearz666 4 helpin me wif da story and spelling. U rok! Justin ur da luv of my deprzzing life u rok 2! MCR ROX!""",
+AN: Special fangz (get it, coz Im goffik) 2 my gf (ew not in that way) raven, bloodytearz666 4 helpin me wif da story and spelling. U rok! Justin ur da luv of my deprzzing life u rok 2! MCR ROX!""",
         """https://www.netflix.com/title/80152350
-It has a great soundtrack. My boyfriend's the dj, he spins gregorian house.""",
+My boyfriend's the dj, he spins gregorian house.""",
         """https://www.youtube.com/watch?v=fhAKgOvIQsM
 WaHooooooOOOOOOO""",
         """https://www.youtube.com/watch?v=oYmqJl4MoNI
@@ -135,6 +135,8 @@ WaHooooooOOOOOOO""",
 Until you win a major show your elders some respect"""
         """https://www.youtube.com/watch?v=6Iy2LglMT2o
 *Mumbles in Australian*"""
+        """https://www.youtube.com/watch?v=YQB3QBIXFPw
+Don't make me get the *BRAP*"""
     ]
 
 responses = {
