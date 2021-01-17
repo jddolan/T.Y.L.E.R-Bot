@@ -62,7 +62,16 @@ async def scan(message, client):
         print(f"iterator: {iterator}")
 
 async def quote(message, client):
-    await message.channel.send(random.choice(responses.quotes))
+    try:
+        input = message.content.split('!quote ')[1].tolower()
+        try:
+            quote = random.choice(responses.input)
+        except:
+            quote = "Person not found. Valid options are tyler, joe, ximing, matt, matthew, micah, landon, and mango. Type just !quote to get a quote from a random person."
+    except:
+        quote = random.choice(responses.quotes)
+
+    await message.channel.send(quote)
     return
 
 async def addQuote(message, client):

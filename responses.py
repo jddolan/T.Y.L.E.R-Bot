@@ -24,7 +24,7 @@ adjectives = [
     "Pog",
 ]
 
-quotes = [
+tyler = [
     "You add a meet and cheese board to anything and you up the class by 3 points - Tyler",
     "Im a top 3 defender at my home courts quote it - Tyler",
     "Water electric quote it - Tyler speculating on the typing of Sobble",
@@ -57,34 +57,57 @@ quote me on that
     "I guess I'm just a weeb guys. - Tyler",
     "Piss play is to 2021 as eating ass was to 2019 - Tyler",
     "JUST WAIT TIL THEY MAKE A SPELL ONLY AGENT - Tyler",
-    "i will never play a shiek main on netplay again - Joe",
-    "im never playing a puff on netplay again - Joe",
-    "if phreak starts casting nba games ill never watch one again - Joe",
-    "Quote me on this.  Riot will forget to make it so stoneplate stacks with locket. - Ximing reading the patch notes",
-    "If pp isnt back by the end of 2017 im gonna just work my ass off and replace him as the falco god - Joe",
-    "Trist adc - Joe",
-    """preseason azir with grasp morello
-broken
-- Ximing""",
-    "i fucking hate this tyler kid so much - Mattbarry",
-    "you should try a big juicy asian pair - Ximing",
-    "you can piss in my mouth for $15k - Micah",
-    "sasuke is cool - Matt",
-    "I'm so hungry I haven't eaten since 6:30 - Ximing at 6:45",
     "If you ever bring bomberman back down I will snap the disc -Tyler",
     "Luigi's weird - he's like, in space -Tyler talking about smash",
-    "This matchup is pretty much Fox Marth, but Falco Marth Falco Fox but Fox is Marth - Mang0 on falco v fox",
-    "why does orange juice expire - Ximing's sister",
     "Dude funerals suck - Tyler",
     "CLG doesn't lose a series this season during the playoffs - Tyler",
     "It's gonna depend on the draft - Tyler",
-    """trash talk Ximing is not good - Ximing
-Yeah you should probably unplug yourself - Ximing 1 min later""",
-    "I put ketchup on my steaks - Joe (To be clear I don't do that anymore)",
     "It sucks - Tyler",
     "True - Ximing when asked about him hating Tyler",
+]
+
+joe = [
+    "i will never play a shiek main on netplay again - Joe",
+    "im never playing a puff on netplay again - Joe",
+    "if phreak starts casting nba games ill never watch one again - Joe",
+    "If pp isnt back by the end of 2017 im gonna just work my ass off and replace him as the falco god - Joe",
+    "Trist adc - Joe",
+    "I put ketchup on my steaks - Joe (To be clear I don't do that anymore)"
+]
+
+ximing = [
+    "Quote me on this.  Riot will forget to make it so stoneplate stacks with locket. - Ximing reading the patch notes",
+    """preseason azir with grasp morello
+broken
+- Ximing""",
+    "you should try a big juicy asian pair - Ximing",
+    "I'm so hungry I haven't eaten since 6:30 - Ximing at 6:45",
+    """trash talk Ximing is not good - Ximing
+Yeah you should probably unplug yourself - Ximing 1 min later""",
+    "why does orange juice expire - Ximing's sister",
+]
+
+matt = [
+    "sasuke is cool - Matt",
+]
+
+matthew = [
+    "i fucking hate this tyler kid so much - Mattbarry",
+]
+
+micah = [
+    "you can piss in my mouth for $15k - Micah",
+]
+
+landon = [
     "Caustic can suck my nuts - Landon"
 ]
+
+mango = [
+    "This matchup is pretty much Fox Marth, but Falco Marth Falco Fox but Fox is Marth - Mang0 on falco v fox",
+]
+
+quotes = [tyler + joe + ximing + matt + matthew + micah + landon + mango]
 
 responses = {
     "mild": [
