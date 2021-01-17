@@ -169,5 +169,5 @@ responses = {
         "Tyler, even though nobody else is reading your messages I'm forced to suffer through each one so please end my suffering and stop typing them",
     ]
 }
-responses["moderate"] = responses["moderate"] + responses["mild"]
-responses["severe"] = responses["severe"] + responses["moderate"]
+responses["moderate"] = responses["moderate"]
+responses["severe"] = responses["severe"]
