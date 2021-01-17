@@ -72,7 +72,6 @@ async def quote(message, client):
         'landon': responses.landon,
         'mango': responses.mango
     }
-
     try:
         names = message.content.split('!quote ')[1].lower().split(' ')
         print(f"names: {names}")
@@ -83,14 +82,14 @@ async def quote(message, client):
                 if func == None:
                     raise func
                 quotes = func() + quotes
-                print(f"quotes: {quotes}"
-            randomQuote = random.choice(quotes)
+                print(f"quotes: {quotes}")
+            quote = random.choice(quotes)
         except:
-            randomQuote = "An invalid name was submitted. Valid options are tyler, joe, ximing, matt, matthew, micah, landon, and mango. Please try again with one of those names, or type just !quote to get a quote from a random person."
+            quote = "An invalid name was submitted. Valid options are tyler, joe, ximing, matt, matthew, micah, landon, and mango. Please try again with one of those names, or type just !quote to get a quote from a random person."
     except:
-        randomQuote = random.choice(responses.quotes)
+        quote = random.choice(responses.quotes)
 
-    await message.channel.send(randomQuote)
+    await message.channel.send(quote)
     return
 
 async def addQuote(message, client):
