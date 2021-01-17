@@ -63,7 +63,7 @@ quote me on that
     "CLG doesn't lose a series this season during the playoffs - Tyler",
     "It's gonna depend on the draft - Tyler",
     "It sucks - Tyler",
-    "True - Ximing when asked about him hating Tyler",
+    "True - Ximing when asked about him hating Tyler"
 ]
 
 joe = [
@@ -84,19 +84,19 @@ broken
     "I'm so hungry I haven't eaten since 6:30 - Ximing at 6:45",
     """trash talk Ximing is not good - Ximing
 Yeah you should probably unplug yourself - Ximing 1 min later""",
-    "why does orange juice expire - Ximing's sister",
+    "why does orange juice expire - Ximing's sister"
 ]
 
 matt = [
-    "sasuke is cool - Matt",
+    "sasuke is cool - Matt"
 ]
 
 matthew = [
-    "i fucking hate this tyler kid so much - Mattbarry",
+    "i fucking hate this tyler kid so much - Mattbarry"
 ]
 
 micah = [
-    "you can piss in my mouth for $15k - Micah",
+    "you can piss in my mouth for $15k - Micah"
 ]
 
 landon = [
@@ -104,7 +104,7 @@ landon = [
 ]
 
 mango = [
-    "This matchup is pretty much Fox Marth, but Falco Marth Falco Fox but Fox is Marth - Mang0 on falco v fox",
+    "This matchup is pretty much Fox Marth, but Falco Marth Falco Fox but Fox is Marth - Mang0 on falco v fox"
 ]
 
 quotes = tyler + joe + ximing + matt + matthew + micah + landon + mango

@@ -63,7 +63,7 @@ async def scan(message, client):
 
 async def quote(message, client):
     try:
-        input = message.content.split('!quote ')[1].tolower()
+        input = message.content.split('!quote ')[1].lower()
         try:
             quote = random.choice(responses.input)
         except:
