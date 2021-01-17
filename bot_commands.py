@@ -63,18 +63,17 @@ async def scan(message, client):
 
 async def quote(message, client):
     funcNames = {
-        'tyler': tyler,
-        'joe': joe,
-        'ximing': ximing,
-        'matt': matt,
-        'matthew': matthew,
-        'micah': micah,
-        'landon': landon,
-        'mango': mango
+        'tyler': responses.tyler,
+        'joe': responses.joe,
+        'ximing': responses.ximing,
+        'matt': responses.matt,
+        'matthew': responses.matthew,
+        'micah': responses.micah,
+        'landon': responses.landon,
+        'mango': responses.mango
     }
 
     try:
-
         names = message.content.split('!quote ')[1].lower().split(' ')
         print(f"names: {names}")
         try:
@@ -82,7 +81,7 @@ async def quote(message, client):
                 func = funcNames.get(name, None)
                 if func == None:
                     raise func
-                quotes = responses.func() + quotes
+                quotes = func() + quotes
             quote = random.choice(quotes)
         except:
             quote = "An invalid name was submitted. Valid options are tyler, joe, ximing, matt, matthew, micah, landon, and mango. Please try again with one of those names, or type just !quote to get a quote from a random person."
