@@ -17,7 +17,7 @@ async def command(message, client):
         '!roll': roll,
         '!rps': rps
     }
-    command = commands.get(commandStr, lambda: invalidCommand(message))
+    command = commands.get(commandStr, invalidCommand)
     await command(message, client)
     return
 
