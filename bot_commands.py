@@ -43,7 +43,7 @@ async def help(message, client):
     return
 
 async def about(message, client):
-    msg = await message.channel.send("/tts message:Kids Next Door, TYLER: Tyler's  Yammering Loneliness Emergency Response")
+    msg = await message.channel.send("Kids Next Door, TYLER: Tyler's  Yammering Loneliness Emergency Response", tts=True)
     sleep(1)
     await msg.edit(content = """Kids Next Door, TYLER:""")
     sleep(3)
@@ -72,7 +72,13 @@ Loneliness
 Emergency
 Response""")
     sleep(1)
-    await message.channel.send("This is a bot designed to respond to Tyler when other people aren't. Created by Joe")
+    await msg.edit(content = """Kids Next Door, TYLER:
+Tyler's
+Yammering
+Loneliness
+Emergency
+Response
+This is a bot designed to respond to Tyler when other people aren't. Created by Joe""")
     return
 
 async def quote(message, client):
