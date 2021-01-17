@@ -2,6 +2,7 @@ import random
 import re
 import responses
 import os
+from time import sleep
 
 joeId: int = int(os.environ.get('JOEID'))
 botId: int = int(os.environ.get('BOTID'))
@@ -35,6 +36,34 @@ async def help(message, client):
     return
 
 async def about(message, client):
+    msg = await message.channel.send("/tts message:Kids Next Door, TYLER: Tyler's  Yammering Loneliness Emergency Response")
+    await msg.edit(content = """Kids Next Door, TYLER:""")
+    sleep(3)
+    await msg.edit(content = """Kids Next Door, TYLER:
+Tyler's""")
+    sleep(1)
+    await msg.edit(content = """Kids Next Door, TYLER:
+Tyler's
+Yammering""")
+    sleep(1)
+    await msg.edit(content = """Kids Next Door, TYLER:
+Tyler's
+Yammering
+Loneliness""")
+    sleep(1)
+    await msg.edit(content = """Kids Next Door, TYLER:
+Tyler's
+Yammering
+Loneliness
+Emergency""")
+    sleep(1)
+    await msg.edit(content = """Kids Next Door, TYLER:
+Tyler's
+Yammering
+Loneliness
+Emergency
+Response""")
+    sleep(1)
     await message.channel.send("This is a bot designed to respond to Tyler when other people aren't. Created by Joe")
     return
 
