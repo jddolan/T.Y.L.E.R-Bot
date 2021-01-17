@@ -147,4 +147,38 @@ async def roll(message, client):
     return
 
 async def rps(message, client):
-    await message.channel.send("work in progress")
+    rpsChoices = ['rock','paper','scissors']
+
+    input = message.content.split('!rps ')[1]
+    print(f"input: {input}")
+    if input != 'rock' and input != 'scissors' and input != 'paper':
+        await message.channel.send(f"Invalid option. Please choose rock, paper, or scissors. Example: !rps rock")
+        return
+    
+    choice = random.choice(rpsChoices)
+    output = f"<@{message.author.id}> chose {input}. I choose {choice}. "
+    tie = "It's a tie!"
+    lose = "You lose!"
+    win = "You win!"
+    if input == 'rock':
+        if choice == 'rock':
+            await message.channel.send(output + tie)
+        elif choice == 'paper':
+            await message.channel.send(output + lose)
+        elif choice == 'scissors':
+            await message.channel.send(output + win)
+    elif input == 'paper':
+        if choice == 'rock':
+            await message.channel.send(output + win)
+        elif choice == 'paper':
+            await message.channel.send(output + tie)
+        elif choice == 'scissors':
+            await message.channel.send(output + lose)
+    elif input == 'scissors':
+        if choice == 'rock':
+            await message.channel.send(output + lose)
+        elif choice == 'paper':
+            await message.channel.send(output + win)
+        elif choice == 'scissors':
+            await message.channel.send(output + tie)
+    return
