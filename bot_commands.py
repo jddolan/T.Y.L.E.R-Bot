@@ -1,8 +1,10 @@
 import random
 import re
 import responses
-from bot import botId, joeId
+import os
 
+joeId: int = int(os.environ.get('JOEID'))
+botId: int = int(os.environ.get('BOTID'))
 
 async def command(message, client):
     commandStr = message.content.split(' ')[0]
