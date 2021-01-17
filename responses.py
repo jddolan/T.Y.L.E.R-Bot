@@ -107,7 +107,7 @@ mango = [
     "This matchup is pretty much Fox Marth, but Falco Marth Falco Fox but Fox is Marth - Mang0 on falco v fox",
 ]
 
-quotes = [tyler + joe + ximing + matt + matthew + micah + landon + mango]
+quotes = tyler + joe + ximing + matt + matthew + micah + landon + mango
 
 responses = {
     "mild": [
