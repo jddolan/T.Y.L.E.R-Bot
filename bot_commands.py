@@ -224,13 +224,13 @@ async def coinflip(message, client):
         2: 'tails'
     }
 
-    output = f"<@{message.author.id}> chose {input}. The result was {result}. "
     lose = "You lose!"
     win = "You win!"
 
     result = sides[random.choice([1,2])]
     try:      
         input = message.content.split('!coinflip ')[1]
+        output = f"<@{message.author.id}> chose {input}. The result was {result}. "
         if input != 'heads' and input != 'tails':
             await message.channel.send(f"Invalid option. Please choose heads or tails. Example: !coinflip heads")
             return
