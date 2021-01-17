@@ -77,6 +77,7 @@ async def quote(message, client):
         names = message.content.split('!quote ')[1].lower().split(' ')
         print(f"names: {names}")
         try:
+            quotes = []
             for name in names:
                 func = funcNames.get(name, None)
                 if func == None:
