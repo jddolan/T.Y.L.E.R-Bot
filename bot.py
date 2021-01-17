@@ -15,7 +15,7 @@ import random
 import re
 
 import responses
-from commands.py import command
+from bot_commands import command
 
 token = os.environ.get('TOKEN')
 joeId: int = int(os.environ.get('JOEID'))
