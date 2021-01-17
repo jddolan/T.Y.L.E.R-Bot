@@ -53,8 +53,12 @@ tyler: dict = {}
 
 @client.event
 async def on_message(message):
-    if message.content[0] == '!':
-        await command(message, client)
+    try:
+        if message.content[0] == '!':
+            await command(message, client)
+    except:
+        print("error, probably an image attached")
+        print(f"message: {message.content}")
     elif message.author.id == tylerId:
         if tyler.get(message.channel.name, None) == None:
             # New channel found, create new dict entry
