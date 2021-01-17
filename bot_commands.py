@@ -15,7 +15,8 @@ async def command(message, client):
         '!addquote': addQuote,
         '!scan': scan,
         '!roll': roll,
-        '!rps': rps
+        '!rps': rps,
+        '!coinflip': coinflip
     }
     command = commands.get(commandStr, invalidCommand)
     await command(message, client)
@@ -28,7 +29,9 @@ async def help(message, client):
 !help: A list of valid commands for the bot
 !quote: Provides a quote
 !addquote: !addquote <quote> <user> submits the quote to be added to the bot's list of randomly generated quotes. Must be approved by Joe and the person being quoted
-!roll: !roll <XdY> will roll a Y-sided die X times''')
+!roll: !roll <XdY> will roll a Y-sided die X times
+!rps: !rps <choice> choose rock paper or scissors and play against the bot
+!coinflip: !coinflip <choice> flip a coin, optionally choose heads or tails''')
     return
 
 async def about(message, client):
@@ -176,7 +179,12 @@ async def roll(message, client):
 async def rps(message, client):
     rpsChoices = ['rock','paper','scissors']
 
-    input = message.content.split('!rps ')[1]
+    try:
+        input = message.content.split('!rps ')[1]
+    except:
+        await message.channel.send(f"Invalid option. Please choose rock, paper, or scissors. Example: !rps rock")
+        return
+
     print(f"input: {input}")
     if input != 'rock' and input != 'scissors' and input != 'paper':
         await message.channel.send(f"Invalid option. Please choose rock, paper, or scissors. Example: !rps rock")
@@ -209,3 +217,27 @@ async def rps(message, client):
         elif choice == 'scissors':
             await message.channel.send(output + tie)
     return
+
+async def coinflip(message, client):
+    sides = {
+        1: 'heads',
+        2: 'tails'
+    }
+
+    output = f"<@{message.author.id}> chose {input}. The result was {result}. "
+    lose = "You lose!"
+    win = "You win!"
+
+    result = sides[random.choice([1,2])]
+    try:      
+        input = message.content.split('!coinflip ')[1]
+        if input != 'heads' and input != 'tails':
+            await message.channel.send(f"Invalid option. Please choose heads or tails. Example: !coinflip heads")
+            return
+        else:
+            if input == result:
+                await message.channel.send(output + win)
+            else:
+                await message.channel.send(output + lose)
+    except:
+        await message.channel.send(f"<@{message.author.id}> the result was {result}.")
