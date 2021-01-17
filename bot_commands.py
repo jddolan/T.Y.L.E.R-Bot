@@ -44,9 +44,8 @@ async def help(message, client):
 
 async def about(message, client):
     msg = await message.channel.send("Kids Next Door, TYLER: Tyler's  Yammering Loneliness Emergency Response", tts=True)
-    sleep(5)
     await msg.edit(content = """Kids Next Door, TYLER:""")
-    sleep(3)
+    sleep(6)
     await msg.edit(content = """Kids Next Door, TYLER:
 Tyler's""")
     sleep(1)
