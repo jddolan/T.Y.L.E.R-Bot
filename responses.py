@@ -63,10 +63,11 @@ quote me on that
     "CLG doesn't lose a series this season during the playoffs - Tyler",
     "It's gonna depend on the draft - Tyler",
     "It sucks - Tyler",
-    "True - Ximing when asked about him hating Tyler"
+    "nice play fucking idiot"
 ]
 
-joe = [
+def joe():
+    return [
     "i will never play a shiek main on netplay again - Joe",
     "im never playing a puff on netplay again - Joe",
     "if phreak starts casting nba games ill never watch one again - Joe",
@@ -75,7 +76,8 @@ joe = [
     "I put ketchup on my steaks - Joe (To be clear I don't do that anymore)"
 ]
 
-ximing = [
+def ximing():
+    return [
     "Quote me on this.  Riot will forget to make it so stoneplate stacks with locket. - Ximing reading the patch notes",
     """preseason azir with grasp morello
 broken
@@ -84,30 +86,36 @@ broken
     "I'm so hungry I haven't eaten since 6:30 - Ximing at 6:45",
     """trash talk Ximing is not good - Ximing
 Yeah you should probably unplug yourself - Ximing 1 min later""",
+    "True - Ximing when asked about him hating Tyler",
     "why does orange juice expire - Ximing's sister"
 ]
 
-matt = [
-    "sasuke is cool - Matt"
-]
+def matt():
+    return [
+        "sasuke is cool - Matt"
+    ]
 
-matthew = [
-    "i fucking hate this tyler kid so much - Mattbarry"
-]
+def matthew() =
+    return [
+        "i fucking hate this tyler kid so much - Mattbarry"
+    ]
 
-micah = [
-    "you can piss in my mouth for $15k - Micah"
-]
+def micah() =
+    return [
+        "you can piss in my mouth for $15k - Micah"
+    ]
 
-landon = [
-    "Caustic can suck my nuts - Landon"
-]
+def landon() =
+    return [
+        "Caustic can suck my nuts - Landon"
+    ]
 
-mango = [
-    "This matchup is pretty much Fox Marth, but Falco Marth Falco Fox but Fox is Marth - Mang0 on falco v fox"
-]
+def mango() =
+    return [
+        "This matchup is pretty much Fox Marth, but Falco Marth Falco Fox but Fox is Marth - Mang0 on falco v fox"
+    ]
 
-quotes = tyler + joe + ximing + matt + matthew + micah + landon + mango
+quotes = tyler() + joe() + ximing() + matt() + matthew() + micah() + landon() + mango()
 
 responses = {
     "mild": [
@@ -143,7 +151,6 @@ responses = {
         "Wow!",
         "nmn",
         "Looks like you got DonoWalled, Tyler",
-        "nice play fucking idiot",
         "Tyler, try to be more positive. You are a good player, just dont insult other for nothing and you'll have better game",
         f"Shouldn't you be {random.choice(activities)} or something, Tyler?"
     ],

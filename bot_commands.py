@@ -63,12 +63,14 @@ async def scan(message, client):
 
 async def quote(message, client):
     try:
-        input = message.content.split('!quote ')[1].lower()
-        print(f"name: {input}")
+        names = message.content.split('!quote ')[1].lower().split(' ')
+        print(f"names: {names}")
         try:
-            quote = random.choice(responses.input)
+            for name in names:
+                quotes = name() + quotes
+            quote = random.choice(quotes)
         except:
-            quote = "Person not found. Valid options are tyler, joe, ximing, matt, matthew, micah, landon, and mango. Type just !quote to get a quote from a random person."
+            quote = "An invalid name was submitted. Valid options are tyler, joe, ximing, matt, matthew, micah, landon, and mango. Please try again with one of those names, or type just !quote to get a quote from a random person."
     except:
         quote = random.choice(responses.quotes)
 
