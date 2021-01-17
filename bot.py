@@ -59,7 +59,7 @@ async def on_message(message):
     except:
         print("error, probably an image attached")
         print(f"message: {message.content}")
-    elif message.author.id == tylerId:
+    if message.author.id == tylerId:
         if tyler.get(message.channel.name, None) == None:
             # New channel found, create new dict entry
             tyler[message.channel.name] = Tyler()
