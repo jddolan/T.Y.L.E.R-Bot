@@ -27,7 +27,7 @@ async def command(message, client):
 
 async def invalidCommand(message, client):
     print(f"Invalid Command {message} detected, sending to help")
-    message = '!help '+ message
+    message.content = '!help '+ message.content
     await help(message, client)
     return
 
