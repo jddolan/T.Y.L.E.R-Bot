@@ -31,7 +31,7 @@ async def invalidCommand(message, client):
 
 async def help(message, client):
     output = ""
-    commands = {
+    help = {
         '!help': "!help <command: Optional> provides a list of valid commands for the bot"
         '!about': "!about provides more information about the bot"
         '!quote': "!quote <name: Optional> provides a quote, if a name is not provided the quote will be randomly selected from all stored quotes"
@@ -47,15 +47,15 @@ async def help(message, client):
         input = message.content.split('!help ')[1]
         if input[0] != '!':
             input = '!' + input
-        if input in commands.keys():
-            output = f"{input}: {commands[input]}"
+        if input in help.keys():
+            output = f"{input}: {help[input]}"
         else:
             output = f"Command {input} not found.\n\n"
             raise
     except:
         output = output + "Valid Commands: \n\n"
-        for key in commands.keys():
-            output = output + f"{key}: {commands[key]}\n"
+        for key in help.keys():
+            output = output + f"{key}: {help[key]}\n"
     await message.channel.send(output)
     return
 
