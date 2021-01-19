@@ -50,15 +50,20 @@ async def help(message, client):
         if input[0] != '!':
             input = '!' + input
         if input in help.keys():
-            output = f"{input}: {help[input]}"
+            print("command found in help keys, setting output")
+            output = output + f"{input}: {help[input]}"
         else:
+            print("command not found in help keys, raising error")
             output = f"Command {input} not found.\n\n"
             raise
     except:
+        print("invalid command, presenting list of all valid commands")
         output = output + "Valid Commands: \n\n"
         for key in help.keys():
             output = output + f"{key}: {help[key]}\n"
+    print("sending output...")
     await message.channel.send(output)
+    print("output sent")
     return
 
 async def about(message, client):
