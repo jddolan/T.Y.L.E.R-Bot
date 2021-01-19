@@ -23,9 +23,9 @@ joeId: int = int(os.environ.get('JOEID'))
 botId: int = int(os.environ.get('BOTID'))
 tylerId: int = int(os.environ.get('TYLERID'))
 
-msgLimit = 3
+msgLimit = 2
 responseRateCap = 2
-timeoutLength = 600
+timeoutLength = 300
 
 intents = discord.Intents.all()
 client = discord.Client(intents=intents)
