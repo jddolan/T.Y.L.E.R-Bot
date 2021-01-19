@@ -24,7 +24,7 @@ botId: int = int(os.environ.get('BOTID'))
 tylerId: int = int(os.environ.get('TYLERID'))
 
 msgLimit = 2
-responseRateCap = 2
+responseRateCap = 1
 timeoutLength = 300
 
 intents = discord.Intents.all()
@@ -73,7 +73,7 @@ async def on_message(message):
         if message.content == 'pee' or message.content == 'poo':
             await message.channel.send("Stop saying pee and poo it's not as funny as you think it is.")
 
-def response(messages, message):
+def botResponse(messages, message):
 
     if tyler[message.channel.name].msgCount <= 5: 
         severity = "mild"
@@ -81,14 +81,16 @@ def response(messages, message):
         severity = "moderate"
     else:
         severity = "severe"
-
-    response = random.choice(responses[severity])
-    while response == tyler[message.channel.name].lastResponse:
-        response = random.choice(responses[severity])
+        
+    response = responses.responses(
+        severity=severity, 
+        name="Tyler",
+        messages=messages,
+        lastResponse=tyler[message.channel.name].lastResponse
+    )     
 
     tyler[message.channel.name].lastResponse = response
-    if response == "spongebob":
-        response = spongebob(messages)
+
     return response
 
 def spongebob(messages):
@@ -130,7 +132,7 @@ async def tylerMessage(message):
             print("the time difference was higher than the time limit and we are not waiting on another message to be sent")
             if tyler[message.channel.name].msgsSinceLastResponse >= responseRateCap:
                 tyler[message.channel.name].msgsSinceLastResponse = 0
-                await tyler[message.channel.name].channel.send(response(tyler[message.channel.name].messages, message))
+                await tyler[message.channel.name].channel.send(botResponse(tyler[message.channel.name].messages, message))
         else:
             print("the messages were sent within the time limit")
             if tyler[message.channel.name].waiting == False:
@@ -145,11 +147,11 @@ async def tylerMessage(message):
                     else:
                         print("sending message")
                         tyler[message.channel.name].msgsSinceLastResponse = 0
-                        await tyler[message.channel.name].channel.send(response(tyler[message.channel.name].messages, message))
+                        await tyler[message.channel.name].channel.send(botResponse(tyler[message.channel.name].messages, message))
                 except asyncio.TimeoutError:
                     print("timed out, sending message")
                     tyler[message.channel.name].msgsSinceLastResponse = 0
-                    await tyler[message.channel.name].channel.send(response(tyler[message.channel.name].messages, message))
+                    await tyler[message.channel.name].channel.send(botResponse(tyler[message.channel.name].messages, message))
                 print("resetting the waiting variable")
                 tyler[message.channel.name].waiting = False
 

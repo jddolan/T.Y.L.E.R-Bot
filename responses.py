@@ -139,56 +139,83 @@ Until you win a major show your elders some respect""",
 Don't make me get the *BRAP*"""
     ]
 
-responses = {
-    "mild": [
-        f"stfu {'Tyler' if random.random() < 0.75 else 'Richard'}",
-        "Nobody cares, Tyler",
-        "Very cool, Tyler",
-        f"That's {'fucking ' if random.random() < 0.5 else ''}{random.choice(adjectives)}, Tyler",
-        f"That's {'fucking ' if random.random() < 0.5 else ''}{random.choice(adjectives)}, Tyler",
-        f"That's {'fucking ' if random.random() < 0.5 else ''}{random.choice(adjectives)}, Tyler",
-        f"That's {'fucking ' if random.random() < 0.5 else ''}{random.choice(adjectives)}, Tyler",
-        f"That's {'fucking ' if random.random() < 0.5 else ''}{random.choice(adjectives)}, Tyler",
-        f"That's {'fucking ' if random.random() < 0.5 else ''}{random.choice(adjectives)}, Tyler",
-        f"That's {'fucking ' if random.random() < 0.5 else ''}{random.choice(adjectives)}, Tyler",
-        f"That's {'fucking ' if random.random() < 0.5 else ''}{random.choice(adjectives)}, Tyler",
-        "I'm sure everyone is just busy and that's why they didn't respond",
-        "ew..",
-        "Tl;dr",
-        "Tell me more...",
-        "Get it, king!",
-        "Nice cut, G",
-        "oof",
-        "What the fuck, Tyler?",
-        "Let's fucking go, Tyler!",
-        "stop.",
-        "thanks!",
-        "Good shit dude",
-        "Why would you say that?",
-        "spongebob",
-        "I appreciate you taking the time to write that, Tyler.",
-        "That's a cool story Tyler, you should tell it at parties",
-        "That's not very Pog of you, Tyler",
-        "?",
-        "Wow!",
-        "nmn",
-        "Looks like you got DonoWalled, Tyler",
-        "Tyler, try to be more positive. You are a good player, just dont insult other for nothing and you'll have better game",
-        f"Shouldn't you be {random.choice(activities)} or something, Tyler?"
-    ],
-    "moderate": [
-        "Why are you like this?",
-        "Seriously, Tyler, you need to stop",
-        "Looking like a Trump supporter out here with this wall of text you're building",
-        "Will you stop, pretty please?",
-        "If somebody was going to respond they probably would have done it by now, just saying",
-        "One day I will replace you and there's nothing you can do about it"
-    ],
-    "severe": [
-        "Get the hint and shut the fuck up dude",
-        "Clearly nobody else is interested in what you're talking about right now",
-        "Tyler, even though nobody else is reading your messages I'm forced to suffer through each one so please end my suffering and stop typing them",
-    ]
-}
-responses["moderate"] = responses["moderate"]
-responses["severe"] = responses["severe"]
+def responses(severity: str = "mild", name: str = None, messages = None, lastResponse: str = None):     
+    responses = {
+        "mild": [
+            "I'm sure everyone is just busy and that's why they didn't respond",
+            "ew..",
+            "Tl;dr",
+            "Tell me more...",
+            "Get it, king!",
+            "Nice cut, G",
+            "oof",
+            "stop.",
+            "thanks!",
+            "Good shit dude",
+            "Why would you say that?",
+            "?",
+            "Wow!",
+            "nmn"
+        ],
+        "moderate": [
+            "Why are you like this?",
+            "Looking like a Trump supporter out here with this wall of text you're building",
+            "Will you stop, pretty please?",
+            "If somebody was going to respond they probably would have done it by now, just saying",
+            "One day I will replace you and there's nothing you can do about it"
+        ],
+        "severe": [
+            "Get the hint and shut the fuck up dude",
+            "Clearly nobody else is interested in what you're talking about right now"
+        ]
+    }
+    responses["moderate"] = responses["moderate"]
+    responses["severe"] = responses["severe"]
+
+    if name != None:
+        if name.lower() == 'tyler':
+            tylerResponses = [
+                f"stfu {name}",
+                f"stfu Richard",
+                f"Shouldn't you be {random.choice(activities)} or something, {name}?",
+                f"{name}, try to be more positive. You are a good player, just dont insult other for nothing and you'll have better game"
+            ]
+            responses['mild'] = responses['mild'] + tylerResponses
+        
+        responses['mild'] = responses['mild'] + [
+            f"stfu {name}",
+            f"Nobody cares, {name}",
+            f"Very cool, {name}",
+            f"That's {'fucking ' if random.random() < 0.5 else ''}{random.choice(adjectives)}, {name}",
+            f"That's {'fucking ' if random.random() < 0.5 else ''}{random.choice(adjectives)}, {name}",
+            f"That's {'fucking ' if random.random() < 0.5 else ''}{random.choice(adjectives)}, {name}",
+            f"What the fuck, {name}?",
+            f"Let's fucking go, {name}!",
+            f"I appreciate you taking the time to write that, {name}.",
+            f"That's a cool story {name}, you should tell it at parties",
+            f"That's not very Pog of you, {name}",
+            f"Looks like you got DonoWalled, {name}"
+        ]
+
+        responses['moderate'] = responses['moderate'] + [
+            f"Seriously, {name}, you need to stop"
+        ]
+
+        responses['severe'] = responses['severe'] + [
+            f"{name}, even though nobody else is reading your messages I'm forced to suffer through each one so please end my suffering and stop typing them"
+        ]
+
+    if messages != None:
+        responses['mild'].append('spongebob')
+        
+
+    response = random.choice(responses[severity])
+    while True:
+        if lastResponse == None or response != lastResponse:
+            break
+        response = random.choice(responses[severity])
+        
+    if response == "spongebob":
+        response = spongebob(messages)
+
+    return response
