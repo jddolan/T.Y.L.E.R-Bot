@@ -18,7 +18,8 @@ async def command(message, client):
         '!roll': roll,
         '!rps': rps,
         '!coinflip': coinflip,
-        '!link': link
+        '!link': link,
+        '!response': response
     }
     command = commands.get(commandStr, invalidCommand)
     await command(message, client)
@@ -283,3 +284,9 @@ async def coinflip(message, client):
 async def link(message, client):
     await message.channel.send(random.choice(responses.links()))
     return
+
+async def response(message, client):
+    try:
+        input = message.content.split('!response ')[1]
+    except:
+        await message.channel.send(responses.responses(severity="mild"))
