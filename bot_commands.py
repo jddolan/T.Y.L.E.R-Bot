@@ -21,7 +21,7 @@ async def command(message, client):
         '!link': link,
         '!response': response
     }
-    command = commands.get(commandStr, invalidCommand)
+    command = commands.get(commandStr, help)
     await command(message, client)
     return
 
