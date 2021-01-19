@@ -54,6 +54,8 @@ tyler: dict = {}
 
 @client.event
 async def on_message(message):
+    if message.author == client.user:
+        return
     try:
         if message.content[0] == '!':
             await command(message, client)
@@ -66,7 +68,7 @@ async def on_message(message):
             tyler[message.channel.name] = Tyler()
             tyler[message.channel.name].channel = message.channel
         await tylerMessage(message)
-    elif message.author != client.user:
+    else:
         print("message not from tyler found, abort mission")
         if tyler.get(message.channel.name, None) != None:
             tyler[message.channel.name].reset()
