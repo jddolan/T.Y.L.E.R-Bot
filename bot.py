@@ -82,7 +82,7 @@ def botResponse(messages, message):
     else:
         severity = "severe"
         
-    response = responses(
+    response = responses.responses(
         severity=severity, 
         name="Tyler",
         messages=messages,

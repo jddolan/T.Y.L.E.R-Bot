@@ -287,6 +287,16 @@ async def link(message, client):
 
 async def response(message, client):
     try:
-        input = message.content.split('!response ')[1]
+        input = message.content.split('!response ')[1].split(' ')
+        name = input[0]
+        if len(input) > 1:
+            if input[1] in ['mild', 'moderate', 'severe']:
+                severity = input[1]
+            else:
+                await message.channel.send(f"Invalid severity input, mild will be used as the severity. Valid options for severity are mild, moderate, or severe.")
+                severity = "mild"
+        else:
+            severity = "mild"
+        await message.channel.send(responses.responses(severity=severity, name=name))
     except:
         await message.channel.send(responses.responses(severity="mild"))
