@@ -2,6 +2,7 @@ import random
 import re
 import responses
 import os
+from time import sleep
 
 joeId: int = int(os.environ.get('JOEID'))
 botId: int = int(os.environ.get('BOTID'))
@@ -16,53 +17,68 @@ async def command(message, client):
         '!scan': scan,
         '!roll': roll,
         '!rps': rps,
-        '!coinflip': coinflip
+        '!coinflip': coinflip,
+        '!link': link
     }
     command = commands.get(commandStr, invalidCommand)
     await command(message, client)
-    return
-
-async def help(message, client):
-    await message.channel.send('''Valid Commands: 
-
-!about: More information about the bot
-!help: A list of valid commands for the bot
-!quote: Provides a quote
-!addquote: !addquote <quote> <user> submits the quote to be added to the bot's list of randomly generated quotes. Must be approved by Joe and the person being quoted
-!roll: !roll <XdY> will roll a Y-sided die X times
-!rps: !rps <choice> choose rock paper or scissors and play against the bot
-!coinflip: !coinflip <choice> flip a coin, optionally choose heads or tails''')
-    return
-
-async def about(message, client):
-    await message.channel.send("This is a bot designed to respond to Tyler when other people aren't. Created by Joe")
     return
 
 async def invalidCommand(message, client):
     await message.channel.send("Command not found, type !help for a list of all valid commands")
     return
 
-async def scan(message, client):
-    count = 0
-    print(f"id: {message.id}")
-    iterator = message
-    oldIterator = "temp"
-    while(True):
-        async for msg in message.channel.history(limit=9999999999,before=iterator):
-            count += 1
-            iterator = msg
-            if '"-' in msg.content or '" -' in msg.content:
-                #  or "-" in msg.content:
-                print(msg.content)
-                print(f"count: {count}\n")
-        if oldIterator == iterator:
-            print("done scanning")
-            break
-        oldIterator = iterator
-        print(f"last message: {msg}")
-        print(msg.content)
-        print("fetching more results")
-        print(f"iterator: {iterator}")
+async def help(message, client):
+    await message.channel.send('''Valid Commands: 
+
+!help: !help provides a list of valid commands for the bot
+!about: !about provides more information about the bot
+!quote: !quote <name> provides a quote, if a name is not provided the quote will be randomly selected from all stored quotes
+!addquote: !addquote <quote> <user> submits the quote to be added to the bot's list of randomly generated quotes. Must be approved by Joe and the person being quoted
+!scan: !scan is not recommended to use unless you have access to the bot's logs, as it will serve no purpose without them. Will scan a server and find messages that contain the passed string.
+!roll: !roll <XdY> will roll a Y-sided die X times
+!rps: !rps <choice> choose rock paper or scissors and play against the bot
+!coinflip: !coinflip <choice> flip a coin, optionally choose heads or tails
+!link: !link provides a link to a piece of content significant to the Flat Earf Rules discord server''')
+    return
+
+async def about(message, client):
+    msg = await message.channel.send("Kids Next Door, TYLER: Tyler's  Yammering Loneliness Emergency Response", tts=True)
+    await msg.edit(content = """Kids Next Door, TYLER:""")
+    sleep(6)
+    await msg.edit(content = """Kids Next Door, TYLER:
+Tyler's""")
+    sleep(1)
+    await msg.edit(content = """Kids Next Door, TYLER:
+Tyler's
+Yammering""")
+    sleep(1)
+    await msg.edit(content = """Kids Next Door, TYLER:
+Tyler's
+Yammering
+Loneliness""")
+    sleep(1)
+    await msg.edit(content = """Kids Next Door, TYLER:
+Tyler's
+Yammering
+Loneliness
+Emergency""")
+    sleep(1)
+    await msg.edit(content = """Kids Next Door, TYLER:
+Tyler's
+Yammering
+Loneliness
+Emergency
+Response""")
+    sleep(1)
+    await msg.edit(content = """Kids Next Door, TYLER:
+Tyler's
+Yammering
+Loneliness
+Emergency
+Response
+This is a bot designed to respond to Tyler when other people aren't. Created by Joe""")
+    return
 
 async def quote(message, client):
     funcNames = {
@@ -136,6 +152,28 @@ Permission to add this quote was approved!""")
 Permission to add this quote was denied.""")
     
     return
+
+async def scan(message, client):
+    count = 0
+    print(f"id: {message.id}")
+    iterator = message
+    oldIterator = "temp"
+    while(True):
+        async for msg in message.channel.history(limit=9999999999,before=iterator):
+            count += 1
+            iterator = msg
+            if '"-' in msg.content or '" -' in msg.content:
+                #  or "-" in msg.content:
+                print(msg.content)
+                print(f"count: {count}\n")
+        if oldIterator == iterator:
+            print("done scanning")
+            break
+        oldIterator = iterator
+        print(f"last message: {msg}")
+        print(msg.content)
+        print("fetching more results")
+        print(f"iterator: {iterator}")
 
 async def roll(message, client):
     try:
@@ -241,3 +279,7 @@ async def coinflip(message, client):
                 await message.channel.send(output + lose)
     except:
         await message.channel.send(f"<@{message.author.id}> the result was {result}.")
+
+async def link(message, client):
+    await message.channel.send(random.choice(responses.links()))
+    return

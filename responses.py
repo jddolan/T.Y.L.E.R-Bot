@@ -74,7 +74,8 @@ def joe():
     "if phreak starts casting nba games ill never watch one again - Joe",
     "If pp isnt back by the end of 2017 im gonna just work my ass off and replace him as the falco god - Joe",
     "Trist adc - Joe",
-    "I put ketchup on my steaks - Joe (To be clear I don't do that anymore)"
+    "I put ketchup on my steaks - Joe (To be clear I don't do that anymore)",
+    "Why the fuck would you shorten peanut butter to pj - Joe after Ximing suggested shortening peanut butter to pj"
 ]
 
 def ximing():
@@ -117,6 +118,26 @@ def mango():
     ]
 
 quotes = tyler() + joe() + ximing() + matt() + matthew() + micah() + landon() + mango()
+
+def links():
+    return [
+        """https://www.youtube.com/watch?v=kpk2tdsPh0A
+But to answer that, we need to talk about parallel universes.""",
+        """https://www.fanfiction.net/s/6829556/1/My-Immortal
+AN: Special fangz (get it, coz Im goffik) 2 my gf (ew not in that way) raven, bloodytearz666 4 helpin me wif da story and spelling. U rok! Justin ur da luv of my deprzzing life u rok 2! MCR ROX!""",
+        """https://www.netflix.com/title/80152350
+My boyfriend's the dj, he spins gregorian house.""",
+        """https://www.youtube.com/watch?v=fhAKgOvIQsM
+WaHooooooOOOOOOO""",
+        """https://www.youtube.com/watch?v=oYmqJl4MoNI
+1:12 baby, 'til the day I fucking die""",
+        """https://www.youtube.com/watch?v=KhsOW-_TwfU
+Until you win a major show your elders some respect""",
+        """https://www.youtube.com/watch?v=6Iy2LglMT2o
+*Mumbles in Australian*""",
+        """https://www.youtube.com/watch?v=YQB3QBIXFPw
+Don't make me get the *BRAP*"""
+    ]
 
 responses = {
     "mild": [
