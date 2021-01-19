@@ -21,12 +21,13 @@ async def command(message, client):
         '!link': link,
         '!response': response
     }
-    command = commands.get(commandStr, help)
+    command = commands.get(commandStr, invalidCommand)
     await command(message, client)
     return
 
 async def invalidCommand(message, client):
-    await message.channel.send("Command not found, type !help for a list of all valid commands")
+    message = '!help '+ message
+    help(message, client)
     return
 
 async def help(message, client):
