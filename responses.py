@@ -47,7 +47,7 @@ quote it
 - Tyler""",
     "DND was the best game mode quote that one - Tyler",
     "this is the time g2 won't choke at an international event - Tyler",
-    "you may have gotten more kills than me - Tyler",
+    "you may have gotten more kills than me, - Tyler",
     "ill have it done by tonight quote me on that - Tyler",
     "quote me on this im gonna win joe's family group - Tyler",
     """corey we're playing tonight
