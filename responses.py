@@ -176,7 +176,6 @@ def responses(severity: str = "mild", name: str = None, messages = None, lastRes
         if name.lower() == 'tyler':
             tylerResponses = [
                 f"stfu {name}",
-                f"stfu {name}",
                 f"stfu Richard",
                 f"Shouldn't you be {random.choice(activities)} or something, {name}?",
                 f"{name}, try to be more positive. You are a good player, just dont insult other for nothing and you'll have better game"
@@ -187,11 +186,6 @@ def responses(severity: str = "mild", name: str = None, messages = None, lastRes
             f"stfu {name}",
             f"Nobody cares, {name}",
             f"Very cool, {name}",
-            f"That's {'fucking ' if random.random() < 0.5 else ''}{random.choice(adjectives)}, {name}",
-            f"That's {'fucking ' if random.random() < 0.5 else ''}{random.choice(adjectives)}, {name}",
-            f"That's {'fucking ' if random.random() < 0.5 else ''}{random.choice(adjectives)}, {name}",
-            f"That's {'fucking ' if random.random() < 0.5 else ''}{random.choice(adjectives)}, {name}",
-            f"That's {'fucking ' if random.random() < 0.5 else ''}{random.choice(adjectives)}, {name}",
             f"That's {'fucking ' if random.random() < 0.5 else ''}{random.choice(adjectives)}, {name}",
             f"That's {'fucking ' if random.random() < 0.5 else ''}{random.choice(adjectives)}, {name}",
             f"That's {'fucking ' if random.random() < 0.5 else ''}{random.choice(adjectives)}, {name}",

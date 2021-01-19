@@ -30,55 +30,44 @@ async def invalidCommand(message, client):
     return
 
 async def help(message, client):
-    await message.channel.send('''Valid Commands: 
-
-!help: !help provides a list of valid commands for the bot
-!about: !about provides more information about the bot
-!quote: !quote <name> provides a quote, if a name is not provided the quote will be randomly selected from all stored quotes
-!addquote: !addquote <quote> <user> submits the quote to be added to the bot's list of randomly generated quotes. Must be approved by Joe and the person being quoted
-!scan: !scan is not recommended to use unless you have access to the bot's logs, as it will serve no purpose without them. Will scan a server and find messages that contain the passed string.
-!roll: !roll <XdY> will roll a Y-sided die X times
-!rps: !rps <choice> choose rock paper or scissors and play against the bot
-!coinflip: !coinflip <choice> flip a coin, optionally choose heads or tails
-!link: !link provides a link to a piece of content significant to the Flat Earf Rules discord server''')
+    output = ""
+    commands = {
+        '!help': "!help <command: Optional> provides a list of valid commands for the bot"
+        '!about': "!about provides more information about the bot"
+        '!quote': "!quote <name: Optional> provides a quote, if a name is not provided the quote will be randomly selected from all stored quotes"
+        '!addquote': "!addquote <quote> <user> submits the quote to be added to the bot's list of randomly generated quotes. Must be approved by Joe and the person being quoted"
+        '!scan': "!scan is not recommended to use unless you have access to the bot's logs, as it will serve no purpose without them. Will scan a server and find messages that contain the passed string."
+        '!roll': "!roll <XdY> will roll a Y-sided die X times"
+        '!rps': "!rps <choice> choose rock paper or scissors and play against the bot"
+        '!coinflip': "!coinflip <choice: Optional> flip a coin, optionally choose heads or tails"
+        '!link': "!link provides a link to a piece of content significant to the Flat Earf Rules discord server"
+        '!response': "!response <name: Optional> generates a random response, optionally include the name of the person the response is for"
+    }
+    try:
+        input = message.content.split('!help ')[1]
+        if input[0] != '!':
+            input = '!' + input
+        if input in commands.keys():
+            output = f"{input}: {commands[input]}"
+        else:
+            output = f"Command {input} not found.\n\n"
+            raise
+    except:
+        output = output + "Valid Commands: \n\n"
+        for key in commands.keys():
+            output = output + f"{key}: {commands[key]}\n"
+    await message.channel.send(output)
     return
 
 async def about(message, client):
-    msg = await message.channel.send("Kids Next Door, TYLER: Tyler's  Yammering Loneliness Emergency Response", tts=True)
-    await msg.edit(content = """Kids Next Door, TYLER:""")
-    sleep(6)
-    await msg.edit(content = """Kids Next Door, TYLER:
-Tyler's""")
-    sleep(1)
-    await msg.edit(content = """Kids Next Door, TYLER:
-Tyler's
-Yammering""")
-    sleep(1)
-    await msg.edit(content = """Kids Next Door, TYLER:
-Tyler's
-Yammering
-Loneliness""")
-    sleep(1)
-    await msg.edit(content = """Kids Next Door, TYLER:
-Tyler's
-Yammering
-Loneliness
-Emergency""")
-    sleep(1)
-    await msg.edit(content = """Kids Next Door, TYLER:
-Tyler's
-Yammering
-Loneliness
-Emergency
-Response""")
-    sleep(1)
-    await msg.edit(content = """Kids Next Door, TYLER:
+    msg = await message.channel.send("""Kids Next Door, TYLER:
 Tyler's
 Yammering
 Loneliness
 Emergency
 Response
-This is a bot designed to respond to Tyler when other people aren't. Created by Joe""")
+This is a bot designed to respond to Tyler when other people aren't. Created by Joe"""
+)
     return
 
 async def quote(message, client):
@@ -289,14 +278,16 @@ async def response(message, client):
     try:
         input = message.content.split('!response ')[1].split(' ')
         name = input[0]
-        if len(input) > 1:
-            if input[1] in ['mild', 'moderate', 'severe']:
-                severity = input[1]
-            else:
-                await message.channel.send(f"Invalid severity input, mild will be used as the severity. Valid options for severity are mild, moderate, or severe.")
-                severity = "mild"
-        else:
-            severity = "mild"
+        severity = "mild"
+        # Severity input option (waiting to implement until the bot has done some of the severe responses naturally)
+        # if len(input) > 1:
+        #     if input[1] in ['mild', 'moderate', 'severe']:
+        #         severity = input[1]
+        #     else:
+        #         await message.channel.send(f"Invalid severity input, mild will be used as the severity. Valid options for severity are mild, moderate, or severe.")
+        #         severity = "mild"
+        # else:
+        #     severity = "mild"
         await message.channel.send(responses.responses(severity=severity, name=name))
     except:
         await message.channel.send(responses.responses(severity="mild"))
