@@ -35,7 +35,7 @@ async def help(message, client):
     output = ""
     help = {
         '!help': "!help <command: Optional> provides a list of valid commands for the bot",
-        '!about': "!about provides more information about the bot",
+        '!about': "!about provides information about the bot",
         '!quote': "!quote <name: Optional> provides a quote, if a name is not provided the quote will be randomly selected from all stored quotes",
         '!addquote': "!addquote <quote> <user> submits the quote to be added to the bot's list of randomly generated quotes. Must be approved by Joe and the person being quoted",
         '!scan': "!scan is not recommended to use unless you have access to the bot's logs, as it will serve no purpose without them. Will scan a server and find messages that contain the passed string.",
@@ -51,7 +51,7 @@ async def help(message, client):
             input = '!' + input
         if input in help.keys():
             print("command found in help keys, setting output")
-            output = output + f"{input}: {help[input]}"
+            output = output + f"{help[input]}"
         else:
             print("command not found in help keys, raising error")
             output = f"Command {input} not found.\n\n"
@@ -60,7 +60,7 @@ async def help(message, client):
         print("invalid command, presenting list of all valid commands")
         output = output + "Valid Commands: \n\n"
         for key in help.keys():
-            output = output + f"{key}: {help[key]}\n"
+            output = output + f"{help[key]}\n"
     print("sending output...")
     await message.channel.send(output)
     print("output sent")
