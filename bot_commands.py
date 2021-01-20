@@ -67,13 +67,13 @@ async def help(message, client):
     return
 
 async def about(message, client):
-    msg = await message.channel.send("""Kids Next Door, TYLER:
+    msg = await message.channel.send("""Flat Earf Rules, TYLER:
 Tyler's
 Yammering
 Loneliness
 Emergency
 Response
-This is a bot designed to respond to Tyler when other people aren't. Created by Joe"""
+T.Y.L.E.R. Bot was originally designed to respond to Tyler when other people weren't. It now does a lot of random stuff, type !help to see the list of commands the bot recognizes. Created by Joe Dolan."""
 )
     return
 

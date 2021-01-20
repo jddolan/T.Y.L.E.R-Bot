@@ -141,15 +141,12 @@ Don't make me get the *BRAP*"""
 
 def responses(severity: str = "mild", name: str = None, messages = None, lastResponse: str = None):     
     responses = {
-        "mild": [
-            "I'm sure everyone is just busy and that's why they didn't respond",
-            "ew..",
+        "mild": [  
             "Tl;dr",
             "Tell me more...",
             "Get it, king!",
             "Nice cut, G",
             "oof",
-            "stop.",
             "thanks!",
             "Good shit dude",
             "Why would you say that?",
@@ -158,6 +155,9 @@ def responses(severity: str = "mild", name: str = None, messages = None, lastRes
             "nmn"
         ],
         "moderate": [
+            "I'm sure everyone is just busy and that's why they didn't respond",
+            "stop.",
+            "ew..",
             "Why are you like this?",
             "Looking like a Trump supporter out here with this wall of text you're building",
             "Will you stop, pretty please?",
@@ -183,8 +183,6 @@ def responses(severity: str = "mild", name: str = None, messages = None, lastRes
             responses['mild'] = responses['mild'] + tylerResponses
         
         responses['mild'] = responses['mild'] + [
-            f"stfu {name}",
-            f"Nobody cares, {name}",
             f"Very cool, {name}",
             f"That's {'fucking ' if random.random() < 0.5 else ''}{random.choice(adjectives)}, {name}",
             f"That's {'fucking ' if random.random() < 0.5 else ''}{random.choice(adjectives)}, {name}",
@@ -198,7 +196,9 @@ def responses(severity: str = "mild", name: str = None, messages = None, lastRes
         ]
 
         responses['moderate'] = responses['moderate'] + [
-            f"Seriously, {name}, you need to stop"
+            f"Seriously, {name}, you need to stop",
+            f"stfu {name}",
+            f"Nobody cares, {name}",
         ]
 
         responses['severe'] = responses['severe'] + [
