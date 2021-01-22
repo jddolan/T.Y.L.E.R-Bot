@@ -136,7 +136,9 @@ Until you win a major show your elders some respect""",
         """https://www.youtube.com/watch?v=6Iy2LglMT2o
 *Mumbles in Australian*""",
         """https://www.youtube.com/watch?v=YQB3QBIXFPw
-Don't make me get the *BRAP*"""
+Don't make me get the *BRAP*""",
+        """https://www.youtube.com/watch?v=kMlLz7stjwc
+She looked in my chest n she looked at a hundred diamonds""",
     ]
 
 def responses(severity: str = "mild", name: str = None, messages = None, lastResponse: str = None):     
