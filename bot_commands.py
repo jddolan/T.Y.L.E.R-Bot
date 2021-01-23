@@ -322,10 +322,13 @@ async def joke(message, client):
     while(True):
         joke = jokes.split(f'{i}. ')[0]
         jokeList.append(joke)
-        print(f"joke: {joke}")
         i += 1
         if i > 100:
             break
+    i = 1
+    for joke in jokeList:
+        print(f"joke {i}: {joke}")
+        i += 1
 
     await message.channel.send(random.choice(jokeList))
     return
