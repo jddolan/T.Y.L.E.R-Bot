@@ -20,7 +20,8 @@ async def command(message, client):
         '!coinflip': coinflip,
         '!link': link,
         '!response': response,
-        '!8ball','!eightball': eightball
+        '!8ball': eightball,
+        '!eightball': eightball
     }
     command = commands.get(commandStr, invalidCommand)
     await command(message, client)
