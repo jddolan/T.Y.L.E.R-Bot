@@ -324,10 +324,8 @@ async def joke(message, client):
     jokeList = []
     print("parsing jokes")
     while(True):
-        print(f"i: {i}")
         jokeSplit = jokeStr.split(f'\n\n{i}. ')
         joke = jokeSplit[0]
-        print(f"joke: {joke}")
         jokeStr = jokeSplit[1]
         jokeList.append(joke)
         i += 1
@@ -337,8 +335,6 @@ async def joke(message, client):
     print(f"printing full list...")
     for joke in jokeList:
         newFileStr = "        "
-        
-        print(f"joke {i}: {joke}")
         i += 1
         newFileStr += '"""' + joke + '"""'
         if i > 1:
