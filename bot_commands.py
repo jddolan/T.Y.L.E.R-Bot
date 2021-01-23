@@ -318,16 +318,17 @@ async def lenny(message, client):
 
 async def joke(message, client):
     i: int = 2
+    jokeStr = jokes() 
     jokeList = []
     print("parsing jokes")
     while(True):
         print(f"i: {i}")
-        print(f"jokes: {jokes}")
-        jokeSplit = jokes.split(f'{i}. ')
+        print(f"jokeStr: {jokeStr}")
+        jokeSplit = jokeStr.split(f'{i}. ')
         print(f"jokeSplit: {jokeSplit}")
         joke = jokeSplit[0]
         print(f"joke: {joke}")
-        jokes = jokeSplit[1]
+        jokeStr = jokeSplit[1]
         jokeList.append(joke)
         i += 1
         if i > 100:
