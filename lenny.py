@@ -20,7 +20,16 @@ SOFTWARE.
 """
 
 # Credit to http://textsmili.es/ for lenny face symbols.
-# Ripped this code from https://github.com/justinmuskopf/lenny/
+
+# **************************************************************
+
+
+
+#  Ripped this code from https://github.com/justinmuskopf/lenny/
+
+
+
+# **************************************************************
 import random
 
 mouths = [
