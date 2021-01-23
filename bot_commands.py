@@ -318,7 +318,8 @@ async def lenny(message, client):
 
 async def joke(message, client):
     i: int = 2
-    jokeList: [str] = []
+    jokeList = []
+    print("parsing jokes")
     while(True):
         jokeSplit = jokes.split(f'{i}. ')
         joke = jokeSplit[0]
