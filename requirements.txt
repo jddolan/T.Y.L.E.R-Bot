@@ -1,4 +1,4 @@
 discord
 async_timeout
 pandas
-axju-jokes
+lenny
