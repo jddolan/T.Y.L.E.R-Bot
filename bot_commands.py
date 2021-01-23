@@ -2,6 +2,7 @@ import random
 import re
 import responses
 import os
+import lenny
 from time import sleep
 
 joeId: int = int(os.environ.get('JOEID'))
@@ -21,7 +22,8 @@ async def command(message, client):
         '!link': link,
         '!response': response,
         '!8ball': eightball,
-        '!eightball': eightball
+        '!eightball': eightball,
+        '!lenny': lenny
     }
     command = commands.get(commandStr, invalidCommand)
     await command(message, client)
@@ -46,7 +48,8 @@ async def help(message, client):
         '!coinflip': "**!coinflip** <choice: Optional> flip a coin, optionally choose heads or tails",
         '!link': "**!link** provides a link to a piece of content significant to the Flat Earf Rules discord server",
         '!response': "**!response** <name: Optional> generates a random response, optionally include the name of the person the response is for",
-        '!8ball': "**!8ball** <question: Optional> provides an answer from the magic 8-ball"
+        '!8ball': "**!8ball** <question: Optional> provides an answer from the magic 8-ball",
+        '!lenny': "**!lenny** generates a random lenny face ( ͡° ͜ʖ ͡°)"
     }
     try:
         input = message.content.split('!help ')[1]
@@ -304,4 +307,8 @@ async def response(message, client):
 
 async def eightball(message, client):
     await message.channel.send(random.choice(responses.eightball()))
+    return
+
+async def lenny(message, client):
+    await message.channel.send(lenny.lenny())
     return
