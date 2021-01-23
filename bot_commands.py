@@ -317,8 +317,7 @@ async def lenny(message, client):
     return
 
 async def joke(message, client):
-    f = open("jokes2.py", "w")
-    f.write("def jokes():\n    return [\n    ")
+    newFileStr = "def jokes():\n    return [\n    "
     i: int = 2
     jokeStr = jokes() 
     jokeList = []
@@ -336,17 +335,15 @@ async def joke(message, client):
     i = 1
     print(f"printing full list...")
     for joke in jokeList:
-        f.write("    ")
+        newFileStr += "    "
         print(f"joke {i}: {joke}")
         i += 1
-        f.write('"""' + joke + '"""')
+        newFileStr += '"""' + joke + '"""'
         if i > 1:
-            f.write(",")
-        f.write("\n    ")
-    f.write("]")
-    f.close
-    f = open("jokes.py", "r")
-    await message.channel.send(f.read())
+            newFileStr += ","
+        newFileStr += "\n    "
+    newFileStr += "]"
+    await message.channel.send(newFileStr)
 
     await message.channel.send(random.choice(jokeList))
     return
