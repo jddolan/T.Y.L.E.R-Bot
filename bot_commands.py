@@ -2,7 +2,7 @@ import random
 import re
 import responses
 import os
-import lenny
+from lenny import lenny as lennyface
 from time import sleep
 
 joeId: int = int(os.environ.get('JOEID'))
@@ -310,7 +310,7 @@ async def eightball(message, client):
     return
 
 async def lenny(message, client):
-    # print(f"lenny face: {lenny.lenny()}")
-    print(f"lenny face2: {str(lenny.lenny())}")
-    await message.channel.send(lenny.lenny())
+    print(f"lenny face2: {str(lennyface())}")
+    print(f"lenny face: {lennyface()}")
+    await message.channel.send(lennyface())
     return
