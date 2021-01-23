@@ -323,9 +323,7 @@ async def joke(message, client):
     print("parsing jokes")
     while(True):
         print(f"i: {i}")
-        print(f"jokeStr: {jokeStr}")
-        jokeSplit = jokeStr.split(f'{i}. ')
-        print(f"jokeSplit: {jokeSplit}")
+        jokeSplit = jokeStr.split(f'\n\n{i}. ')
         joke = jokeSplit[0]
         print(f"joke: {joke}")
         jokeStr = jokeSplit[1]
@@ -334,6 +332,7 @@ async def joke(message, client):
         if i > 100:
             break
     i = 1
+    print(f"printing full list...")
     for joke in jokeList:
         print(f"joke {i}: {joke}")
         i += 1
