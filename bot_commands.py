@@ -317,10 +317,12 @@ async def lenny(message, client):
     return
 
 async def joke(message, client):
-    i: int = 1
+    i: int = 2
     jokeList: [str] = []
     while(True):
-        joke, jokes = jokes.split(f'{i}. ')
+        jokeSplit = jokes.split(f'\n\n{i}. ')
+        joke = jokeSplit[0]
+        jokes = jokeSplit[1]
         jokeList.append(joke)
         i += 1
         if i > 100:
