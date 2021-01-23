@@ -310,7 +310,5 @@ async def eightball(message, client):
     return
 
 async def lenny(message, client):
-    print(f"lenny face2: {str(lennyface())}")
-    print(f"lenny face: {lennyface()}")
     await message.channel.send(lennyface())
     return
