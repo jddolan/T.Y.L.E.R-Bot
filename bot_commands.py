@@ -321,13 +321,14 @@ async def joke(message, client):
     jokeList = []
     print("parsing jokes")
     while(True):
+        print(f"i: {i}")
         jokeSplit = jokes.split(f'{i}. ')
+        print(f"jokeSplit: {jokeSplit}")
         joke = jokeSplit[0]
         print(f"joke: {joke}")
         jokes = jokeSplit[1]
         jokeList.append(joke)
         i += 1
-        print(f"i: {i}")
         if i > 100:
             break
     i = 1
