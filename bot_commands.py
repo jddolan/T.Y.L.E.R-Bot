@@ -343,6 +343,7 @@ async def joke(message, client):
             newFileStr += ","
         newFileStr += "\n    "
     newFileStr += "]"
+    print(f"newFileStr: {newFileStr}")
     await message.channel.send(newFileStr)
 
     await message.channel.send(random.choice(jokeList))
