@@ -23,7 +23,8 @@ async def command(message, client):
         '!response': response,
         '!8ball': eightball,
         '!eightball': eightball,
-        '!lenny': lenny
+        '!lenny': lenny,
+        '!joke': joke
     }
     command = commands.get(commandStr, invalidCommand)
     await command(message, client)
@@ -49,7 +50,8 @@ async def help(message, client):
         '!link': "**!link** provides a link to a piece of content significant to the Flat Earf Rules discord server",
         '!response': "**!response** <name: Optional> generates a random response, optionally include the name of the person the response is for",
         '!8ball': "**!8ball** <question: Optional> provides an answer from the magic 8-ball",
-        '!lenny': "**!lenny** generates a random lenny face ( ͡° ͜ʖ ͡°)"
+        '!lenny': "**!lenny** generates a random lenny face ( ͡° ͜ʖ ͡°)",
+        '!joke': "**joke** generates a funny joke"
     }
     try:
         input = message.content.split('!help ')[1]
@@ -311,4 +313,8 @@ async def eightball(message, client):
 
 async def lenny(message, client):
     await message.channel.send(lennyface())
+    return
+
+async def joke(message, client):
+    await message.channel.send(random.choice(responses.jokes()))
     return
