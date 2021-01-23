@@ -322,6 +322,7 @@ async def joke(message, client):
     print("parsing jokes")
     while(True):
         print(f"i: {i}")
+        print(f"jokes: {jokes}")
         jokeSplit = jokes.split(f'{i}. ')
         print(f"jokeSplit: {jokeSplit}")
         joke = jokeSplit[0]

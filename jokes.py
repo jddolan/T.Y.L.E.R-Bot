@@ -1,4 +1,4 @@
-jokes = """Why did the chicken go to the library?
+jokes: str = """Why did the chicken go to the library?
 To check out a bawk.
 
 2. What’s a parasite?
