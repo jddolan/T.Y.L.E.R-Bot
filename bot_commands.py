@@ -346,8 +346,7 @@ async def joke(message, client):
     f.write("]")
     f.close
     f = open("jokes.py", "r")
-    print(f.read())
-
+    await message.channel.send(f.read())
 
     await message.channel.send(random.choice(jokeList))
     return
