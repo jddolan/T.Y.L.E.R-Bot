@@ -320,7 +320,7 @@ async def joke(message, client):
     i: int = 1
     jokeList: [str] = []
     while(True):
-        joke = jokes.split(f'{i}. ')[0]
+        joke, jokes = jokes.split(f'{i}. ')
         jokeList.append(joke)
         i += 1
         if i > 100:
