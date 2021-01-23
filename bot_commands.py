@@ -19,7 +19,8 @@ async def command(message, client):
         '!rps': rps,
         '!coinflip': coinflip,
         '!link': link,
-        '!response': response
+        '!response': response,
+        '!8ball','!eightball': eightball
     }
     command = commands.get(commandStr, invalidCommand)
     await command(message, client)
@@ -43,7 +44,8 @@ async def help(message, client):
         '!rps': "**!rps** <choice> choose rock paper or scissors and play against the bot",
         '!coinflip': "**!coinflip** <choice: Optional> flip a coin, optionally choose heads or tails",
         '!link': "**!link** provides a link to a piece of content significant to the Flat Earf Rules discord server",
-        '!response': "**!response** <name: Optional> generates a random response, optionally include the name of the person the response is for"
+        '!response': "**!response** <name: Optional> generates a random response, optionally include the name of the person the response is for",
+        '!8ball': "**!8ball** <question: Optional> provides an answer from the magic 8-ball"
     }
     try:
         input = message.content.split('!help ')[1]
@@ -298,3 +300,7 @@ async def response(message, client):
         await message.channel.send(responses.responses(severity=severity, name=name))
     except:
         await message.channel.send(responses.responses(severity="mild"))
+
+async def eightball(message, client):
+    await message.channel.send(random.choice(responses.eightball()))
+    return
