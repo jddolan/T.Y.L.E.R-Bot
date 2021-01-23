@@ -3,7 +3,6 @@ import re
 import responses
 import os
 from lenny import lenny as lennyface
-from jokes import jokes
 from time import sleep
 
 joeId: int = int(os.environ.get('JOEID'))
@@ -317,31 +316,5 @@ async def lenny(message, client):
     return
 
 async def joke(message, client):
-    newFileStr = "def jokes():\n    return [\n    "
-    await message.channel.send("def jokes():\n    return [\n")
-    i: int = 2
-    jokeStr = jokes() 
-    jokeList = []
-    print("parsing jokes")
-    while(True):
-        jokeSplit = jokeStr.split(f'\n\n{i}. ')
-        joke = jokeSplit[0]
-        jokeStr = jokeSplit[1]
-        jokeList.append(joke)
-        i += 1
-        if i > 100:
-            break
-    i = 1
-    print(f"printing full list...")
-    for joke in jokeList:
-        newFileStr = "        "
-        i += 1
-        newFileStr += '"""' + joke + '"""'
-        if i > 1:
-            newFileStr += ","
-        newFileStr += "\n"
-        await message.channel.send(newFileStr)
-    await message.channel.send("    ]")
-
-    await message.channel.send(random.choice(jokeList))
+    await message.channel.send(random.choice(responses.jokes()))
     return
