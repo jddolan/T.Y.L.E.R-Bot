@@ -24,7 +24,8 @@ async def command(message, client):
         '!8ball': eightball,
         '!eightball': eightball,
         '!lenny': lenny,
-        '!joke': joke
+        '!joke': joke,
+        '!test': test
     }
     command = commands.get(commandStr, invalidCommand)
     await command(message, client)
@@ -51,7 +52,8 @@ async def help(message, client):
         '!response': "**!response** <name: Optional> generates a random response, optionally include the name of the person the response is for",
         '!8ball': "**!8ball** <question: Optional> provides an answer from the magic 8-ball",
         '!lenny': "**!lenny** generates a random lenny face ( ͡° ͜ʖ ͡°)",
-        '!joke': "**joke** generates a funny joke"
+        '!joke': "**!joke** generates a funny joke",
+        '!test': "**!test** this command will generally do nothing aside from showing a message related to something in development"
     }
     try:
         input = message.content.split('!help ')[1]
@@ -317,4 +319,9 @@ async def lenny(message, client):
 
 async def joke(message, client):
     await message.channel.send(random.choice(responses.jokes()))
+    return
+
+async def test(message, client):
+    string = ('¯\_', '_/¯')
+    await message.channel.send(string[0] +  string[1])
     return
