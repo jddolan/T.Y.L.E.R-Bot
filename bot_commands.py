@@ -328,6 +328,6 @@ async def joke(message, client):
     return
 
 async def test(message, client):
-    string = ('¯\\\\_\*Mumbles in Australian\*', '_/¯')
+    string = ('¯\\\\_', '_/¯')
     await message.channel.send(string[0] +  string[1])
     return
