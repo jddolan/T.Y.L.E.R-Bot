@@ -455,7 +455,8 @@ def validCommands():
         '!8ball': """**!8ball** <question: Optional> provides an answer from the magic 8-ball""",
         '!about': """**!about** provides information about the bot""",
         '!addquote': """**!addquote** <quote> <user> submits the quote to be added to the bot's list of
-    randomly generated quotes. Must be approved by Joe and the person being quoted""",
+    randomly generated quotes. Must be approved by Joe and the person
+    being quoted""",
         '!coinflip': """**!coinflip** <choice: Optional> flip a coin, optionally choose heads or tails""",
         '!help': """**!help** <command: Optional> provides a list of valid commands for the bot""",
         '!joke': """**!joke** generates a funny joke""",
@@ -469,8 +470,8 @@ def validCommands():
         '!roll': """**!roll** <XdY> will roll a Y-sided die X times""",
         '!rps': """**!rps** <choice> choose rock paper or scissors and play against the bot""",
         '!scan': """**!scan** is not recommended to use unless you have access to the bot's logs, as
-    it will serve no purpose without them. Will scan a server and
-    find messages that contain the passed string.""",
+    it will serve no purpose without them. Will scan a server and find
+    messages that contain the passed string.""",
         '!test': """**!test** this command will generally do nothing aside from showing a message
     related to something in development"""
     }
