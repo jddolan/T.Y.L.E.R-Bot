@@ -1,4 +1,6 @@
 import random
+import os
+
 joeId: int = int(os.environ.get('JOEID'))
 
 def validCommands():
