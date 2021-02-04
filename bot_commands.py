@@ -62,6 +62,16 @@ async def help(message, client):
     something in development"""
     }
     try:
+        help2 = responses.validCommands()
+
+        print("retrieved validCommands successfully")
+        for key in help.keys():
+            output = output + f"{help[key]}\n"
+        await message.channel.send(output)
+        print("output validCommands successfully")
+    except:
+        print("validCommands not retrieved successfully")
+    try:
         input = message.content.split('!help ')[1]
         if input[0] != '!':
             input = '!' + input
