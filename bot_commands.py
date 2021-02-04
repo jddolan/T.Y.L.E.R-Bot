@@ -11,20 +11,21 @@ botId: int = int(os.environ.get('BOTID'))
 async def command(message, client):
     commandStr = message.content.split(' ')[0]
     commands = {
-        '!help': help,
-        '!about': about,
-        '!quote': quote,
+        '!8ball': eightball,
         '!addquote': addQuote,
-        '!scan': scan,
+        '!about': about,
+        '!coinflip': coinflip,
+        '!crush': crush,
+        '!eightball': eightball,  
+        '!help': help,
+        '!joke': joke,
+        '!lenny': lenny,
+        '!link': link,
+        '!quote': quote,
+        '!response': response,
         '!roll': roll,
         '!rps': rps,
-        '!coinflip': coinflip,
-        '!link': link,
-        '!response': response,
-        '!8ball': eightball,
-        '!eightball': eightball,
-        '!lenny': lenny,
-        '!joke': joke,
+        '!scan': scan,
         '!test': test
     }
     command = commands.get(commandStr, invalidCommand)
@@ -310,4 +311,8 @@ async def joke(message, client):
 async def test(message, client):
     string = ('¯\\\\_', '_/¯')
     await message.channel.send(string[0] +  string[1])
+    return
+
+async def crush(message, client):
+    await message.channel.send(random.choice(responses.crush()))
     return
