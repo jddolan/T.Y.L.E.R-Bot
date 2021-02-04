@@ -42,7 +42,6 @@ async def help(message, client):
     print("helping...")
     output = ""
     help = responses.validCommands()
-    print("got the valid commands")
     try:
         input = message.content.split('!help ')[1]
         if input[0] != '!':
