@@ -40,26 +40,26 @@ async def invalidCommand(message, client):
 async def help(message, client):
     output = ""
     help = {
-        '!help': """**!help** <command: Optional> provides a list of valid commands for the bot""",
+        '!8ball': """**!8ball** <question: Optional> provides an answer from the magic 8-ball""",
         '!about': """**!about** provides information about the bot""",
-        '!quote': """**!quote** <name: Optional> provides a quote, if a name is not provided the quote will be
-    randomly selected from all stored quotes""",
         '!addquote': """**!addquote** <quote> <user> submits the quote to be added to the bot's list of randomly
-    generated quotes. Must be approved by Joe and the person being quoted""",
-        '!scan': """**!scan** is not recommended to use unless you have access to the bot's logs, as it will serve
-    no purpose without them. Will scan a server and find messages that contain the passed
-    string.""",
+generated quotes. Must be approved by Joe and the person being quoted""",
+        '!coinflip': """**!coinflip** <choice: Optional> flip a coin, optionally choose heads or tails""",
+        '!help': """**!help** <command: Optional> provides a list of valid commands for the bot""",
+        '!joke': """**!joke** generates a funny joke""",
+        '!lenny': """**!lenny** generates a random lenny face ( ͡° ͜ʖ ͡°)""",
+        '!link': """**!link** provides a link to a piece of content significant to the Flat Earf Rules discord server""",
+        '!quote': """**!quote** <name: Optional> provides a quote, if a name is not provided the quote will be
+randomly selected from all stored quotes""",
+        '!response': """**!response** <name: Optional> generates a random response, optionally include the name
+of the person the response is for""",
         '!roll': """**!roll** <XdY> will roll a Y-sided die X times""",
         '!rps': """**!rps** <choice> choose rock paper or scissors and play against the bot""",
-        '!coinflip': """**!coinflip** <choice: Optional> flip a coin, optionally choose heads or tails""",
-        '!link': """**!link** provides a link to a piece of content significant to the Flat Earf Rules discord server""",
-        '!response': """**!response** <name: Optional> generates a random response, optionally include the name
-    of the person the response is for""",
-        '!8ball': """**!8ball** <question: Optional> provides an answer from the magic 8-ball""",
-        '!lenny': """**!lenny** generates a random lenny face ( ͡° ͜ʖ ͡°)""",
-        '!joke': """**!joke** generates a funny joke""",
+        '!scan': """**!scan** is not recommended to use unless you have access to the bot's logs, as it will serve
+no purpose without them. Will scan a server and find messages that contain the passed
+string.""",
         '!test': """**!test** this command will generally do nothing aside from showing a message related to
-    something in development"""
+something in development"""
     }
     try:
         help2 = responses.validCommands()
