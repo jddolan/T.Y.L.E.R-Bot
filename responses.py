@@ -1,7 +1,8 @@
 import random
 from bot import spongebob
 
-help = {
+def validCommands():
+    return {
     '!8ball': """**!8ball** <question: Optional> provides an answer from the magic 8-ball""",
     '!about': """**!about** provides information about the bot""",
     '!addquote': """**!addquote** <quote> <user> submits the quote to be added to the bot's list of randomly
