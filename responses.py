@@ -157,7 +157,7 @@ WaHooooooOOOOOOO""",
 1:12 baby, 'til the day I fucking die""",
         """https://www.youtube.com/watch?v=KhsOW-_TwfU
 Until you win a major show your elders some respect""",
-        r"""https://www.youtube.com/watch?v=6Iy2LglMT2o
+        """https://www.youtube.com/watch?v=6Iy2LglMT2o
 \*Mumbles in Australian\*""",
         """https://www.youtube.com/watch?v=YQB3QBIXFPw
 Don't make me get the *BRAP*""",
