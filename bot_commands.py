@@ -65,8 +65,8 @@ async def help(message, client):
         help2 = responses.validCommands()
 
         print("retrieved validCommands successfully")
-        for key in help.keys():
-            output = output + f"{help[key]}\n"
+        for key in help2.keys():
+            output = output + f"{help2[key]}\n"
         await message.channel.send(output)
         print("output validCommands successfully")
     except:
