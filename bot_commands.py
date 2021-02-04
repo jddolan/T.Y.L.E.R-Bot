@@ -104,7 +104,7 @@ async def quote(message, client):
 
 async def addQuote(message, client):
     try:
-        match = re.match('(.*) \<@!(.*)\>', message.content.split('!addquote ')[1])
+        match = re.match(r'(.*) \<@!(.*)\>', message.content.split('!addquote ')[1])
         quote = match.group(1)
         userId = int(match.group(2))
     except:
