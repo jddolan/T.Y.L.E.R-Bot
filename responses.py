@@ -1,4 +1,32 @@
 import random
+joeId: int = int(os.environ.get('JOEID'))
+
+def validCommands():
+    return {
+        '!8ball': """**!8ball** <question: Optional> provides an answer from the magic 8-ball""",
+        '!about': """**!about** provides information about the bot""",
+        '!addquote': """**!addquote** <quote> <user> submits the quote to be added to the bot's list of
+    randomly generated quotes. Must be approved by Joe and the person
+    being quoted""",
+        '!coinflip': """**!coinflip** <choice: Optional> flip a coin, optionally choose heads or tails""",
+        '!crush': """**!crush** generates a random Crush tweet""",
+        '!help': """**!help** <command: Optional> provides a list of valid commands for the bot""",
+        '!joke': """**!joke** generates a funny joke""",
+        '!lenny': """**!lenny** generates a random lenny face ( ͡° ͜ʖ ͡°)""",
+        '!link': """**!link** provides a link to a piece of content significant to the Flat Earf Rules
+    discord server""",
+        '!quote': """**!quote** <name: Optional> provides a quote, if a name is not provided the
+    quote will be randomly selected from all stored quotes""",
+        '!response': """**!response** <name: Optional> generates a random response, optionally
+    include the name of the person the response is for""",
+        '!roll': """**!roll** <XdY> will roll a Y-sided die X times""",
+        '!rps': """**!rps** <choice> choose rock paper or scissors and play against the bot""",
+        '!scan': """**!scan** is not recommended to use unless you have access to the bot's logs, as
+    it will serve no purpose without them. Will scan a server and find
+    messages that contain the passed string.""",
+        '!test': """**!test** this command will generally do nothing aside from showing a message
+    related to something in development"""
+    }
 
 activities = [
     "playing runescape",
@@ -234,16 +262,37 @@ def eightball():
         "Outlook good.",
         "Yes.",
         "Signs point to yes.",
-        "Reply hazy, try again.",
-        "Ask again later.",
-        "Better not tell you now.",
-        "Cannot predict now.",
+        "Yeah, probably.",
+        "Fuck yeah.",
+        "Hell yeah.",
+        "I like to think so.",
+        "For sure.",
+        "100%.",
+        "There's no way that that isn't not what the case isn't.",
+        "For sure for sure.",
+        "I'm leaning toward yes.",
+        "I'm not completely sure but probably.",
+        "Definitely.",
+        "I think so.",
+        "You shouldn't have even needed to consult me, the answer is obviously yes.",
+        "Of course.",
+        "It surely must be so.",
+        f"I'll leave that up to <@{joeId}>",
+        "Fuck if I know.",
         "Concentrate and ask again.",
         "Don't count on it.",
         "My reply is no.",
         "My sources say no.",
         "Outlook not so good.",
-        "Very doubtful."
+        "Very doubtful.",
+        "Fuck no.",
+        "No.",
+        "There's no way that that isn't not what the case is.",
+        "No shot.",
+        "Probably not.",
+        "I'm leaning toward no.",
+        "I'm not completely sure but probably not.",
+        "Absolutely not. Are you out of your mind?"
     ]
 
 def jokes():
@@ -450,28 +499,45 @@ A palm tree.""",
 Too many ears."""
     ]
 
-def validCommands():
-    return {
-        '!8ball': """**!8ball** <question: Optional> provides an answer from the magic 8-ball""",
-        '!about': """**!about** provides information about the bot""",
-        '!addquote': """**!addquote** <quote> <user> submits the quote to be added to the bot's list of
-    randomly generated quotes. Must be approved by Joe and the person
-    being quoted""",
-        '!coinflip': """**!coinflip** <choice: Optional> flip a coin, optionally choose heads or tails""",
-        '!help': """**!help** <command: Optional> provides a list of valid commands for the bot""",
-        '!joke': """**!joke** generates a funny joke""",
-        '!lenny': """**!lenny** generates a random lenny face ( ͡° ͜ʖ ͡°)""",
-        '!link': """**!link** provides a link to a piece of content significant to the Flat Earf Rules
-    discord server""",
-        '!quote': """**!quote** <name: Optional> provides a quote, if a name is not provided the
-    quote will be randomly selected from all stored quotes""",
-        '!response': """**!response** <name: Optional> generates a random response, optionally
-    include the name of the person the response is for""",
-        '!roll': """**!roll** <XdY> will roll a Y-sided die X times""",
-        '!rps': """**!rps** <choice> choose rock paper or scissors and play against the bot""",
-        '!scan': """**!scan** is not recommended to use unless you have access to the bot's logs, as
-    it will serve no purpose without them. Will scan a server and find
-    messages that contain the passed string.""",
-        '!test': """**!test** this command will generally do nothing aside from showing a message
-    related to something in development"""
-    }
+def crush():
+    return [
+        """we have a 15 year old wobbler that gets 5th place at our locals while smoking cigs outside the venue between every round and he can undoubtedly beat any of the grown ass men on vgbootcamp trying to tell you melee is a game of self expression""",
+        """i’m the only decent player that doesn’t get asked by the hotel check-in person if i’m “here for the local video game expo""",
+        """call me “late to the party” or “old” or “a puritan” or “morally compromised” but xxx tentacion has a couple good songs""",
+        """it’s so admirable how committed and determined i am to not work together with my teammate at all in doubles""",
+        """i was actually pretty sheltered growing up. whenever i was drunk and wanted chick fil a my parents wouldn’t let me drive there because they didn’t want me being exposed to homophobia""",
+        """the key to twitter fame is insulting enough people in 140 characters that it becomes social commentary and not a subtweet""",
+        """why do all ice climbers players look like they collect rare insects""",
+        """just had a very fruitful call with @Sora_Sakurai. UCF is here to stay""",
+        """once you get to the ~95th percentile of eyebrows... that’s when these very real and deeply personal connections are made. like speaking a language only you can understand""",
+        """i look like your dad dude why do you want beef with me. are you really tryna beef with your dad""",
+        """none of these guiltless fucks are washing their hands i can’t do this""",
+        """my goal is to be a late 20s white guy w/ a beard that has “*position* @currentcompany, previous: @bigsoullesscompany @failedstartup @evenshittierbigcompany” in their twitter bio. bonus points for “tweets are my own” or if i RT/reply to things you find in the twitter moments tab""",
+        """I don’t “give up clout” anymore. I’m too old to give up clout. If I’m giving up clout we gotta be building or working on something together.""",
+        """i lose part of my soul every time someone speaks in twitch emotes to me""",
+        """this applies to every aspect of tournaments... i used to be this underground avant indie noir heartthrob... nowadays i don’t even have the heart to cross out reptilian signatures in place of writing my own""",
+        """being less known+rank 49 was sick cause every time i got flown out to regionals/locals they were hosted by very competent TOs with impeccable taste in melee players. now i have to vet everyone or else i end up indirectly supporting random nerds that don’t understand the vision""",
+        """redman’s mtv cribs episode has had such a profound impact on my ideas in every area of life""",
+        """smash at IUD was great. gg to all my very formidable and multidimensional opponents. will definitely be back for full bloom 5 provided my mason dixon force field doesn’t get any stronger""",
+        """i’m out here being nice to people saying hi and shit""",
+        """playing chu dat feels like yugioh playing wizzrobe feels like baseball""",
+        """here’s something special about doing team combos with one of your close pals... really hope doubles gets more of a spotlight in the future""",
+        """i like to listen to house of balloons on plane rides to flyover states for juxtaposition""",
+        """i wish the average melee spectators were 14 year old girls instead of 14 year old boys so i could actually have some fans""",
+        """way too good at rick ross ad libs to be doing them for free""",
+        """i like how melee top 8s these days alternate between sets where melee looks glorious and sets where melee looks godawful""",
+        """my entire high level melee experience is me minding my own business dashdancing in the middle of battlefield while some sweaty dude 8 years older than me spams low execution high reward options""",
+        """teams is garbage and exacerbates all of melee's flaws btw
+it devolves to marths/peaches/shieks corner/float/ledgestalling while foxes and honor code shieks play watered down 1v1s. pppl usually settle as self identifying "teams specialists" after getting bodied in singles for years""",
+        """i'd like to apologize for dodging so many messages and inquiries... but the only interviews i give are to god""",
+        """every smash game other than melee is just brawl. don't let the marketing fool you""",
+        """didn't opt in for trash summit because i'm above that shit""",
+        """i got it for $14 on bigcartel back when that was a thing tbh but i will resell it for 100 for summit funds once i get unbanned from grailed""",
+        """you look better with the crt off""",
+        """all your favorite players would lose to your local high school wobbler bro""",
+        """i can't talk to girls unless UCF is on""",
+        """i wish i wasn't a top player so i could spell competitive completely wrong in my bio and none of my 59 followers would call me out""",
+        """tfw you have the most woke neutral game of all time but still lose to robots wearing bootcut jeans that have been spamming fadeback aerials and shieldgrab for the past decade""",
+        """I deleted my Twitter. Finding my opinions became too easy.""",
+        """https://www.youtube.com/watch?v=G708_N5yQT8"""
+    ]
