@@ -39,7 +39,8 @@ async def invalidCommand(message, client):
 
 async def help(message, client):
     output = ""
-    help = responses.validCommands()
+    helps = responses.validCommands()
+    help = helps
     print("retrieved validCommands successfully")
     try:
         input = message.content.split('!help ')[1]
