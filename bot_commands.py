@@ -46,7 +46,7 @@ async def help(message, client):
         help = responses.validCommands()
     except:
         print("failed, backup")
-        help2 = reponses.validCommands()
+        help2 = responses.validCommands()
         print("retrieved validCommands Successfully")
         help = help2
         print("assigned help2 to help")
