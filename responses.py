@@ -1,4 +1,5 @@
 import random
+joeId: int = int(os.environ.get('JOEID'))
 
 def validCommands():
     return {
@@ -261,16 +262,37 @@ def eightball():
         "Outlook good.",
         "Yes.",
         "Signs point to yes.",
-        "Reply hazy, try again.",
-        "Ask again later.",
-        "Better not tell you now.",
-        "Cannot predict now.",
+        "Yeah, probably.",
+        "Fuck yeah.",
+        "Hell yeah.",
+        "I like to think so.",
+        "For sure.",
+        "100%.",
+        "There's no way that that isn't not what the case isn't.",
+        "For sure for sure.",
+        "I'm leaning toward yes.",
+        "I'm not completely sure but probably.",
+        "Definitely.",
+        "I think so.",
+        "You shouldn't have even needed to consult me, the answer is obviously yes.",
+        "Of course.",
+        "It surely must be so.",
+        f"I'll leave that up to <@{joeId}>",
+        "Fuck if I know.",
         "Concentrate and ask again.",
         "Don't count on it.",
         "My reply is no.",
         "My sources say no.",
         "Outlook not so good.",
-        "Very doubtful."
+        "Very doubtful.",
+        "Fuck no.",
+        "No.",
+        "There's no way that that isn't not what the case is.",
+        "No shot.",
+        "Probably not.",
+        "I'm leaning toward no.",
+        "I'm not completely sure but probably not.",
+        "Absolutely not. Are you out of your mind?"
     ]
 
 def jokes():
