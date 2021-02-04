@@ -69,6 +69,7 @@ async def help(message, client):
             output = output + f"{help2[key]}\n"
         await message.channel.send(output)
         print("output validCommands successfully")
+        return
     except:
         print("validCommands not retrieved successfully")
     try:
