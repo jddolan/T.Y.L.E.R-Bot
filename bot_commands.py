@@ -10,6 +10,7 @@ botId: int = int(os.environ.get('BOTID'))
 
 async def command(message, client):
     commandStr = message.content.split(' ')[0]
+    print(f"received command {commandStr}")
     commands = {
         '!help': help,
         '!about': about,
@@ -38,6 +39,7 @@ async def invalidCommand(message, client):
     return
 
 async def help(message, client):
+    print("helping...")
     output = ""
     help = responses.validCommands()
     try:
