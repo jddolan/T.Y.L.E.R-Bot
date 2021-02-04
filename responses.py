@@ -1,4 +1,5 @@
 import random
+from bot import spongebob
 
 activities = [
     "playing runescape",
