@@ -1,7 +1,7 @@
 import random
 from bot import spongebob
 
-def validCommands():
+async def validCommands():
     return {
     '!8ball': """**!8ball** <question: Optional> provides an answer from the magic 8-ball""",
     '!about': """**!about** provides information about the bot""",
