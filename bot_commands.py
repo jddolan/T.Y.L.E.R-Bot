@@ -39,22 +39,15 @@ async def invalidCommand(message, client):
 
 async def help(message, client):
     output = ""
-    help = {}
-    
-    try:
-        help = responses.validCommands()
-        print("retrieved validCommands successfully")
-    except:
-        print("failed, backup")
-        help2 = responses.validCommands()
-        print("retrieved validCommands Successfully")
+    help = responses.validCommands()
+
     try:
         input = message.content.split('!help ')[1]
         if input[0] != '!':
             input = '!' + input
-        if input in help2.keys():
+        if input in help.keys():
             print("command found in help keys, setting output")
-            output = output + f"{help2[input]}"
+            output = output + f"{help[input]}"
         else:
             print("command not found in help keys, raising error")
             output = f"Command {input} not found.\n\n"
@@ -62,15 +55,15 @@ async def help(message, client):
     except:
         print("invalid command, presenting list of all valid commands")
         output = output + "Valid Commands: \n\n"
-        for key in help2.keys():
-            output = output + f"{help2[key]}\n"
+        for key in help.keys():
+            output = output + f"{help[key]}\n"
     print("sending output...")
     await message.channel.send(output)
     print("output sent")
     return
 
 async def about(message, client):
-    msg = await message.channel.send("""Flat Earf Rules, TYLER:
+    await message.channel.send("""Flat Earf Rules, TYLER:
 Tyler's
 Yammering
 Loneliness
