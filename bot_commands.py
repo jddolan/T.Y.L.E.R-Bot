@@ -452,8 +452,8 @@ async def timer(message, client, time, unit, prompt, options = [], ):
                         'count': reaction.count - 1,
                         'index': i + 1
                     })
-            results = organize(results)
             winners = getWinners(results)
+            print(f"winners: {winners}")
             resultMsg = f"""<@{message.author._user.id}>'s poll "{prompt}" has finished! Results:\n\n"""
             for i in range(0, len(options)):
                 resultFound: bool = False
@@ -464,9 +464,12 @@ async def timer(message, client, time, unit, prompt, options = [], ):
                 if not resultFound:
                     resultMsg = resultMsg + f"{numbers[i]} ({options[i]}) : 0\n"
             if len(winners) > 1:
-                resultMsg = resultMsg + f"It was a tie! The winning options with {winners[0]['count']} votes are:\n"
-                for winner in winners:
-                    resultMsg = resultMsg + f"{numbers[winner['index']]} : {winner['option']}\n"
+                if winners[0]['count'] == 0:
+                    resultMsg = resultMsg + f"Nobody voted on this poll, get donowalled nerd"
+                else:
+                    resultMsg = resultMsg + f"It was a tie! The winning options with {winners[0]['count']} votes are:\n"
+                    for winner in winners:
+                        resultMsg = resultMsg + f"{numbers[winner['index']]} : {winner['option']}\n"
             else:
                 resultMsg = resultMsg + f"The winning option with {winners[0]['count']} votes is option {numbers[winners[0]['index']]} : {winners[0]['option']}"
                 
