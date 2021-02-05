@@ -493,13 +493,13 @@ async def findOldTimers(client, guildId):
                     print(f"prompt: {prompt}")
                     if unit not in units.keys():
                         raise
-                    newMessage = findOldPrompt(message, client, time, unit, prompt)
+                    newMessage = await findOldPrompt(message, client, time, unit, prompt)
                     if newMessage == None:
                         continue
                     timeout = time * units[unit]
                     difference = int(newMessage.created_at.timestamp()) - int(datetime.datetime.now().timestamp())
                     if difference < timeout:
-                        activateOldTimer(message, client, timeout - difference, prompt, [], newMessage)   
+                        await activateOldTimer(message, client, timeout - difference, prompt, [], newMessage)   
                 except:
                     print("")
             elif message.content.startswith('!poll'):
@@ -518,13 +518,13 @@ async def findOldTimers(client, guildId):
                     options = options.split(', ')
                     if len(options) < 1 or len(options) > 9:
                         raise
-                    newMessage = findOldPrompt(message, client, time, unit, prompt, options)
+                    newMessage = await findOldPrompt(message, client, time, unit, prompt, options)
                     if newMessage == None:
                         continue
                     timeout = time * units[unit]
                     difference = int(newMessage.created_at.timestamp()) - int(datetime.datetime.now().timestamp())
                     if difference < timeout:
-                        activateOldTimer(message, client, timeout - difference, prompt, options, newMessage) 
+                        await activateOldTimer(message, client, timeout - difference, prompt, options, newMessage) 
                 except:
                     print("")
         while(True):
@@ -541,13 +541,13 @@ async def findOldTimers(client, guildId):
                         print(f"prompt: {prompt}")
                         if unit not in units.keys():
                             raise
-                        newMessage = findOldPrompt(message, client, time, unit, prompt)
+                        newMessage = await findOldPrompt(message, client, time, unit, prompt)
                         if newMessage == None:
                             continue
                         timeout = time * units[unit]
                         difference = int(newMessage.created_at.timestamp()) - int(datetime.datetime.now().timestamp())
                         if difference < timeout:
-                            activateOldTimer(message, client, timeout - difference, prompt, [], newMessage)   
+                            await activateOldTimer(message, client, timeout - difference, prompt, [], newMessage)   
                     except:
                         print("")
                 elif message.content.startswith('!poll'):
@@ -566,13 +566,13 @@ async def findOldTimers(client, guildId):
                         options = options.split(', ')
                         if len(options) < 1 or len(options) > 9:
                             raise
-                        newMessage = findOldPrompt(message, client, time, unit, prompt, options)
+                        newMessage = await findOldPrompt(message, client, time, unit, prompt, options)
                         if newMessage == None:
                             continue
                         timeout = time * units[unit]
                         difference = int(newMessage.created_at.timestamp()) - int(datetime.datetime.now().timestamp())
                         if difference < timeout:
-                            activateOldTimer(message, client, timeout - difference, prompt, options, newMessage) 
+                            await activateOldTimer(message, client, timeout - difference, prompt, options, newMessage) 
                     except:
                         print("")
 
