@@ -416,7 +416,7 @@ async def timer(message, client, time, unit, prompt, options = [], ):
         msg = f"**Poll created by <@{message.author._user.id}>:**\n" + prompt + "\n\n"
         i: int = 1
         for option in options:
-            msg = msg + f"{numbers[i]}: {option}\n"
+            msg = msg + f"{numbers[i]} : {option}\n"
             i += 1
         msg = msg + "\n React to this message to submit your answer!"
     else:
@@ -441,6 +441,7 @@ async def timer(message, client, time, unit, prompt, options = [], ):
                 count += 1
                 iterator = msg
                 if msg.content == message.content:
+                    print(f"msg: {msg.content}")
                     return msg
             if oldIterator == iterator:
                 return("message not found")
