@@ -35,6 +35,18 @@ units: dict = {
     'years': 31536000
 }
 
+numbers: dict = {
+    1: "<:one:>",
+    2: "<:two:>",
+    3: "<:three:>",
+    4: "<:four:>",
+    5: "<:five:>",
+    6: "<:six:>",
+    7: "<:seven:>",
+    8: "<:eight:>",
+    9: "<:nine:>"
+}
+
 async def command(message, client):
     messageStr = message.content.split(' ')
     
@@ -51,6 +63,7 @@ async def command(message, client):
         '!link': link,
         '!poll': poll,
         '!quote': quote,
+        '!reminder': reminder,
         '!response': response,
         '!roll': roll,
         '!rps': rps,
@@ -365,7 +378,6 @@ async def poll(message, client):
         print(f"options: {options}")
         if unit not in units.keys():
             raise
-        timeout: int = time * units[unit]
         options = options.split(', ')
         if len(options) < 1 or len(options) > 9:
             raise "Too Many Options"
@@ -376,15 +388,30 @@ async def poll(message, client):
         await message.channel.send(f"""Invalid input. Example of a valid submission: !poll 60 minutes "Prompt goes here" option 1, option 2, ..., option 9
         Valid units of time are seconds, minutes, hours, days, weeks, months, or years""")
         return
-    await timer(message, client, timeout, prompt)
+    await timer(message, client, time, unit, prompt, options)
     return
 
 async def reminder(message, client):
-    await timer(message, client)
+    await timer(message, client, time, unit, prompt)
 
-async def timer(message, client, timeout, prompt, options):
+async def timer(message, client, time, unit, prompt, options = [], ):
+    msg = f"created by <@{message.author._user.id}>:**\n" + prompt + "\n\n"
+    if options != []:
+        msg = "**Poll " + msg
+        i: int = 1
+        for option in options:
+            msg = msg + f"{numbers[i]}: {option}\n"
+        msg = msg + "\n React to this message to submit your answer!"
+    else:
+        msg = f"**<@{message.author._user.id}>'s Reminder set for {time} {unit}: {prompt}"
+    
+    timeout: int = time * units[unit]
+
     try:
         await client.wait_for('error', timeout=timeout)
     except asyncio.TimeoutError:
         print("timed out, sending message")
-        await message.channel.send("poll finished, results: ")
+        if options != []:
+            await message.channel.send("poll finished, results: ")
+        else:
+            await message.channel.send(f"Reminder for <@{message.author._user.id}>: {prompt}")

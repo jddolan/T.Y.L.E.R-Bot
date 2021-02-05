@@ -20,6 +20,7 @@ def validCommands():
         '!poll': """**!poll** <amount> <unit> <prompt> <answers>""",
         '!quote': """**!quote** <name: Optional> provides a quote, if a name is not provided the
     quote will be randomly selected from all stored quotes""",
+        '!reminder': """**!reminder** <amount> <unit> <reminder> sets a reminder that the bot will notify you about after a set amount of time""",
         '!response': """**!response** <name: Optional> generates a random response, optionally
     include the name of the person the response is for""",
         '!roll': """**!roll** <XdY> will roll a Y-sided die X times""",
