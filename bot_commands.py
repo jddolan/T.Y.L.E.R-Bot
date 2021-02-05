@@ -477,7 +477,7 @@ async def findOldTimers(msg, client, guildId):
     print("setting up old timers...")
     guild = client.get_guild(guildId)
     for channel in guild.channels:
-        iterator = msg
+        iterator = await channel.fetch_message(channel.last_message_id)
         oldIterator = "temp"
         while(True):
             async for message in channel.history(limit=9999999999,before=iterator):
