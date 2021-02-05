@@ -479,6 +479,7 @@ async def findOldTimers(msg, client, guildId):
     guild = client.get_guild(guildId)
     for channel in guild.channels:
         iterator = await channel.fetch_message(channel.last_message_id)
+        print(f"last message: {iterator.content}")
         oldIterator = "temp"
         while(True):
             async for message in channel.history(limit=9999999999,before=iterator):
@@ -542,10 +543,10 @@ async def findOldPrompt(message, client, time, unit, prompt, options = []):
     iterator = message
     oldIterator = "temp"
     print("finding old prompt...")
+    print(f"message id: {message.id}")
     while(True):
         async for prompt in message.channel.history(limit=9999999999,before=iterator):
-            iterator = message
-            print(f"message id: {message.id}")
+            iterator = message         
             try:
                 requestId = prompt.content.split('requestId:')[1]
                 print(f"request id: {requestId}")
