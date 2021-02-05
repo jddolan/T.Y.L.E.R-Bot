@@ -423,7 +423,9 @@ async def timer(message, client, time, unit, prompt, options = [], ):
     timeout: int = time * units[unit]
 
     try:
+        print("test waiting")
         await client.wait_for('error', timeout=timeout)
+        print("waiting done")
     except asyncio.TimeoutError:
         print("timed out, sending message")
         if options != []:
