@@ -392,7 +392,7 @@ async def timer(message, client, time, unit, prompt, options = [], ):
             i += 1
         msg = msg + "\n React to this message with what you think is the best option!"
     else:
-        msg = f"**<@{message.author._user.id}>'s Reminder set for {time} {unit}: {prompt}"
+        msg = f"<@{message.author._user.id}>'s reminder set for {time} {unit}: **{prompt}**"
 
     print(f"message: {msg}")
     newMessage = await message.channel.send(msg)
