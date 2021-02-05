@@ -477,55 +477,8 @@ async def findOldTimers(msg, client, guildId):
     print("setting up old timers...")
     guild = client.get_guild(guildId)
     for channel in guild.channels:
-        iterator = "temp"
+        iterator = msg
         oldIterator = "temp"
-        async for message in channel.history(limit=9999999999):
-            iterator = message
-            if message.content.startswith('!reminder'):
-                try:
-                    match = re.match('(.*) (.*) "(.*)"', message.content.split('!reminder ')[1])
-                    time = int(match.group(1))
-                    print(f"time: {time}")
-                    unit = match.group(2)
-                    print(f"unit: {unit}")
-                    prompt = match.group(3)
-                    print(f"prompt: {prompt}")
-                    if unit not in units.keys():
-                        raise
-                    newMessage = await findOldPrompt(message, client, time, unit, prompt)
-                    if newMessage == None:
-                        continue
-                    timeout = time * units[unit]
-                    difference = int(newMessage.created_at.timestamp()) - int(datetime.datetime.now().timestamp())
-                    if difference < timeout:
-                        await activateOldTimer(message, client, timeout - difference, prompt, [], newMessage)   
-                except:
-                    print("")
-            elif message.content.startswith('!poll'):
-                try:
-                    match = re.match('(.*) (.*) "(.*)" (.*)', message.content.split('!poll ')[1])
-                    time = int(match.group(1))
-                    print(f"time: {time}")
-                    unit = match.group(2)
-                    print(f"unit: {unit}")
-                    prompt = match.group(3)
-                    print(f"prompt: {prompt}")
-                    options = match.group(4)
-                    print(f"options: {options}")
-                    if unit not in units.keys():
-                        raise
-                    options = options.split(', ')
-                    if len(options) < 1 or len(options) > 9:
-                        raise
-                    newMessage = await findOldPrompt(message, client, time, unit, prompt, options)
-                    if newMessage == None:
-                        continue
-                    timeout = time * units[unit]
-                    difference = int(newMessage.created_at.timestamp()) - int(datetime.datetime.now().timestamp())
-                    if difference < timeout:
-                        await activateOldTimer(message, client, timeout - difference, prompt, options, newMessage) 
-                except:
-                    print("")
         while(True):
             async for message in channel.history(limit=9999999999,before=iterator):
                 iterator = message
