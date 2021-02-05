@@ -459,6 +459,8 @@ async def timer(message, client, time, unit, prompt, options = [], ):
         print("timed out, sending message")
         if options != []:
             msg = await findMessage(newMessage, client)
+            print(f"message: {msg}")
+            print(f"reactions: {msg.reactions}")
             for reaction in msg.reactions:
                 print(f"reaction: {reaction.emoji.name} count: {reaction.count}")
             await message.channel.send("poll finished, results: ")
