@@ -354,25 +354,37 @@ async def crush(message, client):
 
 async def poll(message, client):
     try:
-        match = re.match('(.*) (.*) (.*) (\<.*\>)*', message.content.split('!poll ')[1])
+        match = re.match('(.*) (.*) "(.*)" (.*)', message.content.split('!poll ')[1])
         time = int(match.group(1))
         print(f"time: {time}")
         unit = match.group(2)
         print(f"unit: {unit}")
-        emojis = match.group(3)
-        print(f"emojis: {emojis}")
+        prompt = match.group(3)
+        print(f"prompt: {prompt}")
+        options = match.group(4)
+        print(f"options: {options}")
         if unit not in units.keys():
             raise
         timeout: int = time * units[unit]
-    except:
-        await message.channel.send(f"Invalid input. Example of a valid submission: !poll 60 minutes Poll goes here")
+        options = options.split(', ')
+        if len(options) < 1 or len(options) > 9:
+            raise "Too Many Options"
+    except "Too Many Options":
+        await message.channel.send(f"""A poll must have more than one option and less than 10. Example of a valid submission: !poll 60 minutes "Prompt goes here" option 1, option 2, ..., option 9""")
         return
+    except:
+        await message.channel.send(f"""Invalid input. Example of a valid submission: !poll 60 minutes "Prompt goes here" option 1, option 2, ..., option 9
+        Valid units of time are seconds, minutes, hours, days, weeks, months, or years""")
+        return
+    await timer(message, client, timeout, prompt)
+    return
 
-    def check(reaction, user):
-        print(f'reaction: {reaction}')
-        return False
+async def reminder(message, client):
+    await timer(message, client)
+
+async def timer(message, client, timeout, prompt, options):
     try:
-        await client.wait_for('error', timeout=timeout, check=check)
+        await client.wait_for('error', timeout=timeout)
     except asyncio.TimeoutError:
         print("timed out, sending message")
-        await tyler[message.channel.name].channel.send("poll finished, results: ")
+        await message.channel.send("poll finished, results: ")
