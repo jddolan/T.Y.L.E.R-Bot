@@ -2,6 +2,7 @@ import random
 import re
 import responses
 import os
+import asyncio
 from lenny import lenny as lennyface
 from time import sleep
 from bad_words import badWords
@@ -425,13 +426,13 @@ async def timer(message, client, time, unit, prompt, options = [], ):
     timeout: int = time * int(units[unit])
     print(f"timeout: {timeout}")
 
-    def check(message):
+    def check(msg):
         print(f'reaction: {reaction}')
-        return user == joeId and message.content == "cancel reminders"
+        return user == joeId and msg.content == "cancel reminders"
 
     try:
         print("test waiting")
-        m = await client.wait_for('message', timeout=timeout, check=check)
+        msg = await client.wait_for('message', timeout=timeout, check=check)
         print("waiting done")
     except asyncio.TimeoutError:
         print("timed out, sending message")
