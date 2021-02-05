@@ -449,9 +449,9 @@ async def timer(message, client, time, unit, prompt, options = [], ):
     print(f"message: {msg}")
     newMessage = await message.channel.send(msg)
     
-    if options != []:
-        for i in range(1,len(options) + 1):
-            await newMessage.add_reaction(numbers[i])
+    # if options != []:
+    #     for i in range(1,len(options) + 1):
+    #         await newMessage.add_reaction(numbers[i])
 
     timeout: int = time * int(units[unit])
     print(f"timeout: {timeout}")
