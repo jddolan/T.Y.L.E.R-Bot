@@ -495,13 +495,13 @@ async def findOldTimers(msg, client, guildId):
                             raise
                         newMessage = await findOldPrompt(message, client, time, unit, prompt)
                         if newMessage == None:
-                            continue
+                            raise
                         timeout = time * units[unit]
                         difference = int(newMessage.created_at.timestamp()) - int(datetime.datetime.now().timestamp())
                         if difference < timeout:
                             await activateOldTimer(message, client, timeout - difference, prompt, [], newMessage)   
                     except:
-                        print("")
+                        continue
                 elif message.content.startswith('!poll'):
                     try:
                         match = re.match('(.*) (.*) "(.*)" (.*)', message.content.split('!poll ')[1])
@@ -520,13 +520,13 @@ async def findOldTimers(msg, client, guildId):
                             raise
                         newMessage = await findOldPrompt(message, client, time, unit, prompt, options)
                         if newMessage == None:
-                            continue
+                            raise
                         timeout = time * units[unit]
                         difference = int(newMessage.created_at.timestamp()) - int(datetime.datetime.now().timestamp())
                         if difference < timeout:
                             await activateOldTimer(message, client, timeout - difference, prompt, options, newMessage) 
                     except:
-                        print("")
+                        continue
 
             if oldIterator == iterator:
                 print("done scanning")
