@@ -392,7 +392,22 @@ async def poll(message, client):
     return
 
 async def reminder(message, client):
-    await timer(message, client, time, unit, prompt)
+    try:
+        match = re.match('(.*) (.*) "(.*)"', message.content.split('!reminder ')[1])
+        time = int(match.group(1))
+        print(f"time: {time}")
+        unit = match.group(2)
+        print(f"unit: {unit}")
+        prompt = match.group(3)
+        print(f"prompt: {prompt}")
+        if unit not in units.keys():
+            raise
+    except:
+        await message.channel.send(f"""Invalid input. Example of a valid submission: !reminder 60 minutes "remind me to replace Tyler"
+Valid units of time are seconds, minutes, hours, days, weeks, months, or years""")
+        return
+    await timer(message, client, time, unit, prompt, options)
+    return
 
 async def timer(message, client, time, unit, prompt, options = [], ):
     msg = f"created by <@{message.author._user.id}>:**\n" + prompt + "\n\n"
