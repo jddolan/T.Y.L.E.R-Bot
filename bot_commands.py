@@ -18,6 +18,16 @@ badUsers: list = [
     '138358974071308289'
 ]
 
+units: dict = {
+    'days': 86400,
+    'week':604800,
+    'weeks': 604800,
+    'month': 2628000,
+    'months': 2628000,
+    'year': 31536000,
+    'years': 31536000
+}
+
 async def command(message, client):
     messageStr = message.content.split(' ')
     

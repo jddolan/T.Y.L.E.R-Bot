@@ -17,6 +17,7 @@ def validCommands():
         '!lenny': """**!lenny** generates a random lenny face ( ͡° ͜ʖ ͡°)""",
         '!link': """**!link** provides a link to a piece of content significant to the Flat Earf Rules
     discord server""",
+        '!poll': """**!poll** <amount> <unit> <prompt> <answers>""",
         '!quote': """**!quote** <name: Optional> provides a quote, if a name is not provided the
     quote will be randomly selected from all stored quotes""",
         '!response': """**!response** <name: Optional> generates a random response, optionally
