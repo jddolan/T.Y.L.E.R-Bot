@@ -540,7 +540,7 @@ async def findOldTimers(msg, client, guildId):
     return
 
 async def findOldPrompt(message, client, time, unit, prompt, options = []):
-    iterator = message
+    iterator = await message.channel.fetch_message(message.channel.last_message_id)
     oldIterator = "temp"
     print("finding old prompt...")
     print(f"message: {message.content}")
