@@ -405,7 +405,6 @@ async def timer(message, client, time, unit, prompt, options = [], ):
     print(f"timeout: {timeout}")
 
     def check(cancelMsg):
-        print(f'reaction: {reaction}')
         return msg.author.id == joeId and msg.content == "cancel reminders"
     
     def organize(results):
@@ -610,7 +609,6 @@ async def findOldPrompt(message, client, time, unit, prompt, options = []):
     
 async def activateOldTimer(message, client, timeout, prompt, options, newMessage):
     def check(cancelMsg):
-        print(f'reaction: {reaction}')
         return msg.author.id == joeId and msg.content == "cancel reminders"
 
     def getWinners(results):
