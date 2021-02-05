@@ -473,7 +473,7 @@ async def timer(message, client, time, unit, prompt, options = [], ):
         await message.channel.send(resultMsg)
         return
 
-async def findOldTimers(client, guildId):
+async def findOldTimers(msg, client, guildId):
     print("setting up old timers...")
     guild = client.get_guild(guildId)
     for channel in guild.channels:
@@ -579,7 +579,7 @@ async def findOldTimers(client, guildId):
                 print("done scanning")
                 break
             oldIterator = iterator
-    print("all timers are set up again")
+    await msg.channel.send("all timers are set up again")
     return
 
 async def findOldPrompt(message, client, time, unit, prompt, options = []):
