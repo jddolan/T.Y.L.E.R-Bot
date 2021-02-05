@@ -392,10 +392,11 @@ async def timer(message, client, time, unit, prompt, options = [], ):
             i += 1
         msg = msg + "\n React to this message with what you think is the best option!"
     else:
-        msg = f"<@{message.author._user.id}>'s reminder set for {time} {unit}: **{prompt}**"
+        msg = f"""<@{message.author._user.id}>'s reminder set for {time} {unit}: **{prompt}**"""
 
     print(f"message: {msg}")
     newMessage = await message.channel.send(msg)
+    await newMessage.edit(content=message.content + f"\nrequestId:{message.id}")
     
     if options != []:
         for i in range(1,len(options) + 1):
@@ -524,7 +525,7 @@ async def findOldTimers(msg, client, guildId):
                         timeout = time * units[unit]
                         difference = int(newMessage.created_at.timestamp()) - int(datetime.datetime.now().timestamp())
                         if difference < timeout:
-                            activateOldTimer(message, client, timeout - difference, prompt, options, newMessage) 
+                            await msg.channel.send(f"!activateOldTimer|{message.id}|{message.channel.id}|{timeout - difference}|{prompt}|{options}|{newMessage.id}|{newMessage.channel.id}|{newMessage.guild.id}")
                     except:
                         continue
 
@@ -551,7 +552,7 @@ async def findOldPrompt(message, client, time, unit, prompt, options = []):
     while(True):
         async for prompt in message.channel.history(limit=9999999999,before=iterator):
             iterator = message
-            if msg == prompt.content:
+            if str(message.id) in prompt.content:
                 return prompt
         if oldIterator == iterator:
             print("done scanning")

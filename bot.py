@@ -55,23 +55,23 @@ tyler: dict = {}
 
 @client.event
 async def on_message(message):
-    if message.content == "findOldTimers":
-        await findOldTimers(message, client, guildId)
-        return
-    if message.content.startswith("!activateOldTimer"):
-        throwaway,message,channel,timeout,prompt,options,newMessage,newChannel = message.content.split('|')
-        channel = client.get_channel(channel)
-        newChannel = client.get_channel(newChannel)
-        message = await channel.fetch_message(message)
-        newMessage = await newChannel.fetch_message(newMessage)
-        if options == '[]':
-            options = []
-        await activateOldTimer(message, client, timeout, prompt, options, newMessage)
+    
     if message.author == client.user:
+        if message.content.startswith("!activateOldTimer"):
+            throwaway,message,channel,timeout,prompt,options,newMessage,newChannel = message.content.split('|')
+            channel = client.get_channel(channel)
+            newChannel = client.get_channel(newChannel)
+            message = await channel.fetch_message(message)
+            newMessage = await newChannel.fetch_message(newMessage)
+            if options == '[]':
+                options = []
+            await activateOldTimer(message, client, timeout, prompt, options, newMessage)
         return
     try:
         if message.content[0] == '!':
             await command(message, client)
+        elif message.content == "findOldTimers":
+            await findOldTimers(message, client, guildId)
     except Exception as e:
         print("error found! trying to log error...")
         print(e)
