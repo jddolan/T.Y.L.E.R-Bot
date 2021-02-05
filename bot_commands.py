@@ -423,6 +423,7 @@ async def timer(message, client, time, unit, prompt, options = [], ):
     print(f"message: {msg}")
     
     timeout: int = time * int(units[unit])
+    print(f"timeout: {timeout}")
 
     def check(reaction, user):
         print(f'reaction: {reaction}')
