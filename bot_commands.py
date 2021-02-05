@@ -422,21 +422,24 @@ async def timer(message, client, time, unit, prompt, options = [], ):
         msg = f"**<@{message.author._user.id}>'s Reminder set for {time} {unit}: {prompt}"
 
     print(f"message: {msg}")
+    await message.channel.send(msg)
     
     timeout: int = time * int(units[unit])
     print(f"timeout: {timeout}")
 
-    def check(msg):
+    def check(cancelMsg):
         print(f'reaction: {reaction}')
         return user == joeId and msg.content == "cancel reminders"
 
     try:
         print("test waiting")
-        msg = await client.wait_for('message', timeout=timeout, check=check)
+        cancelMsg = await client.wait_for('message', timeout=timeout, check=check)
         print("waiting done")
     except asyncio.TimeoutError:
         print("timed out, sending message")
         if options != []:
+            for reaction in message.reactions:
+                print(f"reaction: {reaction.emoji.name} count: {reaction.count}")
             await message.channel.send("poll finished, results: ")
         else:
             await message.channel.send(f"Reminder for <@{message.author._user.id}>: {prompt}")
