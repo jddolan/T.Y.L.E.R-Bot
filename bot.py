@@ -8,7 +8,7 @@
 
 import os
 
-import discord
+cimport discord
 import asyncio
 import datetime
 from datetime import datetime, timedelta, time
@@ -149,4 +149,4 @@ async def tylerMessage(message):
 
 client.run(token)
 
-findOldTimers(client, guildId)
+await findOldTimers(client, guildId)
