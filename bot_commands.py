@@ -426,7 +426,7 @@ async def timer(message, client, time, unit, prompt, options = [], ):
 
     def check(reaction, user):
         print(f'reaction: {reaction}')
-        return False
+        return True
 
     try:
         print("test waiting")
