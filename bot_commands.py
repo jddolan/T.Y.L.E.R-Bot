@@ -462,10 +462,10 @@ async def timer(message, client, time, unit, prompt, options = [], ):
                     if options[i] == result['option']:
                         print("found option in results")
                         resultFound = True
-                        resultMsg = resultMsg + f"{numbers[i]} ({options[i]}) : {result['count']}\n"
+                        resultMsg = resultMsg + f"{numbers[i+1]} ({options[i]}) : {result['count']}\n"
                 if not resultFound:
                     print(f"result not found for option {i}")
-                    resultMsg = resultMsg + f"{numbers[i]} ({options[i]}) : 0\n"
+                    resultMsg = resultMsg + f"{numbers[i+1]} ({options[i]}) : 0\n"
             if len(winners) > 1:
                 if winners[0]['count'] == 0:
                     print("poll result: donowall")
