@@ -543,6 +543,7 @@ async def findOldPrompt(message, client, time, unit, prompt, options = []):
     iterator = message
     oldIterator = "temp"
     print("finding old prompt...")
+    print(f"message: {message.content}")
     print(f"message id: {message.id}")
     while(True):
         async for prompt in message.channel.history(limit=9999999999,before=iterator):
