@@ -19,7 +19,10 @@ import responses
 from bot_commands import command, findOldTimers, activateOldTimer
 
 token = os.environ.get('TOKEN')
-guildId: int = int(os.environ.get('FLATEARFRULES'))
+guildIds = []
+guildIds.append(int(os.environ.get('THEBOYS')))
+guildIds.append(int(os.environ.get('FLATEARFRULES')))
+
 joeId: int = int(os.environ.get('JOEID'))
 botId: int = int(os.environ.get('BOTID'))
 tylerId: int = int(os.environ.get('TYLERID'))
@@ -71,7 +74,8 @@ async def on_message(message):
         if message.content[0] == '!':
             await command(message, client)
         elif message.content == "findOldTimers":
-            await findOldTimers(message, client, guildId)
+            for guildId in guildIds:
+                await findOldTimers(message, client, guildId)
     except Exception as e:
         print("error found! trying to log error...")
         print(e)
