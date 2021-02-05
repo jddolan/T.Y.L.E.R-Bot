@@ -385,12 +385,12 @@ Valid units of time are seconds, minutes, hours, days, weeks, months, or years""
 async def timer(message, client, time, unit, prompt, options = [], ):
     print("get in the timer function")
     if options != []:
-        msg = f"**<@{message.author._user.id}>'s Poll Started!**\nPrompt: " + prompt + "\n\n"
+        msg = f"**<@{message.author._user.id}>'s Poll Started!**\n\n**Prompt: " + prompt + "**\n\n"
         i: int = 1
         for option in options:
-            msg = msg + f"{numbers[i]} : {option}\n"
+            msg = msg + f"{numbers[i]} : ***{option}***\n"
             i += 1
-        msg = msg + "\n React to this message to submit your answer!"
+        msg = msg + "\n React to this message with what you think is the best option!"
     else:
         msg = f"**<@{message.author._user.id}>'s Reminder set for {time} {unit}: {prompt}"
 
@@ -434,16 +434,8 @@ async def timer(message, client, time, unit, prompt, options = [], ):
         print("timed out, sending message")
         if options != []:
             msg = await newMessage.channel.fetch_message(newMessage.id)
-            print(f"message: {msg}")
-            print(f"reactions: {msg.reactions}")
             results = []
             for reaction in msg.reactions:
-                print("got to reactions loop")
-                print(f"len(options): {len(options)}")
-                print(f"emoji: {reaction.emoji}")
-                print(f"numberEmoji: {numberEmojis[reaction.emoji]}")
-                print(f"numberLink: {numberLink[numberEmojis[reaction.emoji]]}")
-                print(f"emoji in numberEmojis?: {reaction.emoji in numberEmojis.keys()}")
                 
                 if reaction.emoji in numberEmojis.keys() and numberLink[numberEmojis[reaction.emoji]] <= len(options):
                     i: int = numberLink[numberEmojis[reaction.emoji]] - 1
@@ -456,28 +448,26 @@ async def timer(message, client, time, unit, prompt, options = [], ):
             print(f"winners: {winners}")
             resultMsg = f"""<@{message.author._user.id}>'s poll "{prompt}" has finished! Results:\n\n"""
             for i in range(0, len(options)):
-                print(f"looking for option {i}")
                 resultFound: bool = False
                 for result in results:
                     if options[i] == result['option']:
-                        print("found option in results")
                         resultFound = True
-                        resultMsg = resultMsg + f"{numbers[i+1]} ({options[i]}) : {result['count']} vote{'s' if result['count'] > 1 else ''}\n"
+                        resultMsg = resultMsg + f"{numbers[i+1]} ***{options[i]}*** : {result['count']} vote{'s' if result['count'] > 1 or result['count'] == 0 else ''}\n"
                 if not resultFound:
                     print(f"result not found for option {i}")
-                    resultMsg = resultMsg + f"{numbers[i+1]} ({options[i]}) : 0 votes\n"
+                    resultMsg = resultMsg + f"{numbers[i+1]} ***{options[i]}*** : 0 votes\n"
             if len(winners) > 1:
                 if winners[0]['count'] == 0:
                     print("poll result: donowall")
                     resultMsg = resultMsg + f"\nNobody voted on this poll, get donowalled nerd"
                 else:
                     print("poll result: tie")
-                    resultMsg = resultMsg + f"\nIt was a tie! The winning options with {winners[0]['count']} vote{'s' if winners[0]['count'] > 1 else ''} are:\n\n"
+                    resultMsg = resultMsg + f"\nIt was a tie! The winning options with {winners[0]['count']} vote{'s' if winners[0]['count'] > 1 or winners[0]['count'] == 0 else ''} are:\n\n"
                     for winner in winners:
-                        resultMsg = resultMsg + f"{numbers[winner['index']]} : {winner['option']}\n"
+                        resultMsg = resultMsg + f"{numbers[winner['index']]} : ***{winner['option']}***\n"
             else:
                 print("poll result: one winner")
-                resultMsg = resultMsg + f"\nThe winning option with {winners[0]['count']} vote{'s' if winners[0]['count'] > 1 else ''} is option {numbers[winners[0]['index']]}:\n\n{winners[0]['option']}"
+                resultMsg = resultMsg + f"\nThe winning option with {winners[0]['count']} vote{'s' if winners[0]['count'] > 1 or winners[0]['count'] == 0 else ''} is option {numbers[winners[0]['index']]}: ***{winners[0]['option']}***"
         else:
             resultMsg = f"Reminder for <@{message.author._user.id}>: {prompt}"
 
