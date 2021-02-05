@@ -406,7 +406,7 @@ async def reminder(message, client):
         await message.channel.send(f"""Invalid input. Example of a valid submission: !reminder 60 minutes "remind me to replace Tyler"
 Valid units of time are seconds, minutes, hours, days, weeks, months, or years""")
         return
-    await timer(message, client, time, unit, prompt, options)
+    await timer(message, client, time, unit, prompt)
     return
 
 async def timer(message, client, time, unit, prompt, options = [], ):
