@@ -4,7 +4,7 @@
 # Emergency
 # Response
 # Bot
-# V1.01
+# V2.0
 
 import os
 
@@ -16,9 +16,10 @@ import random
 import re
 
 import responses
-from bot_commands import command
+from bot_commands import command, findOldTimers
 
 token = os.environ.get('TOKEN')
+guildId: int = int(os.environ.get('FLATEARFRULES'))
 joeId: int = int(os.environ.get('JOEID'))
 botId: int = int(os.environ.get('BOTID'))
 tylerId: int = int(os.environ.get('TYLERID'))
@@ -147,3 +148,5 @@ async def tylerMessage(message):
                 tyler[message.channel.name].waiting = False
 
 client.run(token)
+
+findOldTimers(client, guildId)
