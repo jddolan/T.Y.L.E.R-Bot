@@ -426,7 +426,7 @@ async def timer(message, client, time, unit, prompt, options = [], ):
 
     def check(reaction, user):
         print(f'reaction: {reaction}')
-        return True
+        return user == client.get_user(userId) and (reaction.emoji.name == 'yea' or reaction.emoji.name == 'nay')
 
     try:
         print("test waiting")
