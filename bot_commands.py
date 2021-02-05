@@ -392,7 +392,7 @@ async def timer(message, client, time, unit, prompt, options = [], ):
             i += 1
         msg = msg + "\n React to this message with what you think is the best option!"
     else:
-        msg = f"""<@{message.author._user.id}>'s reminder set for {time} {unit}: **{prompt}**"""
+        msg = f"""<@{message.author._user.id}>'s reminder set for {time} {unit}:\n\n **{prompt}**"""
 
     print(f"message: {msg}")
     newMessage = await message.channel.send(msg)
@@ -493,15 +493,16 @@ async def findOldTimers(msg, client, guildId):
                         prompt = match.group(3)
                         print(f"prompt: {prompt}")
                         if unit not in units.keys():
-                            raise
+                            raise Exception
                         newMessage = await findOldPrompt(message, client, time, unit, prompt)
                         if newMessage == None:
-                            raise
+                            raise Exception
                         timeout = time * units[unit]
                         difference = int(newMessage.created_at.timestamp()) - int(datetime.datetime.now().timestamp())
                         if difference < timeout:
                             await msg.channel.send(f"!activateOldTimer|{message.id}|{message.channel.id}|{timeout - difference}|{prompt}|[]|{newMessage.id}|{newMessage.channel.id}|{newMessage.guild.id}")
-                    except:
+                    except Exception as e:
+                        print(e)
                         continue
                 elif message.content.startswith('!poll'):
                     try:
@@ -515,18 +516,19 @@ async def findOldTimers(msg, client, guildId):
                         options = match.group(4)
                         print(f"options: {options}")
                         if unit not in units.keys():
-                            raise
+                            raise Exception
                         options = options.split(', ')
                         if len(options) < 1 or len(options) > 9:
-                            raise
+                            raise Exception
                         newMessage = await findOldPrompt(message, client, time, unit, prompt, options)
                         if newMessage == None:
-                            raise
+                            raise Exception
                         timeout = time * units[unit]
                         difference = int(newMessage.created_at.timestamp()) - int(datetime.datetime.now().timestamp())
                         if difference < timeout:
                             await msg.channel.send(f"!activateOldTimer|{message.id}|{message.channel.id}|{timeout - difference}|{prompt}|{options}|{newMessage.id}|{newMessage.channel.id}|{newMessage.guild.id}")
-                    except:
+                    except Exception as e:
+                        print(e)
                         continue
 
             if oldIterator == iterator:
