@@ -396,7 +396,7 @@ async def timer(message, client, time, unit, prompt, options = [], ):
 
     print(f"message: {msg}")
     newMessage = await message.channel.send(msg)
-    await newMessage.edit(content=message.content + f"\nrequestId:{message.id}")
+    await newMessage.edit(content=newMessage.content + f"\nrequestId:{message.id}")
     
     if options != []:
         for i in range(1,len(options) + 1):
