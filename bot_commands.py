@@ -410,9 +410,8 @@ Valid units of time are seconds, minutes, hours, days, weeks, months, or years""
     return
 
 async def timer(message, client, time, unit, prompt, options = [], ):
-    msg = f"created by <@{message.author._user.id}>:**\n" + prompt + "\n\n"
     if options != []:
-        msg = "**Poll " + msg
+        msg = f"**Poll created by <@{message.author._user.id}>:**\n" + prompt + "\n\n"
         i: int = 1
         for option in options:
             msg = msg + f"{numbers[i]}: {option}\n"
@@ -420,7 +419,7 @@ async def timer(message, client, time, unit, prompt, options = [], ):
     else:
         msg = f"**<@{message.author._user.id}>'s Reminder set for {time} {unit}: {prompt}"
     
-    timeout: int = time * units[unit]
+    timeout: int = time * int(units[unit])
 
     try:
         print("test waiting")
