@@ -499,7 +499,7 @@ async def findOldTimers(msg, client, guildId):
                         timeout = time * units[unit]
                         difference = int(newMessage.created_at.timestamp()) - int(datetime.datetime.now().timestamp())
                         if difference < timeout:
-                            await activateOldTimer(message, client, timeout - difference, prompt, [], newMessage)   
+                            activateOldTimer(message, client, timeout - difference, prompt, [], newMessage)   
                     except:
                         continue
                 elif message.content.startswith('!poll'):
@@ -524,7 +524,7 @@ async def findOldTimers(msg, client, guildId):
                         timeout = time * units[unit]
                         difference = int(newMessage.created_at.timestamp()) - int(datetime.datetime.now().timestamp())
                         if difference < timeout:
-                            await activateOldTimer(message, client, timeout - difference, prompt, options, newMessage) 
+                            activateOldTimer(message, client, timeout - difference, prompt, options, newMessage) 
                     except:
                         continue
 
