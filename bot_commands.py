@@ -410,6 +410,7 @@ Valid units of time are seconds, minutes, hours, days, weeks, months, or years""
     return
 
 async def timer(message, client, time, unit, prompt, options = [], ):
+    print("get in the timer function")
     if options != []:
         msg = f"**Poll created by <@{message.author._user.id}>:**\n" + prompt + "\n\n"
         i: int = 1
@@ -418,6 +419,8 @@ async def timer(message, client, time, unit, prompt, options = [], ):
         msg = msg + "\n React to this message to submit your answer!"
     else:
         msg = f"**<@{message.author._user.id}>'s Reminder set for {time} {unit}: {prompt}"
+
+    print(f"message: {msg}")
     
     timeout: int = time * int(units[unit])
 
