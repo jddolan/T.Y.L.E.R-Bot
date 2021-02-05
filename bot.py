@@ -16,7 +16,7 @@ import random
 import re
 
 import responses
-from bot_commands import command, findOldTimers
+from bot_commands import command, findOldTimers, activateOldTimer
 
 token = os.environ.get('TOKEN')
 guildId: int = int(os.environ.get('FLATEARFRULES'))
@@ -58,6 +58,15 @@ async def on_message(message):
     if message.content == "findOldTimers":
         await findOldTimers(message, client, guildId)
         return
+    if message.content.startswith("!activateOldTimer"):
+        throwaway,message,channel,timeout,prompt,options,newMessage,newChannel = message.content.split('|')
+        channel = client.get_channel(channel)
+        newChannel = client.get_channel(newChannel)
+        message = await channel.fetch_message(message)
+        newMessage = await newChannel.fetch_message(newMessage)
+        if options == '[]':
+            options = []
+        await activateOldTimer(message, client, timeout, prompt, options, newMessage)
     if message.author == client.user:
         return
     try:

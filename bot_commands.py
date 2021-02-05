@@ -499,7 +499,7 @@ async def findOldTimers(msg, client, guildId):
                         timeout = time * units[unit]
                         difference = int(newMessage.created_at.timestamp()) - int(datetime.datetime.now().timestamp())
                         if difference < timeout:
-                            activateOldTimer(message, client, timeout - difference, prompt, [], newMessage)   
+                            await msg.channel.send(f"!activateOldTimer|{message.id}|{message.channel.id}|{timeout - difference}|{prompt}|[]|{newMessage.id}|{newMessage.channel.id}|{newMessage.guild.id}")
                     except:
                         continue
                 elif message.content.startswith('!poll'):
