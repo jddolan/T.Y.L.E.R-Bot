@@ -19,6 +19,13 @@ badUsers: list = [
 ]
 
 units: dict = {
+    'second': 1,
+    'seconds': 1,
+    'minute': 60,
+    'minutes': 60,
+    'hour': 3600,
+    'hours': 3600,
+    'day': 86400,
     'days': 86400,
     'week':604800,
     'weeks': 604800,
@@ -42,6 +49,7 @@ async def command(message, client):
         '!joke': joke,
         '!lenny': lenny,
         '!link': link,
+        '!poll': poll,
         '!quote': quote,
         '!response': response,
         '!roll': roll,
@@ -343,3 +351,26 @@ async def test(message, client):
 async def crush(message, client):
     await message.channel.send(random.choice(responses.crush()))
     return
+
+async def poll(message, client):
+    try:
+        match = re.match('(.*) (.*) (.*) (\<.*\>)*', message.content.split('!poll ')[1])
+        time = int(match.group(1))
+        unit = match.group(2)
+        emojis = match.group(3)
+        print(f"emojis: {emojis}")
+        if unit not in units.keys():
+            raise
+        timeout: int = time * units[unit]
+    except:
+        await message.channel.send(f"Invalid input. Example of a valid submission: !poll 60 minutes Poll goes here")
+        return
+
+    def check(reaction, user):
+        print(f'reaction: {reaction}')
+        return False
+    try:
+        await client.wait_for('error', timeout=timeout, check=check)
+    except asyncio.TimeoutError:
+        print("timed out, sending message")
+        await tyler[message.channel.name].channel.send("poll finished, results: ")
