@@ -37,15 +37,15 @@ units: dict = {
 }
 
 numbers: dict = {
-    1: "<:one:>",
-    2: "<:two:>",
-    3: "<:three:>",
-    4: "<:four:>",
-    5: "<:five:>",
-    6: "<:six:>",
-    7: "<:seven:>",
-    8: "<:eight:>",
-    9: "<:nine:>"
+    1: ":one:",
+    2: ":two:",
+    3: ":three:",
+    4: ":four:",
+    5: ":five:",
+    6: ":six:",
+    7: ":seven:",
+    8: ":eight:",
+    9: ":nine:"
 }
 
 async def command(message, client):
@@ -453,7 +453,7 @@ async def timer(message, client, time, unit, prompt, options = [], ):
     except asyncio.TimeoutError:
         print("timed out, sending message")
         if options != []:
-            msg = findMessage(message)
+            msg = findMessage(message, client)
             for reaction in msg.reactions:
                 print(f"reaction: {reaction.emoji.name} count: {reaction.count}")
             await message.channel.send("poll finished, results: ")
