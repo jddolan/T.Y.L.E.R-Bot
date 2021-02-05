@@ -356,7 +356,9 @@ async def poll(message, client):
     try:
         match = re.match('(.*) (.*) (.*) (\<.*\>)*', message.content.split('!poll ')[1])
         time = int(match.group(1))
+        print(f"time: {time}")
         unit = match.group(2)
+        print(f"unit: {unit}")
         emojis = match.group(3)
         print(f"emojis: {emojis}")
         if unit not in units.keys():
