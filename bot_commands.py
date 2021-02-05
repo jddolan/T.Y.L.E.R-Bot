@@ -445,7 +445,7 @@ async def timer(message, client, time, unit, prompt, options = [], ):
                 print(f"numberLink: {numberLink[numberEmojis[reaction.emoji]]}")
                 print(f"emoji in numberEmojis?: {reaction.emoji in numberEmojis.keys()}")
                 
-                if reaction.emoji in numberEmojis.keys() and numberLink[numberEmojis[reaction.emoji]] < len(options):
+                if reaction.emoji in numberEmojis.keys() and numberLink[numberEmojis[reaction.emoji]] <= len(options):
                     i: int = numberLink[numberEmojis[reaction.emoji]] - 1
                     results.append({
                         'option': options[i],
@@ -456,24 +456,30 @@ async def timer(message, client, time, unit, prompt, options = [], ):
             print(f"winners: {winners}")
             resultMsg = f"""<@{message.author._user.id}>'s poll "{prompt}" has finished! Results:\n\n"""
             for i in range(0, len(options)):
+                print(f"looking for option {i}")
                 resultFound: bool = False
                 for result in results:
                     if options[i] == result['option']:
+                        print("found option in results")
                         resultFound = True
                         resultMsg = resultMsg + f"{numbers[i]} ({options[i]}) : {result['count']}\n"
                 if not resultFound:
+                    print(f"result not found for option {i}")
                     resultMsg = resultMsg + f"{numbers[i]} ({options[i]}) : 0\n"
             if len(winners) > 1:
                 if winners[0]['count'] == 0:
+                    print("poll result: donowall")
                     resultMsg = resultMsg + f"Nobody voted on this poll, get donowalled nerd"
                 else:
+                    print("poll result: tie")
                     resultMsg = resultMsg + f"It was a tie! The winning options with {winners[0]['count']} votes are:\n"
                     for winner in winners:
                         resultMsg = resultMsg + f"{numbers[winner['index']]} : {winner['option']}\n"
             else:
+                print("poll result: one winner")
                 resultMsg = resultMsg + f"The winning option with {winners[0]['count']} votes is option {numbers[winners[0]['index']]} : {winners[0]['option']}"
-                
-            await message.channel.send(resultMsg)
-
         else:
-            await message.channel.send(f"Reminder for <@{message.author._user.id}>: {prompt}")
+            resultMsg = f"Reminder for <@{message.author._user.id}>: {prompt}"
+
+        await message.channel.send(resultMsg)
+        return
