@@ -60,6 +60,18 @@ numberLink: dict = {
     ":nine:": 9
 }
 
+emojiLink: dict = {
+    1: "1️⃣",
+    2: "2️⃣",
+    3: "3️⃣",
+    4: "4️⃣",
+    5: "5️⃣",
+    6: "6️⃣",
+    7: "7️⃣",
+    8: "8️⃣",
+    9: "9️⃣"
+}
+
 numberEmojis: dict = {
     "1️⃣": ":one:",
     "2️⃣": ":two:",
@@ -449,9 +461,9 @@ async def timer(message, client, time, unit, prompt, options = [], ):
     print(f"message: {msg}")
     newMessage = await message.channel.send(msg)
     
-    # if options != []:
-    #     for i in range(1,len(options) + 1):
-    #         await newMessage.add_reaction(numbers[i])
+    if options != []:
+        for i in range(1,len(options) + 1):
+            await newMessage.add_reaction(dmojiLink[i])
 
     timeout: int = time * int(units[unit])
     print(f"timeout: {timeout}")
