@@ -478,64 +478,67 @@ async def findOldTimers(msg, client, guildId):
     print("setting up old timers...")
     guild = client.get_guild(guildId)
     for channel in guild.channels:
-        iterator = await channel.fetch_message(channel.last_message_id)
-        print(f"last message: {iterator.content}")
-        oldIterator = "temp"
-        while(True):
-            async for message in channel.history(limit=9999999999,before=iterator):
-                iterator = message
-                if message.content.startswith('!reminder'):
-                    try:
-                        match = re.match('(.*) (.*) "(.*)"', message.content.split('!reminder ')[1])
-                        time = int(match.group(1))
-                        print(f"time: {time}")
-                        unit = match.group(2)
-                        print(f"unit: {unit}")
-                        prompt = match.group(3)
-                        print(f"prompt: {prompt}")
-                        if unit not in units.keys():
-                            raise Exception
-                        newMessage = await findOldPrompt(message, client, time, unit, prompt)
-                        if newMessage == None:
-                            raise Exception
-                        timeout = time * units[unit]
-                        difference = int(newMessage.created_at.timestamp()) - int(datetime.datetime.now().timestamp())
-                        if difference < timeout:
-                            await msg.channel.send(f"!activateOldTimer|{message.id}|{message.channel.id}|{timeout - difference}|{prompt}|[]|{newMessage.id}|{newMessage.channel.id}|{newMessage.guild.id}")
-                    except Exception as e:
-                        print(e)
-                        continue
-                elif message.content.startswith('!poll'):
-                    try:
-                        match = re.match('(.*) (.*) "(.*)" (.*)', message.content.split('!poll ')[1])
-                        time = int(match.group(1))
-                        print(f"time: {time}")
-                        unit = match.group(2)
-                        print(f"unit: {unit}")
-                        prompt = match.group(3)
-                        print(f"prompt: {prompt}")
-                        options = match.group(4)
-                        print(f"options: {options}")
-                        if unit not in units.keys():
-                            raise Exception
-                        options = options.split(', ')
-                        if len(options) < 1 or len(options) > 9:
-                            raise Exception
-                        newMessage = await findOldPrompt(message, client, time, unit, prompt, options)
-                        if newMessage == None:
-                            raise Exception
-                        timeout = time * units[unit]
-                        difference = int(newMessage.created_at.timestamp()) - int(datetime.datetime.now().timestamp())
-                        if difference < timeout:
-                            await msg.channel.send(f"!activateOldTimer|{message.id}|{message.channel.id}|{timeout - difference}|{prompt}|{options}|{newMessage.id}|{newMessage.channel.id}|{newMessage.guild.id}")
-                    except Exception as e:
-                        print(e)
-                        continue
+        try:
+            iterator = await channel.fetch_message(channel.last_message_id)
+            print(f"last message: {iterator.content}")
+            oldIterator = "temp"
+            while(True):
+                async for message in channel.history(limit=9999999999,before=iterator):
+                    iterator = message
+                    if message.content.startswith('!reminder'):
+                        try:
+                            match = re.match('(.*) (.*) "(.*)"', message.content.split('!reminder ')[1])
+                            time = int(match.group(1))
+                            print(f"time: {time}")
+                            unit = match.group(2)
+                            print(f"unit: {unit}")
+                            prompt = match.group(3)
+                            print(f"prompt: {prompt}")
+                            if unit not in units.keys():
+                                raise Exception
+                            newMessage = await findOldPrompt(message, client, time, unit, prompt)
+                            if newMessage == None:
+                                raise Exception
+                            timeout = time * units[unit]
+                            difference = int(newMessage.created_at.timestamp()) - int(datetime.datetime.now().timestamp())
+                            if difference < timeout:
+                                await msg.channel.send(f"!activateOldTimer|{message.id}|{message.channel.id}|{timeout - difference}|{prompt}|[]|{newMessage.id}|{newMessage.channel.id}|{newMessage.guild.id}")
+                        except Exception as e:
+                            print(e)
+                            continue
+                    elif message.content.startswith('!poll'):
+                        try:
+                            match = re.match('(.*) (.*) "(.*)" (.*)', message.content.split('!poll ')[1])
+                            time = int(match.group(1))
+                            print(f"time: {time}")
+                            unit = match.group(2)
+                            print(f"unit: {unit}")
+                            prompt = match.group(3)
+                            print(f"prompt: {prompt}")
+                            options = match.group(4)
+                            print(f"options: {options}")
+                            if unit not in units.keys():
+                                raise Exception
+                            options = options.split(', ')
+                            if len(options) < 1 or len(options) > 9:
+                                raise Exception
+                            newMessage = await findOldPrompt(message, client, time, unit, prompt, options)
+                            if newMessage == None:
+                                raise Exception
+                            timeout = time * units[unit]
+                            difference = int(newMessage.created_at.timestamp()) - int(datetime.datetime.now().timestamp())
+                            if difference < timeout:
+                                await msg.channel.send(f"!activateOldTimer|{message.id}|{message.channel.id}|{timeout - difference}|{prompt}|{options}|{newMessage.id}|{newMessage.channel.id}|{newMessage.guild.id}")
+                        except Exception as e:
+                            print(e)
+                            continue
 
-            if oldIterator == iterator:
-                print("done scanning")
-                break
-            oldIterator = iterator
+                if oldIterator == iterator:
+                    print("done scanning")
+                    break
+                oldIterator = iterator
+        except Exception:
+            continue
     await msg.channel.send("all timers are set up again")
     return
 
