@@ -55,6 +55,8 @@ tyler: dict = {}
 
 @client.event
 async def on_message(message):
+    if messgae.content == "findOldTimers":
+        await findOldTimers(client, guildId)
     if message.author == client.user:
         return
     try:
@@ -148,5 +150,3 @@ async def tylerMessage(message):
                 tyler[message.channel.name].waiting = False
 
 client.run(token)
-
-await findOldTimers(client, guildId)
