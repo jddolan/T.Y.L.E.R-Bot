@@ -546,9 +546,12 @@ async def findOldPrompt(message, client, time, unit, prompt, options = []):
     print(f"message: {iterator.content}")
     print(f"message id: {iterator.id}")
     while(True):
+        print(f"in the while loop")
         async for prompt in message.channel.history(limit=9999999999,before=iterator):
+            print("in the for loop")
             iterator = prompt
             try:
+                print("in the try block")
                 requestId = prompt.content.split('requestId:')[1]
                 print(f"request id: {requestId}")
                 if f"{message.id}" == requestId:
