@@ -432,7 +432,10 @@ async def timer(message, client, time, unit, prompt, options = [], ):
         print(f'reaction: {reaction}')
         return user == joeId and msg.content == "cancel reminders"
 
-    def findMessage(message):
+    def findMessage(message, client):
+        count = 0
+        iterator = message
+        oldIterator = "temp"
         while(True):
             async for msg in message.channel.history(limit=9999999999,before=iterator):
                 count += 1
