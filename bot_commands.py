@@ -48,6 +48,30 @@ numbers: dict = {
     9: ":nine:"
 }
 
+numberLink: dict = {
+    ":one:": 1,
+    ":two:": 2,
+    ":three:": 3,
+    ":four:": 4,
+    ":five:": 5,
+    ":six:": 6,
+    ":seven:": 7,
+    ":eight:": 8,
+    ":nine:": 9
+}
+
+numberEmojis: dict = {
+    "1️⃣": ":one:",
+    "2️⃣": ":two:",
+    "3️⃣": ":three:",
+    "4️⃣": ":four:",
+    "5️⃣": ":five:",
+    "6️⃣": ":six:",
+    "7️⃣": ":seven:",
+    "8️⃣": ":eight:",
+    "9️⃣": ":nine:"
+}
+
 async def command(message, client):
     messageStr = message.content.split(' ')
     
@@ -413,7 +437,7 @@ Valid units of time are seconds, minutes, hours, days, weeks, months, or years""
 async def timer(message, client, time, unit, prompt, options = [], ):
     print("get in the timer function")
     if options != []:
-        msg = f"**Poll created by <@{message.author._user.id}>:**\n" + prompt + "\n\n"
+        msg = f"**<@{message.author._user.id}>'s Poll Started!**\nPrompt: " + prompt + "\n\n"
         i: int = 1
         for option in options:
             msg = msg + f"{numbers[i]} : {option}\n"
@@ -450,6 +474,19 @@ async def timer(message, client, time, unit, prompt, options = [], ):
             if oldIterator == iterator:
                 return("message not found")
             oldIterator = iterator
+    
+    def organize(results):
+        i: int = 0
+        for i in range(len(results)):
+            current = results[i]
+            new = results[i]
+            newIndex = i
+            for j in range(i+1, len(results)):
+                if current['count'] < results[j]['count']:
+                    new = results[j]
+                    newIndex = j
+            results[i], results[j] = results[j], results[i]
+        return results
 
     try:
         print("test waiting")
@@ -461,10 +498,30 @@ async def timer(message, client, time, unit, prompt, options = [], ):
             msg = await findMessage(newMessage, client)
             print(f"message: {msg}")
             print(f"reactions: {msg.reactions}")
+            results = []
             for reaction in msg.reactions:
-                print(f"reaction: {reaction.emoji}")
-                print(f"count: {reaction.count}")
-            await message.channel.send("poll finished, results: ")
+                if reaction.emoji in numberEmojis.keys() and numberLink[numberEmojis[reaction.emoji]] < len(options):
+                    i: int = numberLink[numberEmojis[reaction.emoji]] - 1
+                    results.append({
+                        'option': options[i]
+                        'count': reaction.count
+                    })
+            results = organize(results)
+            winner = results[0]
+            for result in results:
+                if result['count'] > winner['count']:
+                    winner = result
+            print(f"reaction: {reaction.emoji}")
+            print(f"count: {reaction.count}")
+            resultMsg = f"""The poll "{prompt}" has finished! Results:\n\n"""
+            i: int = 1
+
+            for option in options:
+                for result in results:
+                    if option == result['option']:
+                        resultMsg = resultMsg + f"{numbers[i]} ({option}): {result['count']}\n"
+                i += 1
+            await message.channel.send()
+
         else:
             await message.channel.send(f"Reminder for <@{message.author._user.id}>: {prompt}")
-
