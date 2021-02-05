@@ -432,7 +432,7 @@ async def timer(message, client, time, unit, prompt, options = [], ):
         print(f'reaction: {reaction}')
         return user == joeId and msg.content == "cancel reminders"
 
-    def findMessage(message, client):
+    async def findMessage(message, client):
         print(f"finding message: {message.content}")
         count = 0
         iterator = message
@@ -458,7 +458,7 @@ async def timer(message, client, time, unit, prompt, options = [], ):
     except asyncio.TimeoutError:
         print("timed out, sending message")
         if options != []:
-            msg = findMessage(newMessage, client)
+            msg = await findMessage(newMessage, client)
             for reaction in msg.reactions:
                 print(f"reaction: {reaction.emoji.name} count: {reaction.count}")
             await message.channel.send("poll finished, results: ")
