@@ -417,6 +417,7 @@ async def timer(message, client, time, unit, prompt, options = [], ):
         i: int = 1
         for option in options:
             msg = msg + f"{numbers[i]}: {option}\n"
+            i += 1
         msg = msg + "\n React to this message to submit your answer!"
     else:
         msg = f"**<@{message.author._user.id}>'s Reminder set for {time} {unit}: {prompt}"
@@ -431,6 +432,17 @@ async def timer(message, client, time, unit, prompt, options = [], ):
         print(f'reaction: {reaction}')
         return user == joeId and msg.content == "cancel reminders"
 
+    def findMessage(message):
+        while(True):
+            async for msg in message.channel.history(limit=9999999999,before=iterator):
+                count += 1
+                iterator = msg
+                if msg.content == message.content:
+                    return msg
+            if oldIterator == iterator:
+                return("message not found")
+            oldIterator = iterator
+
     try:
         print("test waiting")
         cancelMsg = await client.wait_for('message', timeout=timeout, check=check)
@@ -438,8 +450,10 @@ async def timer(message, client, time, unit, prompt, options = [], ):
     except asyncio.TimeoutError:
         print("timed out, sending message")
         if options != []:
-            for reaction in message.reactions:
+            msg = findMessage(message)
+            for reaction in msg.reactions:
                 print(f"reaction: {reaction.emoji.name} count: {reaction.count}")
             await message.channel.send("poll finished, results: ")
         else:
             await message.channel.send(f"Reminder for <@{message.author._user.id}>: {prompt}")
+
