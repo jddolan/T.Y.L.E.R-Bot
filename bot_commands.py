@@ -433,15 +433,19 @@ async def timer(message, client, time, unit, prompt, options = [], ):
         return user == joeId and msg.content == "cancel reminders"
 
     def findMessage(message, client):
+        print(f"finding message: {message.content}")
         count = 0
         iterator = message
         oldIterator = "temp"
         while(True):
+            print("in the loop")
             async for msg in message.channel.history(limit=9999999999,before=iterator):
+                print("in the other loop")
+                print(f"msg: {msg.content}")
                 count += 1
                 iterator = msg
                 if msg.content == message.content:
-                    print(f"msg: {msg.content}")
+                    print(f"msg found, returning")
                     return msg
             if oldIterator == iterator:
                 return("message not found")
