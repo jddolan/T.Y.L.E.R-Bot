@@ -423,7 +423,7 @@ async def timer(message, client, time, unit, prompt, options = [], ):
         msg = f"**<@{message.author._user.id}>'s Reminder set for {time} {unit}: {prompt}"
 
     print(f"message: {msg}")
-    await message.channel.send(msg)
+    newMessage = await message.channel.send(msg)
     
     timeout: int = time * int(units[unit])
     print(f"timeout: {timeout}")
@@ -458,7 +458,7 @@ async def timer(message, client, time, unit, prompt, options = [], ):
     except asyncio.TimeoutError:
         print("timed out, sending message")
         if options != []:
-            msg = findMessage(message, client)
+            msg = findMessage(newMessage, client)
             for reaction in msg.reactions:
                 print(f"reaction: {reaction.emoji.name} count: {reaction.count}")
             await message.channel.send("poll finished, results: ")
