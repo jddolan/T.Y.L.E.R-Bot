@@ -539,23 +539,21 @@ async def findOldTimers(msg, client, guildId):
     return
 
 async def findOldPrompt(message, client, time, unit, prompt, options = []):
-    if options != []:
-        msg = f"**<@{message.author._user.id}>'s Poll Started!**\n\n**Prompt: " + prompt + "**\n\n"
-        i: int = 1
-        for option in options:
-            msg = msg + f"{numbers[i]} : ***{option}***\n"
-            i += 1
-        msg = msg + "\n React to this message with what you think is the best option!"
-    else:
-        msg = f"<@{message.author._user.id}>'s reminder set for {time} {unit}: **{prompt}**"
-
     iterator = message
     oldIterator = "temp"
+    print("finding old prompt...")
     while(True):
         async for prompt in message.channel.history(limit=9999999999,before=iterator):
             iterator = message
-            if str(message.id) in prompt.content:
-                return prompt
+            print(f"message id: {message.id}")
+            try:
+                requestId = prompt.content.split('requestId:')[1]
+                print(f"request id: {requestId}")
+                if f"{message.id}" == requestId:
+                    print("prompt found!")
+                    return prompt
+            except:
+                continue
         if oldIterator == iterator:
             print("done scanning")
             break
