@@ -462,7 +462,7 @@ async def timer(message, client, time, unit, prompt, options = [], ):
             print(f"message: {msg}")
             print(f"reactions: {msg.reactions}")
             for reaction in msg.reactions:
-                print(f"reaction: {reaction.emoji.name} count: {reaction.count}")
+                print(f"reaction: {reaction.emoji.id} count: {reaction.count}")
             await message.channel.send("poll finished, results: ")
         else:
             await message.channel.send(f"Reminder for <@{message.author._user.id}>: {prompt}")
