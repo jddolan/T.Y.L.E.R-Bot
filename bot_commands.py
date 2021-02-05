@@ -456,23 +456,23 @@ async def timer(message, client, time, unit, prompt, options = [], ):
         print(f'reaction: {reaction}')
         return msg.author.id == joeId and msg.content == "cancel reminders"
 
-    async def findMessage(message, client):
-        print(f"finding message: {message.content}")
-        count = 0
-        iterator = message
-        oldIterator = "temp"
-        while(True):
-            print("in the loop")
-            async for msg in message.channel.history(limit=9999999999,before=iterator):
-                count += 1
-                iterator = msg
-                if msg.content == message.content:
-                    print(f"msg found, returning")
-                    return msg
-            print("left the other loop")
-            if oldIterator == iterator:
-                return("message not found")
-            oldIterator = iterator
+    # async def findMessage(message, client):
+    #     print(f"finding message: {message.content}")
+    #     count = 0
+    #     iterator = message
+    #     oldIterator = "temp"
+    #     while(True):
+    #         print("in the loop")
+    #         async for msg in message.channel.history(limit=9999999999,before=iterator):
+    #             count += 1
+    #             iterator = msg
+    #             if msg.content == message.content:
+    #                 print(f"msg found, returning")
+    #                 return msg
+    #         print("left the other loop")
+    #         if oldIterator == iterator:
+    #             return("message not found")
+    #         oldIterator = iterator
     
     def organize(results):
         for i in range(0, len(results) - 1):
@@ -495,7 +495,7 @@ async def timer(message, client, time, unit, prompt, options = [], ):
     except asyncio.TimeoutError:
         print("timed out, sending message")
         if options != []:
-            msg = await findMessage(newMessage, client)
+            msg = newMessage.channel.fetch_message(newMessage.id)
             print(f"message: {msg}")
             print(f"reactions: {msg.reactions}")
             results = []
