@@ -451,7 +451,7 @@ async def timer(message, client, time, unit, prompt, options = [], ):
     
     if options != []:
         for i in range(1,len(options) + 1):
-            newMessage.add_reaction(numbers[i])
+            await newMessage.add_reaction(numbers[i])
 
     timeout: int = time * int(units[unit])
     print(f"timeout: {timeout}")
