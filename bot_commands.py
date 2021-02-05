@@ -4,12 +4,22 @@ import responses
 import os
 from lenny import lenny as lennyface
 from time import sleep
+from bad_words import badWords
 
 joeId: int = int(os.environ.get('JOEID'))
 botId: int = int(os.environ.get('BOTID'))
 
+badUsers: list = [
+    '138775042585526272',
+    '138329017504890881',
+    '138712901404983296',
+    '130402289755095041',
+    '259193538384887809'
+]
+
 async def command(message, client):
-    commandStr = message.content.split(' ')[0]
+    messageStr = message.content.split(' ')
+    
     commands = {
         '!8ball': eightball,
         '!addquote': addQuote,
@@ -28,6 +38,12 @@ async def command(message, client):
         '!scan': scan,
         '!test': test
     }
+    if message.author.id in badUsers:
+        for word in messageStr:
+            if word in badWords:
+                await message.channel.send("Your message was caught by the language filter, please refrain from using shitty language. Ping me if you don't know which word got caught in the filter and I'll look into it")
+                return 
+    commandStr = messageStr[0]
     command = commands.get(commandStr, invalidCommand)
     await command(message, client)
     return
