@@ -95,20 +95,6 @@ def botResponse(messages, message):
 
     return response
 
-def spongebob(messages):
-    newmessage = ""
-    for message in messages:
-        msg = list(message)
-        i = 0
-        while i < len(msg):
-            if random.random() < 0.5:
-                msg[i] = msg[i].swapcase()
-            i += 1
-        newmessage = newmessage + "".join(msg) + "\n"
-        
-    return(newmessage)
-
-
 async def tylerMessage(message):
     print("it's a message from tyler")
     if tyler[message.channel.name].msgCount == 0:

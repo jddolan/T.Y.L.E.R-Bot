@@ -454,7 +454,7 @@ async def timer(message, client, time, unit, prompt, options = [], ):
 
     def check(cancelMsg):
         print(f'reaction: {reaction}')
-        return user == joeId and msg.content == "cancel reminders"
+        return msg.author.id == joeId and msg.content == "cancel reminders"
 
     async def findMessage(message, client):
         print(f"finding message: {message.content}")
@@ -476,17 +476,18 @@ async def timer(message, client, time, unit, prompt, options = [], ):
             oldIterator = iterator
     
     def organize(results):
-        i: int = 0
-        for i in range(len(results)):
-            current = results[i]
-            new = results[i]
-            newIndex = i
+        for i in range(0, len(results) - 1):
             for j in range(i+1, len(results)):
-                if current['count'] < results[j]['count']:
-                    new = results[j]
-                    newIndex = j
-            results[i], results[j] = results[j], results[i]
+                if results[i]['index'] > results[j]['index']:
+                    results[i], results[j] = results[j], results[i]
         return results
+
+    def getWinner(results):
+        winner = results[0]
+        for result in results:
+            if result['count'] > winner['count']:
+                winner = result
+        return winner
 
     try:
         print("test waiting")
@@ -503,25 +504,24 @@ async def timer(message, client, time, unit, prompt, options = [], ):
                 if reaction.emoji in numberEmojis.keys() and numberLink[numberEmojis[reaction.emoji]] < len(options):
                     i: int = numberLink[numberEmojis[reaction.emoji]] - 1
                     results.append({
-                        'option': options[i]
-                        'count': reaction.count
+                        'option': options[i],
+                        'count': reaction.count,
+                        'index': i + 1
                     })
             results = organize(results)
-            winner = results[0]
-            for result in results:
-                if result['count'] > winner['count']:
-                    winner = result
-            print(f"reaction: {reaction.emoji}")
-            print(f"count: {reaction.count}")
-            resultMsg = f"""The poll "{prompt}" has finished! Results:\n\n"""
-            i: int = 1
-
-            for option in options:
+            winner = getWinner(results)
+            resultMsg = f"""<@{message.author._user.id}>'s poll "{prompt}" has finished! Results:\n\n"""
+            for i in range(0, len(options)):
+                resultFound: bool = False
                 for result in results:
-                    if option == result['option']:
-                        resultMsg = resultMsg + f"{numbers[i]} ({option}): {result['count']}\n"
-                i += 1
-            await message.channel.send()
+                    if options[i] == result['option']:
+                        resultFound = True
+                        resultMsg = resultMsg + f"{numbers[i]} ({options[i]}) : {result['count']}\n"
+                if not resultFound:
+                    resultMsg = resultMsg + f"{numbers[i]} ({options[i]}) : 0\n"
+            resultMsg = resultMsg + f"The winner with {winner['count']} votes is option {numbers[winner['index']]} : {winner['option']}"
+                
+            await message.channel.send(resultMsg)
 
         else:
             await message.channel.send(f"Reminder for <@{message.author._user.id}>: {prompt}")

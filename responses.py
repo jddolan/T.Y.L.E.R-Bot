@@ -254,6 +254,19 @@ def responses(severity: str = "mild", name: str = None, messages = None, lastRes
 
     return response
 
+def spongebob(messages):
+    newmessage = ""
+    for message in messages:
+        msg = list(message)
+        i = 0
+        while i < len(msg):
+            if random.random() < 0.5:
+                msg[i] = msg[i].swapcase()
+            i += 1
+        newmessage = newmessage + "".join(msg) + "\n"
+        
+    return(newmessage)
+
 def eightball():
     return [
         "It is certain.",
