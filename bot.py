@@ -8,7 +8,7 @@
 
 import os
 
-cimport discord
+import discord
 import asyncio
 import datetime
 from datetime import datetime, timedelta, time
