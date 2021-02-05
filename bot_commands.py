@@ -495,7 +495,7 @@ async def timer(message, client, time, unit, prompt, options = [], ):
     except asyncio.TimeoutError:
         print("timed out, sending message")
         if options != []:
-            msg = newMessage.channel.fetch_message(newMessage.id)
+            msg = await newMessage.channel.fetch_message(newMessage.id)
             print(f"message: {msg}")
             print(f"reactions: {msg.reactions}")
             results = []

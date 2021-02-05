@@ -59,9 +59,12 @@ async def on_message(message):
     try:
         if message.content[0] == '!':
             await command(message, client)
-    except:
-        print("error, probably an image attached")
+    except Exception as e:
+        print("error found! trying to log error...")
+        print(e)
         print(f"message: {message.content}")
+    except:
+        print("this means the exception block isn't all encompassing, an error occured but unable to produce logs")
     if message.author.id == tylerId:
         if tyler.get(message.channel.name, None) == None:
             # New channel found, create new dict entry
