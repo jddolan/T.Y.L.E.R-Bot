@@ -449,6 +449,10 @@ async def timer(message, client, time, unit, prompt, options = [], ):
     print(f"message: {msg}")
     newMessage = await message.channel.send(msg)
     
+    if options != []:
+        for i in range(1,len(options) + 1):
+            newMessage.add_reaction(numbers[i])
+
     timeout: int = time * int(units[unit])
     print(f"timeout: {timeout}")
 
@@ -491,13 +495,13 @@ async def timer(message, client, time, unit, prompt, options = [], ):
                 print(f"emoji: {reaction.emoji}")
                 print(f"numberEmoji: {numberEmojis[reaction.emoji]}")
                 print(f"numberLink: {numberLink[numberEmojis[reaction.emoji]]}")
-                
+                print(f"emoji in numberEmojis?: {reaction.emoji in numberEmojis.keys()}")
                 
                 if reaction.emoji in numberEmojis.keys() and numberLink[numberEmojis[reaction.emoji]] < len(options):
                     i: int = numberLink[numberEmojis[reaction.emoji]] - 1
                     results.append({
                         'option': options[i],
-                        'count': reaction.count,
+                        'count': reaction.count - 1,
                         'index': i + 1
                     })
             results = organize(results)
