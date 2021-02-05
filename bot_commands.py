@@ -464,13 +464,12 @@ async def timer(message, client, time, unit, prompt, options = [], ):
         while(True):
             print("in the loop")
             async for msg in message.channel.history(limit=9999999999,before=iterator):
-                print("in the other loop")
-                print(f"msg: {msg.content}")
                 count += 1
                 iterator = msg
                 if msg.content == message.content:
                     print(f"msg found, returning")
                     return msg
+            print("left the other loop")
             if oldIterator == iterator:
                 return("message not found")
             oldIterator = iterator
