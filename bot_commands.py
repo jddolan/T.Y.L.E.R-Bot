@@ -462,22 +462,22 @@ async def timer(message, client, time, unit, prompt, options = [], ):
                     if options[i] == result['option']:
                         print("found option in results")
                         resultFound = True
-                        resultMsg = resultMsg + f"{numbers[i+1]} ({options[i]}) : {result['count']}\n"
+                        resultMsg = resultMsg + f"{numbers[i+1]} ({options[i]}) : {result['count']} vote{'s' if result['count'] > 1 else ''}\n"
                 if not resultFound:
                     print(f"result not found for option {i}")
-                    resultMsg = resultMsg + f"{numbers[i+1]} ({options[i]}) : 0\n"
+                    resultMsg = resultMsg + f"{numbers[i+1]} ({options[i]}) : 0 votes\n"
             if len(winners) > 1:
                 if winners[0]['count'] == 0:
                     print("poll result: donowall")
-                    resultMsg = resultMsg + f"Nobody voted on this poll, get donowalled nerd"
+                    resultMsg = resultMsg + f"\nNobody voted on this poll, get donowalled nerd"
                 else:
                     print("poll result: tie")
-                    resultMsg = resultMsg + f"It was a tie! The winning options with {winners[0]['count']} votes are:\n"
+                    resultMsg = resultMsg + f"\nIt was a tie! The winning options with {winners[0]['count']} vote{'s' if winners[0]['count'] > 1 else ''} are:\n\n"
                     for winner in winners:
                         resultMsg = resultMsg + f"{numbers[winner['index']]} : {winner['option']}\n"
             else:
                 print("poll result: one winner")
-                resultMsg = resultMsg + f"The winning option with {winners[0]['count']} votes is option {numbers[winners[0]['index']]} : {winners[0]['option']}"
+                resultMsg = resultMsg + f"\nThe winning option with {winners[0]['count']} vote{'s' if winners[0]['count'] > 1 else ''} is option {numbers[winners[0]['index']]}:\n\n{winners[0]['option']}"
         else:
             resultMsg = f"Reminder for <@{message.author._user.id}>: {prompt}"
 
