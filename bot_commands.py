@@ -425,13 +425,13 @@ async def timer(message, client, time, unit, prompt, options = [], ):
     timeout: int = time * int(units[unit])
     print(f"timeout: {timeout}")
 
-    def check(reaction, user):
+    def check(message):
         print(f'reaction: {reaction}')
-        return user == client.get_user(userId) and (reaction.emoji.name == 'yea' or reaction.emoji.name == 'nay')
+        return user == joeId and message.content == "cancel reminders"
 
     try:
         print("test waiting")
-        reaction, user = await client.wait_for('reaction_add', timeout=timeout, check=check)
+        m = await client.wait_for('message', timeout=timeout, check=check)
         print("waiting done")
     except asyncio.TimeoutError:
         print("timed out, sending message")
