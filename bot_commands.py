@@ -579,11 +579,9 @@ async def findOldPrompt(message, client, time, unit, prompt, options = []):
             iterator = prompt
             try:
                 requestId = prompt.content.split('requestId:')[1]
-                print(f"request id: {requestId}")
                 if f"{message.id}" == requestId:
                     print("prompt found!")
                     return prompt
-                print(f"timestamp: {int(prompt.created_at.timestamp())}")
                 if int(prompt.created_at.timestamp()) < 1580774400: # The day I implemented reminders/polls, nothing will be found beyond this time
                     print("no prompt found")
                     return None
