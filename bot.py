@@ -64,10 +64,11 @@ async def on_message(message):
             content = message.content.split('|')
             print(f"content: {content}")
             throwaway,message,channel,timeout,prompt,options,newMessage,newChannel = content
-            channel = client.get_channel(channel)
-            newChannel = client.get_channel(newChannel)
-            message = await channel.fetch_message(message)
-            newMessage = await newChannel.fetch_message(newMessage)
+            channel = client.get_channel(int(channel))
+            timeout = int(timeout)
+            newChannel = client.get_channel(int(newChannel))
+            message = await channel.fetch_message(int(message))
+            newMessage = await newChannel.fetch_message(int(newMessage))
             if options == '[]':
                 options = []
             await activateOldTimer(message, client, timeout, prompt, options, newMessage)
