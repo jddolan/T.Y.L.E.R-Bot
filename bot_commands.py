@@ -549,6 +549,8 @@ async def findOldTimers(msg, client, guildId):
     return
 
 async def findOldPrompt(message, client, time, unit, prompt, options = []):
+    if message.channel.name == 'bot-test':
+        print(f"Test Timestamp: {int(message.channel.fetch_message(807369312305938482).created_at.timestamp())}")
     iterator = await message.channel.fetch_message(message.channel.last_message_id)
     oldIterator = "temp"
     print("finding old prompt...")
