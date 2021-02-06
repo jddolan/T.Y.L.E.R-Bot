@@ -488,9 +488,8 @@ async def findOldTimers(msg, client, guildId):
                 async for message in channel.history(limit=9999999999,before=iterator):
                     iterator = message
                     try:
-                        if int(message.created_at.timestamp()) > 1580774400: # The day I implemented reminders/polls, nothing will be found beyond this time
+                        if int(message.created_at.timestamp()) < 1580774400: # The day I implemented reminders/polls, nothing will be found beyond this time
                             print("no prompt found")
-                            print(f"timestamp: {int(message.created_at.timestamp())}")
                             break
                     except:
                         print("error with the timestamp stuff")
@@ -552,7 +551,7 @@ async def findOldTimers(msg, client, guildId):
                 if oldIterator == iterator:
                     print("done scanning")
                     break
-                if int(message.created_at.timestamp()) > 1580774400: # The day I implemented reminders/polls, nothing will be found beyond this time
+                if int(message.created_at.timestamp()) < 1580774400: # The day I implemented reminders/polls, nothing will be found beyond this time
                     print("no prompt found")
                     break
                 oldIterator = iterator
@@ -583,7 +582,7 @@ async def findOldPrompt(message, client, time, unit, prompt, options = []):
                     print("prompt found!")
                     return prompt
                 print(f"timestamp: {int(prompt.created_at.timestamp())}")
-                if int(prompt.created_at.timestamp()) > 1580774400: # The day I implemented reminders/polls, nothing will be found beyond this time
+                if int(prompt.created_at.timestamp()) < 1580774400: # The day I implemented reminders/polls, nothing will be found beyond this time
                     print("no prompt found")
                     return None
             except:
