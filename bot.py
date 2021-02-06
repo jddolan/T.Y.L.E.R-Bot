@@ -4,7 +4,7 @@
 # Emergency
 # Response
 # Bot
-# V1.01
+# V2.0
 
 import os
 
@@ -16,9 +16,13 @@ import random
 import re
 
 import responses
-from bot_commands import command
+from bot_commands import command, findOldTimers, activateOldTimer
 
 token = os.environ.get('TOKEN')
+guildIds = []
+guildIds.append(int(os.environ.get('THEBOYS')))
+guildIds.append(int(os.environ.get('FLATEARFRULES')))
+
 joeId: int = int(os.environ.get('JOEID'))
 botId: int = int(os.environ.get('BOTID'))
 tylerId: int = int(os.environ.get('TYLERID'))
@@ -54,14 +58,35 @@ tyler: dict = {}
 
 @client.event
 async def on_message(message):
+    
     if message.author == client.user:
+        if message.content.startswith("!activateOldTimer"):
+            content = message.content.split('|')
+            print(f"content: {content}")
+            throwaway,message,channel,timeout,prompt,options,newMessage,newChannel = content
+            channel = client.get_channel(int(channel))
+            timeout = int(timeout)
+            newChannel = client.get_channel(int(newChannel))
+            message = await channel.fetch_message(int(message))
+            newMessage = await newChannel.fetch_message(int(newMessage))
+            options = options.strip('][').split(', ')
+            for option in options:
+                option.strip("'")
+            await activateOldTimer(message, client, timeout, prompt, options, newMessage)
         return
     try:
         if message.content[0] == '!':
             await command(message, client)
-    except:
-        print("error, probably an image attached")
+        elif message.content == "findOldTimers":
+            for guildId in guildIds:
+                await findOldTimers(message, client, guildId)
+            await message.channel.send("all timers are set up again")
+    except Exception as e:
+        print("error found! trying to log error...")
+        print(e)
         print(f"message: {message.content}")
+    except:
+        print("this means the exception block isn't all encompassing, an error occured but unable to produce logs")
     if message.author.id == tylerId:
         if tyler.get(message.channel.name, None) == None:
             # New channel found, create new dict entry
@@ -94,20 +119,6 @@ def botResponse(messages, message):
     tyler[message.channel.name].lastResponse = response
 
     return response
-
-def spongebob(messages):
-    newmessage = ""
-    for message in messages:
-        msg = list(message)
-        i = 0
-        while i < len(msg):
-            if random.random() < 0.5:
-                msg[i] = msg[i].swapcase()
-            i += 1
-        newmessage = newmessage + "".join(msg) + "\n"
-        
-    return(newmessage)
-
 
 async def tylerMessage(message):
     print("it's a message from tyler")

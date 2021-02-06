@@ -2,20 +2,25 @@ import random
 import re
 import responses
 import os
+import asyncio
+from numbers import units, numbers, numberLink, emojiLink, numberEmojis
 from lenny import lenny as lennyface
 from time import sleep
+from datetime import datetime, timedelta, time
 from bad_words import badWords
 
 joeId: int = int(os.environ.get('JOEID'))
 botId: int = int(os.environ.get('BOTID'))
+botChannel: int = int(os.environ.get('BOTCHANNEL'))
 
+# People Who I think would make the bot say something I wouldn't feel comfortable with it saying
 badUsers: list = [
-    '138775042585526272',
-    '138329017504890881',
-    '138712901404983296',
-    '130402289755095041',
-    '259193538384887809',
-    '138358974071308289'
+    '138775042585526272', # Corey
+    '138329017504890881', # Matthew
+    '138712901404983296', # Harrison
+    '130402289755095041', # Tyler
+    '259193538384887809', # Micah
+    '138358974071308289' # Scott
 ]
 
 async def command(message, client):
@@ -26,13 +31,16 @@ async def command(message, client):
         '!addquote': addQuote,
         '!about': about,
         '!coinflip': coinflip,
+        '!conch': eightball,
         '!crush': crush,
         '!eightball': eightball,  
         '!help': help,
         '!joke': joke,
         '!lenny': lenny,
         '!link': link,
+        '!poll': poll,
         '!quote': quote,
+        '!reminder': reminder,
         '!response': response,
         '!roll': roll,
         '!rps': rps,
@@ -332,4 +340,323 @@ async def test(message, client):
 
 async def crush(message, client):
     await message.channel.send(random.choice(responses.crush()))
+    return
+
+async def poll(message, client):
+    try:
+        match = re.match('(.*) (.*) "(.*)" (.*)', message.content.split('!poll ')[1])
+        time = int(match.group(1))
+        print(f"time: {time}")
+        unit = match.group(2)
+        print(f"unit: {unit}")
+        prompt = match.group(3)
+        print(f"prompt: {prompt}")
+        options = match.group(4)
+        print(f"options: {options}")
+        if unit not in units.keys():
+            raise
+        options = options.split(', ')
+        if len(options) < 1 or len(options) > 9:
+            raise
+    except:
+        await message.channel.send(f"""Invalid input. Example of a valid submission: !poll 60 minutes "Prompt goes here" option 1, option 2, ..., option 9
+Valid units of time are seconds, minutes, hours, days, weeks, months, or years
+The maximum number of options for a poll is 9""")
+        return
+    await timer(message, client, time, unit, prompt, options)
+    return
+
+async def reminder(message, client):
+    try:
+        match = re.match('(.*) (.*) "(.*)"', message.content.split('!reminder ')[1])
+        time = int(match.group(1))
+        print(f"time: {time}")
+        unit = match.group(2)
+        print(f"unit: {unit}")
+        prompt = match.group(3)
+        print(f"prompt: {prompt}")
+        if unit not in units.keys():
+            raise
+    except:
+        await message.channel.send(f"""Invalid input. Example of a valid submission: !reminder 60 minutes "remind me to replace Tyler"
+Valid units of time are seconds, minutes, hours, days, weeks, months, or years""")
+        return
+    await timer(message, client, time, unit, prompt)
+    return
+
+async def timer(message, client, time, unit, prompt, options = [], ):
+    print("get in the timer function")
+    if options != []:
+        msg = f"**<@{message.author._user.id}>'s Poll Started!**\n\n**Prompt: " + prompt + "**\n\n"
+        i: int = 1
+        for option in options:
+            msg = msg + f"{numbers[i]} : ***{option}***\n"
+            i += 1
+        msg = msg + "\n React to this message with what you think is the best option!"
+    else:
+        msg = f"""<@{message.author._user.id}>'s reminder set for {time} {unit}:\n\n **{prompt}**"""
+
+    print(f"message: {msg}")
+    newMessage = await message.channel.send(msg)
+    await newMessage.edit(content=newMessage.content + f"\nrequestId:{message.id}")
+    
+    if options != []:
+        for i in range(1,len(options) + 1):
+            await newMessage.add_reaction(emojiLink[i])
+
+    timeout: int = time * int(units[unit])
+    print(f"timeout: {timeout}")
+
+    def check(cancelMsg):
+        return cancelMsg.author.id == joeId and cancelMsg.content == "cancel reminders"
+    
+    def organize(results):
+        for i in range(0, len(results) - 1):
+            for j in range(i+1, len(results)):
+                if results[i]['index'] > results[j]['index']:
+                    results[i], results[j] = results[j], results[i]
+        return results
+
+    def getWinners(results):
+        winners = []
+        winner = results[0]
+        for result in results:
+            if result['count'] > winner['count']:
+                winner = result
+        for result in results:
+            if result['count'] == winner['count']:
+                winners.append(result)
+        return winners
+
+    try:
+        print("test waiting")
+        cancelMsg = await client.wait_for('message', timeout=timeout, check=check)
+        print("waiting done")
+    except asyncio.TimeoutError:
+        print("timed out, sending message")
+        if options != []:
+            msg = await newMessage.channel.fetch_message(newMessage.id)
+            results = []
+            for reaction in msg.reactions:
+                
+                if reaction.emoji in numberEmojis.keys() and numberLink[numberEmojis[reaction.emoji]] <= len(options):
+                    i: int = numberLink[numberEmojis[reaction.emoji]] - 1
+                    results.append({
+                        'option': options[i],
+                        'count': reaction.count - 1,
+                        'index': i + 1
+                    })
+            winners = getWinners(results)
+            print(f"winners: {winners}")
+            resultMsg = f"""<@{message.author._user.id}>'s poll "{prompt}" has finished! Results:\n\n"""
+            for i in range(0, len(options)):
+                resultFound: bool = False
+                for result in results:
+                    if options[i] == result['option']:
+                        resultFound = True
+                        resultMsg = resultMsg + f"{numbers[i+1]} ***{options[i]}*** : {result['count']} vote{'s' if result['count'] > 1 or result['count'] == 0 else ''}\n"
+                if not resultFound:
+                    print(f"result not found for option {i}")
+                    resultMsg = resultMsg + f"{numbers[i+1]} ***{options[i]}*** : 0 votes\n"
+            if len(winners) > 1:
+                if winners[0]['count'] == 0:
+                    print("poll result: donowall")
+                    resultMsg = resultMsg + f"\nNobody voted on this poll, get donowalled nerd"
+                else:
+                    print("poll result: tie")
+                    resultMsg = resultMsg + f"\nIt was a tie! The winning options with {winners[0]['count']} vote{'s' if winners[0]['count'] > 1 or winners[0]['count'] == 0 else ''} are:\n\n"
+                    for winner in winners:
+                        resultMsg = resultMsg + f"{numbers[winner['index']]} : ***{winner['option']}***\n"
+            else:
+                print("poll result: one winner")
+                resultMsg = resultMsg + f"\nThe winning option with {winners[0]['count']} vote{'s' if winners[0]['count'] > 1 or winners[0]['count'] == 0 else ''} is option {numbers[winners[0]['index']]}: ***{winners[0]['option']}***"
+        else:
+            resultMsg = f"Reminder for <@{message.author._user.id}>: {prompt}"
+
+        await message.channel.send(resultMsg)
+        return
+
+async def findOldTimers(msg, client, guildId):
+    print(f"msg: {msg.content}")
+    print("setting up old timers...")
+    guild = client.get_guild(guildId)
+    for channel in guild.channels:
+        try:
+            iterator = await channel.fetch_message(channel.last_message_id)
+            print(f"last message: {iterator.content}")
+            oldIterator = "temp"
+            while(True):
+                async for message in channel.history(limit=9999999999,before=iterator):
+                    iterator = message
+                    if int(message.created_at.timestamp()) < 1580774400: # The day I implemented reminders/polls, nothing will be found beyond this time
+                        print("no prompt found")
+                        raise Exception
+                    if message.content.startswith('!reminder'):
+                        try:
+                            match = re.match('(.*) (.*) "(.*)"', message.content.split('!reminder ')[1])
+                            time = int(match.group(1))
+                            print(f"time: {time}")
+                            unit = match.group(2)
+                            print(f"unit: {unit}")
+                            prompt = match.group(3)
+                            print(f"prompt: {prompt}")
+                            if unit not in units.keys():
+                                raise Exception
+                            newMessage = await findOldPrompt(message, client, time, unit, prompt)
+                            if newMessage == None:
+                                raise Exception
+                            timeout = int(time * units[unit])
+                            difference = int(datetime.now().timestamp()) - int(newMessage.created_at.timestamp())
+                            print(f"message timestamp: {int(newMessage.created_at.timestamp())}")
+                            print(f"current timestamp: {int(datetime.now().timestamp())}")
+                            print(f"difference: {difference}")
+                            print(f"timeout: {timeout}")
+                            if difference < timeout:
+                                await client.get_channel(botChannel).send(f"!activateOldTimer|{message.id}|{message.channel.id}|{timeout - difference}|{prompt}|[]|{newMessage.id}|{newMessage.channel.id}")
+                            else:
+                                raise Exception
+                        except Exception as e:
+                            done = True
+                    elif message.content.startswith('!poll'):
+                        try:
+                            match = re.match('(.*) (.*) "(.*)" (.*)', message.content.split('!poll ')[1])
+                            time = int(match.group(1))
+                            print(f"time: {time}")
+                            unit = match.group(2)
+                            print(f"unit: {unit}")
+                            prompt = match.group(3)
+                            print(f"prompt: {prompt}")
+                            options = match.group(4)
+                            print(f"options: {options}")
+                            if unit not in units.keys():
+                                raise Exception
+                            options = options.split(', ')
+                            if len(options) < 1 or len(options) > 9:
+                                raise Exception
+                            newMessage = await findOldPrompt(message, client, time, unit, prompt, options)
+                            if newMessage == None:
+                                raise Exception
+                            timeout = time * units[unit]
+                            difference = int(datetime.now().timestamp()) - int(newMessage.created_at.timestamp())
+                            print(f"message timestamp: {int(newMessage.created_at.timestamp())}")
+                            print(f"current timestamp: {int(datetime.now().timestamp())}")
+                            print(f"difference: {difference}")
+                            print(f"timeout: {timeout}")
+                            if difference < timeout:
+                                await client.get_channel(botChannel).send(f"!activateOldTimer|{message.id}|{message.channel.id}|{timeout - difference}|{prompt}|{options}|{newMessage.id}|{newMessage.channel.id}")
+                            else:
+                                raise Exception
+                        except Exception as e:
+                            continue
+                
+                if oldIterator == iterator:
+                    print("done scanning")
+                    raise Exception
+                if int(iterator.created_at.timestamp()) < 1580774400: # The day I implemented reminders/polls, nothing will be found beyond this time
+                    print("no prompt found")
+                    raise Exception
+                oldIterator = iterator
+        except Exception:
+            continue
+    return
+
+async def findOldPrompt(message, client, time, unit, prompt, options = []):
+    iterator = await message.channel.fetch_message(message.channel.last_message_id)
+    oldIterator = "temp"
+    print("finding old prompt...")
+    print(f"message: {iterator.content}")
+    print(f"message id: {iterator.id}")
+    while(True):
+        async for prompt in message.channel.history(limit=9999999999,before=iterator):
+            iterator = prompt
+            try:
+                requestId = prompt.content.split('requestId:')[1]
+                if f"{message.id}" == requestId:
+                    print("prompt found!")
+                    return prompt
+                if int(prompt.created_at.timestamp()) < 1580774400: # The day I implemented reminders/polls, nothing will be found beyond this time
+                    print("no prompt found")
+                    return None
+            except:
+                if int(prompt.created_at.timestamp()) < 1580774400: # The day I implemented reminders/polls, nothing will be found beyond this time
+                    print("no prompt found")
+                    return None
+                else:
+                    continue
+        if oldIterator == iterator:
+            print("done scanning")
+            break
+        if int(prompt.created_at.timestamp()) < 1580774400: # The day I implemented reminders/polls, nothing will be found beyond this time
+            print("no prompt found")
+            return None
+        oldIterator = iterator
+    print("didn't find the prompt")
+    return None
+    
+async def activateOldTimer(message, client, timeout, prompt, options, newMessage):
+    def check(cancelMsg):
+        return cancelMsg.author.id == joeId and cancelMsg.content == "cancel reminders"
+
+    def getWinners(results):
+        winners = []
+        winner = results[0]
+        for result in results:
+            if result['count'] > winner['count']:
+                winner = result
+        for result in results:
+            if result['count'] == winner['count']:
+                winners.append(result)
+        return winners
+
+    try:
+        print("test waiting")
+        cancelMsg = await client.wait_for('message', timeout=timeout, check=check)
+        print("waiting done")
+    except asyncio.TimeoutError:
+        print("timed out, sending message")
+        if options != []:
+            try:
+                msg = await newMessage.channel.fetch_message(newMessage.id)
+                results = []
+                for reaction in msg.reactions:
+                    
+                    if reaction.emoji in numberEmojis.keys() and numberLink[numberEmojis[reaction.emoji]] <= len(options):
+                        i: int = numberLink[numberEmojis[reaction.emoji]] - 1
+                        results.append({
+                            'option': options[i],
+                            'count': reaction.count - 1,
+                            'index': i + 1
+                        })
+            except Exception:
+                print("it was this msg")
+            winners = getWinners(results)
+            print(f"winners: {winners}")
+            resultMsg = f"""<@{message.author._user.id}>'s poll "{prompt}" has finished! Results:\n\n"""
+            for i in range(0, len(options)):
+                print(f"len(options): {len(options)}")
+                resultFound: bool = False
+                for result in results:
+                    if options[i] == result['option']:
+                        resultFound = True
+                        resultMsg = resultMsg + f"{numbers[i+1]} ***{options[i]}*** : {result['count']} vote{'s' if result['count'] > 1 or result['count'] == 0 else ''}\n"
+                if not resultFound:
+                    print(f"result not found for option {i}")
+                    resultMsg = resultMsg + f"{numbers[i+1]} ***{options[i]}*** : 0 votes\n"
+            if len(winners) > 1:
+                if winners[0]['count'] == 0:
+                    print("poll result: donowall")
+                    resultMsg = resultMsg + f"\nNobody voted on this poll, get donowalled nerd"
+                else:
+                    print("poll result: tie")
+                    resultMsg = resultMsg + f"\nIt was a tie! The winning options with {winners[0]['count']} vote{'s' if winners[0]['count'] > 1 or winners[0]['count'] == 0 else ''} are:\n\n"
+                    for winner in winners:
+                        resultMsg = resultMsg + f"{numbers[winner['index']]} : ***{winner['option']}***\n"
+            else:
+                print("poll result: one winner")
+                resultMsg = resultMsg + f"\nThe winning option with {winners[0]['count']} vote{'s' if winners[0]['count'] > 1 or winners[0]['count'] == 0 else ''} is option {numbers[winners[0]['index']]}: ***{winners[0]['option']}***"
+        else:
+            resultMsg = f"Reminder for <@{message.author._user.id}>: {prompt}"
+
+        await message.channel.send(resultMsg)
+        return
     return

@@ -17,8 +17,12 @@ def validCommands():
         '!lenny': """**!lenny** generates a random lenny face ( ͡° ͜ʖ ͡°)""",
         '!link': """**!link** provides a link to a piece of content significant to the Flat Earf Rules
     discord server""",
+        '!poll': """**!poll** <amount> <unit> "<prompt>" <answers> creates a poll that will end after the specified amount of time
+        Example: !poll 1 day "Should we kick Mattbarry from the server?" Hell yeah, Yes, Definitely, Yep, For sure""",
         '!quote': """**!quote** <name: Optional> provides a quote, if a name is not provided the
     quote will be randomly selected from all stored quotes""",
+        '!reminder': """**!reminder** <amount> <unit> "<reminder>" sets a reminder that the bot will notify you about after the specified amount of time
+        Example: !reminder 1 day "remind me to replace Tyler" """,
         '!response': """**!response** <name: Optional> generates a random response, optionally
     include the name of the person the response is for""",
         '!roll': """**!roll** <XdY> will roll a Y-sided die X times""",
@@ -251,6 +255,19 @@ def responses(severity: str = "mild", name: str = None, messages = None, lastRes
         response = spongebob(messages)
 
     return response
+
+def spongebob(messages):
+    newmessage = ""
+    for message in messages:
+        msg = list(message)
+        i = 0
+        while i < len(msg):
+            if random.random() < 0.5:
+                msg[i] = msg[i].swapcase()
+            i += 1
+        newmessage = newmessage + "".join(msg) + "\n"
+        
+    return(newmessage)
 
 def eightball():
     return [
