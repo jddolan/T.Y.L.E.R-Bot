@@ -485,6 +485,9 @@ async def findOldTimers(msg, client, guildId):
             while(True):
                 async for message in channel.history(limit=9999999999,before=iterator):
                     iterator = message
+                    if int(prompt.created_at.timestamp()) > 1580774400: # The day I implemented reminders/polls, nothing will be found beyond this time
+                        print("no prompt found")
+                        break
                     if message.content.startswith('!reminder'):
                         try:
                             match = re.match('(.*) (.*) "(.*)"', message.content.split('!reminder ')[1])
@@ -535,6 +538,9 @@ async def findOldTimers(msg, client, guildId):
 
                 if oldIterator == iterator:
                     print("done scanning")
+                    break
+                if int(prompt.created_at.timestamp()) > 1580774400: # The day I implemented reminders/polls, nothing will be found beyond this time
+                    print("no prompt found")
                     break
                 oldIterator = iterator
         except Exception:
