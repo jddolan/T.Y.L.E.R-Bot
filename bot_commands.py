@@ -546,6 +546,7 @@ async def findOldTimers(msg, client, guildId):
                             print("no this one is the error")
                             print(e)
                             continue
+                
 
                 if oldIterator == iterator:
                     print("done scanning")
@@ -615,17 +616,20 @@ async def activateOldTimer(message, client, timeout, prompt, options, newMessage
     except asyncio.TimeoutError:
         print("timed out, sending message")
         if options != []:
-            msg = await newMessage.channel.fetch_message(newMessage.id)
-            results = []
-            for reaction in msg.reactions:
-                
-                if reaction.emoji in numberEmojis.keys() and numberLink[numberEmojis[reaction.emoji]] <= len(options):
-                    i: int = numberLink[numberEmojis[reaction.emoji]] - 1
-                    results.append({
-                        'option': options[i],
-                        'count': reaction.count - 1,
-                        'index': i + 1
-                    })
+            try:
+                msg = await newMessage.channel.fetch_message(newMessage.id)
+                results = []
+                for reaction in msg.reactions:
+                    
+                    if reaction.emoji in numberEmojis.keys() and numberLink[numberEmojis[reaction.emoji]] <= len(options):
+                        i: int = numberLink[numberEmojis[reaction.emoji]] - 1
+                        results.append({
+                            'option': options[i],
+                            'count': reaction.count - 1,
+                            'index': i + 1
+                        })
+            except Exception:
+                print("it was this msg")
             winners = getWinners(results)
             print(f"winners: {winners}")
             resultMsg = f"""<@{message.author._user.id}>'s poll "{prompt}" has finished! Results:\n\n"""
