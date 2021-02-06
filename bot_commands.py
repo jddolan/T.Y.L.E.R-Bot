@@ -31,6 +31,7 @@ async def command(message, client):
         '!addquote': addQuote,
         '!about': about,
         '!coinflip': coinflip,
+        '!conch': eightball,
         '!crush': crush,
         '!eightball': eightball,  
         '!help': help,
