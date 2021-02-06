@@ -11,6 +11,7 @@ from bad_words import badWords
 
 joeId: int = int(os.environ.get('JOEID'))
 botId: int = int(os.environ.get('BOTID'))
+botChannel: int = int(os.environ.get('BOTCHANNEL'))
 
 # People Who I think would make the bot say something I wouldn't feel comfortable with it saying
 badUsers: list = [
@@ -506,7 +507,7 @@ async def findOldTimers(msg, client, guildId):
                             timeout = time * units[unit]
                             difference = int(newMessage.created_at.timestamp()) - int(datetime.datetime.now().timestamp())
                             if difference < timeout:
-                                await msg.channel.send(f"!activateOldTimer|{message.id}|{message.channel.id}|{timeout - difference}|{prompt}|[]|{newMessage.id}|{newMessage.channel.id}|{newMessage.guild.id}")
+                                await client.get_channel(botChannel).send(f"!activateOldTimer|{message.id}|{message.channel.id}|{timeout - difference}|{prompt}|[]|{newMessage.id}|{newMessage.channel.id}|{newMessage.guild.id}")
                         except Exception as e:
                             print(e)
                             continue
@@ -532,7 +533,7 @@ async def findOldTimers(msg, client, guildId):
                             timeout = time * units[unit]
                             difference = int(newMessage.created_at.timestamp()) - int(datetime.datetime.now().timestamp())
                             if difference < timeout:
-                                await msg.channel.send(f"!activateOldTimer|{message.id}|{message.channel.id}|{timeout - difference}|{prompt}|{options}|{newMessage.id}|{newMessage.channel.id}|{newMessage.guild.id}")
+                                await client.get_channel(botChannel).send(f"!activateOldTimer|{message.id}|{message.channel.id}|{timeout - difference}|{prompt}|{options}|{newMessage.id}|{newMessage.channel.id}|{newMessage.guild.id}")
                         except Exception as e:
                             print(e)
                             continue
