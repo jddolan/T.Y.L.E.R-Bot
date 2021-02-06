@@ -487,9 +487,16 @@ async def findOldTimers(msg, client, guildId):
             while(True):
                 async for message in channel.history(limit=9999999999,before=iterator):
                     iterator = message
-                    if int(prompt.created_at.timestamp()) > 1580774400: # The day I implemented reminders/polls, nothing will be found beyond this time
-                        print("no prompt found")
-                        break
+                    try:
+                        if int(prompt.created_at.timestamp()) > 1580774400: # The day I implemented reminders/polls, nothing will be found beyond this time
+                            print("no prompt found")
+                            break
+                    except:
+                        print("error with the timestamp stuff")
+                        try:
+                            print(f"timestamp: {int(prompt.created_at.timestamp())}")
+                        except:
+                            print("also an error just making the timestamp")
                     if message.content.startswith('!reminder'):
                         try:
                             match = re.match('(.*) (.*) "(.*)"', message.content.split('!reminder ')[1])
@@ -552,8 +559,10 @@ async def findOldTimers(msg, client, guildId):
     return
 
 async def findOldPrompt(message, client, time, unit, prompt, options = []):
+    print("test timestamp start")
     if message.channel.name == 'bot-test':
         print(f"Test Timestamp: {int(message.channel.fetch_message(807369312305938482).created_at.timestamp())}")
+    print("test timestamp stop")
     iterator = await message.channel.fetch_message(message.channel.last_message_id)
     oldIterator = "temp"
     print("finding old prompt...")
