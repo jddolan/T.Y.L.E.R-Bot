@@ -643,6 +643,7 @@ async def activateOldTimer(message, client, timeout, prompt, options, newMessage
             print(f"winners: {winners}")
             resultMsg = f"""<@{message.author._user.id}>'s poll "{prompt}" has finished! Results:\n\n"""
             for i in range(0, len(options)):
+                print(f"len(options): {len(options)}")
                 resultFound: bool = False
                 for result in results:
                     if options[i] == result['option']:
