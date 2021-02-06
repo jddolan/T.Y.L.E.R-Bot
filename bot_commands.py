@@ -560,6 +560,9 @@ async def findOldPrompt(message, client, time, unit, prompt, options = []):
                 if f"{message.id}" == requestId:
                     print("prompt found!")
                     return prompt
+                if int(prompt.created_at.timestamp()) > 1580774400:
+                    print("no prompt found")
+                    return None
             except:
                 continue
         if oldIterator == iterator:
