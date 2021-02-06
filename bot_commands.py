@@ -407,7 +407,7 @@ async def timer(message, client, time, unit, prompt, options = [], ):
     print(f"timeout: {timeout}")
 
     def check(cancelMsg):
-        return msg.author.id == joeId and msg.content == "cancel reminders"
+        return cancelMsg.author.id == joeId and cancelMsg.content == "cancel reminders"
     
     def organize(results):
         for i in range(0, len(results) - 1):
