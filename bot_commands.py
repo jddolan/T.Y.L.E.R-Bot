@@ -509,6 +509,7 @@ async def findOldTimers(msg, client, guildId):
                             if difference < timeout:
                                 await client.get_channel(botChannel).send(f"!activateOldTimer|{message.id}|{message.channel.id}|{timeout - difference}|{prompt}|[]|{newMessage.id}|{newMessage.channel.id}|{newMessage.guild.id}")
                         except Exception as e:
+                            print("this is the error")
                             print(e)
                             continue
                     elif message.content.startswith('!poll'):
@@ -535,6 +536,7 @@ async def findOldTimers(msg, client, guildId):
                             if difference < timeout:
                                 await client.get_channel(botChannel).send(f"!activateOldTimer|{message.id}|{message.channel.id}|{timeout - difference}|{prompt}|{options}|{newMessage.id}|{newMessage.channel.id}|{newMessage.guild.id}")
                         except Exception as e:
+                            print("no this one is the error")
                             print(e)
                             continue
 
