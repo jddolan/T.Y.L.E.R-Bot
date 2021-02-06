@@ -552,7 +552,7 @@ async def findOldTimers(msg, client, guildId):
                 if oldIterator == iterator:
                     print("done scanning")
                     break
-                if int(message.created_at.timestamp()) < 1580774400: # The day I implemented reminders/polls, nothing will be found beyond this time
+                if int(iterator.created_at.timestamp()) < 1580774400: # The day I implemented reminders/polls, nothing will be found beyond this time
                     print("no prompt found")
                     break
                 oldIterator = iterator
@@ -588,6 +588,9 @@ async def findOldPrompt(message, client, time, unit, prompt, options = []):
         if oldIterator == iterator:
             print("done scanning")
             break
+        if int(prompt.created_at.timestamp()) < 1580774400: # The day I implemented reminders/polls, nothing will be found beyond this time
+            print("no prompt found")
+            return None
         oldIterator = iterator
     print("didn't find the prompt")
     return None
