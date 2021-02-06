@@ -542,7 +542,7 @@ async def findOldTimers(msg, client, guildId):
                             timeout = time * units[unit]
                             difference = int(newMessage.created_at.timestamp()) - int(datetime.now().timestamp())
                             if difference < timeout:
-                                await client.get_channel(botChannel).send(f"!activateOldTimer|{message.id}|{message.channel.id}|{timeout - difference}|{prompt}|{options}|{newMessage.id}|{newMessage.channel.id}|{newMessage.guild.id}")
+                                await client.get_channel(botChannel).send(f"!activateOldTimer|{message.id}|{message.channel.id}|{timeout - difference}|{prompt}|{options}|{newMessage.id}|{newMessage.channel.id}")
                         except Exception as e:
                             print("no this one is the error")
                             print(e)

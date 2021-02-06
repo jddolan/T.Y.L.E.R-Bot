@@ -61,7 +61,9 @@ async def on_message(message):
     
     if message.author == client.user:
         if message.content.startswith("!activateOldTimer"):
-            throwaway,message,channel,timeout,prompt,options,newMessage,newChannel = message.content.split('|')
+            content = message.content.split('|')
+            print(f"content: {content}")
+            throwaway,message,channel,timeout,prompt,options,newMessage,newChannel = content
             channel = client.get_channel(channel)
             newChannel = client.get_channel(newChannel)
             message = await channel.fetch_message(message)
