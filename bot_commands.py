@@ -513,7 +513,11 @@ async def findOldTimers(msg, client, guildId):
                             if newMessage == None:
                                 raise Exception
                             timeout = int(time * units[unit])
-                            difference = int(newMessage.created_at.timestamp()) - int(datetime.now().timestamp())
+                            difference = int(datetime.now().timestamp()) - int(newMessage.created_at.timestamp())
+                            print(f"message timestamp: {int(newMessage.created_at.timestamp())}")
+                            print(f"current timestamp: {int(datetime.now().timestamp())}")
+                            print(f"difference: {difference}")
+                            print(f"timeout: {timeout}")
                             if difference < timeout:
                                 await client.get_channel(botChannel).send(f"!activateOldTimer|{message.id}|{message.channel.id}|{timeout - difference}|{prompt}|[]|{newMessage.id}|{newMessage.channel.id}")
                             else:
@@ -540,12 +544,12 @@ async def findOldTimers(msg, client, guildId):
                             if newMessage == None:
                                 raise Exception
                             timeout = time * units[unit]
-                            difference = int(newMessage.created_at.timestamp()) - int(datetime.now().timestamp())
+                            difference = int(datetime.now().timestamp()) - int(newMessage.created_at.timestamp())
+                            print(f"message timestamp: {int(newMessage.created_at.timestamp())}")
+                            print(f"current timestamp: {int(datetime.now().timestamp())}")
+                            print(f"difference: {difference}")
+                            print(f"timeout: {timeout}")
                             if difference < timeout:
-                                print(f"message timestamp: {int(newMessage.created_at.timestamp())}")
-                                print(f"current timestamp: {int(datetime.now().timestamp())}")
-                                print(f"difference: {difference}")
-                                print(f"timeout: {timeout}")
                                 await client.get_channel(botChannel).send(f"!activateOldTimer|{message.id}|{message.channel.id}|{timeout - difference}|{prompt}|{options}|{newMessage.id}|{newMessage.channel.id}")
                             else:
                                 raise Exception
