@@ -70,6 +70,8 @@ async def on_message(message):
             message = await channel.fetch_message(int(message))
             newMessage = await newChannel.fetch_message(int(newMessage))
             options = options.strip('][').split(', ')
+            for option in options:
+                option.strip("'")
             await activateOldTimer(message, client, timeout, prompt, options, newMessage)
         return
     try:
