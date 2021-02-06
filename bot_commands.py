@@ -570,7 +570,6 @@ async def findOldPrompt(message, client, time, unit, prompt, options = []):
     print(f"message: {iterator.content}")
     print(f"message id: {iterator.id}")
     while(True):
-        print(f"in the while loop")
         async for prompt in message.channel.history(limit=9999999999,before=iterator):
             print("in the for loop")
             iterator = prompt
@@ -586,7 +585,11 @@ async def findOldPrompt(message, client, time, unit, prompt, options = []):
                     print("no prompt found")
                     return None
             except:
-                continue
+                if int(prompt.created_at.timestamp()) < 1580774400: # The day I implemented reminders/polls, nothing will be found beyond this time
+                    print("no prompt found")
+                    return None
+                else:
+                    continue
         if oldIterator == iterator:
             print("done scanning")
             break
