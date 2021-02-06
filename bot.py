@@ -76,6 +76,7 @@ async def on_message(message):
         elif message.content == "findOldTimers":
             for guildId in guildIds:
                 await findOldTimers(message, client, guildId)
+            await msg.channel.send("all timers are set up again")
     except Exception as e:
         print("error found! trying to log error...")
         print(e)

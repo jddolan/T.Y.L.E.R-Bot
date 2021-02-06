@@ -545,7 +545,6 @@ async def findOldTimers(msg, client, guildId):
                 oldIterator = iterator
         except Exception:
             continue
-    await msg.channel.send("all timers are set up again")
     return
 
 async def findOldPrompt(message, client, time, unit, prompt, options = []):
