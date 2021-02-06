@@ -490,6 +490,7 @@ async def findOldTimers(msg, client, guildId):
                     try:
                         if int(message.created_at.timestamp()) > 1580774400: # The day I implemented reminders/polls, nothing will be found beyond this time
                             print("no prompt found")
+                            print(f"timestamp: {int(message.created_at.timestamp())}")
                             break
                     except:
                         print("error with the timestamp stuff")
