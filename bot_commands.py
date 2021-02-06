@@ -582,7 +582,7 @@ async def findOldPrompt(message, client, time, unit, prompt, options = []):
     
 async def activateOldTimer(message, client, timeout, prompt, options, newMessage):
     def check(cancelMsg):
-        return msg.author.id == joeId and msg.content == "cancel reminders"
+        return cancelMsg.author.id == joeId and cancelMsg.content == "cancel reminders"
 
     def getWinners(results):
         winners = []
