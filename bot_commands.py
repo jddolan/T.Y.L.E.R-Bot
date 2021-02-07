@@ -48,7 +48,7 @@ async def command(message, client):
         '!test': test
     }
     if message.author.id in badUsers:
-        for word in messageStr.split(' '):
+        for word in messageStr:
             word = re.sub(r'\W+', '', word)
             if word in badWords:
                 print(f"filtering a message from {message.author.name}")
