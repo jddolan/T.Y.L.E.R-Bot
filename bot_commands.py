@@ -53,8 +53,9 @@ async def command(message, client):
             word = re.sub(r'\W+', '', word)
             if word in badWords:
                 print(f"filtering a message from {message.author.name}")
-                await message.channel.send("""Your message triggered the language filter and was not processed as a result.
+                await message.author.send("""Your message triggered the language filter and was not processed as a result.
 If you don't know which word got caught in the filter, ping Joe (Wiz Biz) and he can look into it.""")
+                await message.delete()
                 return 
     commandStr = messageStr[0]
     command = commands.get(commandStr, invalidCommand)

@@ -10,7 +10,6 @@ badWords = [
     'alla',
     'allah',
     'alligatorbait',
-    'amateur',
     'american',
     'anal',
     'analannie',
