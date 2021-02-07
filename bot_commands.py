@@ -15,13 +15,12 @@ botChannel: int = int(os.environ.get('BOTCHANNEL'))
 
 # People Who I think would make the bot say something I wouldn't feel comfortable with it saying
 badUsers: list = [
-    '138775042585526272', # Corey
-    '138329017504890881', # Matthew
-    '138712901404983296', # Harrison
-    '130402289755095041', # Tyler
-    '259193538384887809', # Micah
-    '138358974071308289', # Scott
-    joeId
+    138775042585526272, # Corey
+    138329017504890881, # Matthew
+    138712901404983296, # Harrison
+    130402289755095041, # Tyler
+    259193538384887809, # Micah
+    138358974071308289 # Scott
 ]
 
 async def command(message, client):
