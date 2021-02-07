@@ -26,7 +26,7 @@ badUsers: list = [
 
 async def command(message, client):
     messageStr = message.content.split(' ')
-    
+
     commands = {
         '!8ball': eightball,
         '!addquote': addQuote,
@@ -49,6 +49,7 @@ async def command(message, client):
         '!test': test
     }
     if message.author.id in badUsers:
+        print("testing the filter")
         for word in messageStr:
             word = re.sub(r'\W+', '', word)
             if word in badWords:
