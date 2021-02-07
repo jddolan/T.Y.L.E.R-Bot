@@ -48,8 +48,10 @@ async def command(message, client):
         '!test': test
     }
     if message.author.id in badUsers:
-        for word in messageStr:
+        for word in messageStr.split(' '):
+            word = re.sub(r'\W+', '', word)
             if word in badWords:
+                print(f"filtering a message from {message.author.name}")
                 await message.channel.send("Your message was caught by the language filter, please refrain from using shitty language. Ping me if you don't know which word got caught in the filter and I'll look into it")
                 return 
     commandStr = messageStr[0]
@@ -507,10 +509,6 @@ async def findOldTimers(msg, client, guildId):
                                 raise Exception
                             timeout = int(time * units[unit])
                             difference = int(datetime.now().timestamp()) - int(newMessage.created_at.timestamp())
-                            print(f"message timestamp: {int(newMessage.created_at.timestamp())}")
-                            print(f"current timestamp: {int(datetime.now().timestamp())}")
-                            print(f"difference: {difference}")
-                            print(f"timeout: {timeout}")
                             if difference < timeout:
                                 await client.get_channel(botChannel).send(f"!activateOldTimer|{message.id}|{message.channel.id}|{timeout - difference}|{prompt}|[]|{newMessage.id}|{newMessage.channel.id}")
                             else:
@@ -538,10 +536,6 @@ async def findOldTimers(msg, client, guildId):
                                 raise Exception
                             timeout = time * units[unit]
                             difference = int(datetime.now().timestamp()) - int(newMessage.created_at.timestamp())
-                            print(f"message timestamp: {int(newMessage.created_at.timestamp())}")
-                            print(f"current timestamp: {int(datetime.now().timestamp())}")
-                            print(f"difference: {difference}")
-                            print(f"timeout: {timeout}")
                             if difference < timeout:
                                 await client.get_channel(botChannel).send(f"!activateOldTimer|{message.id}|{message.channel.id}|{timeout - difference}|{prompt}|{options}|{newMessage.id}|{newMessage.channel.id}")
                             else:
