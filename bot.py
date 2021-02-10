@@ -57,9 +57,18 @@ class Tyler():
 tyler: dict = {}
 
 @client.event
+async def on_ready():
+    botChannel = client.get_channel(int(os.environ.get('BOTCHANNEL')))
+    botChannel.message.send('findOldTimers')
+
+@client.event
 async def on_message(message):
     
     if message.author == client.user:
+        if message.content.startswith("findOldTimers"):
+            for guildId in guildIds:
+                await findOldTimers(message, client, guildId)
+            await message.channel.send(f"all timers are set up again <@{joeId}>")
         if message.content.startswith("!activateOldTimer"):
             content = message.content.split('|')
             print(f"content: {content}")
@@ -77,16 +86,10 @@ async def on_message(message):
     try:
         if message.content[0] == '!':
             await command(message, client)
-        elif message.content == "findOldTimers":
-            for guildId in guildIds:
-                await findOldTimers(message, client, guildId)
-            await message.channel.send("all timers are set up again")
     except Exception as e:
         print("error found! trying to log error...")
         print(e)
         print(f"message: {message.content}")
-    except:
-        print("this means the exception block isn't all encompassing, an error occured but unable to produce logs")
     if message.author.id == tylerId:
         if tyler.get(message.channel.name, None) == None:
             # New channel found, create new dict entry
@@ -94,11 +97,11 @@ async def on_message(message):
             tyler[message.channel.name].channel = message.channel
         await tylerMessage(message)
     else:
-        print("message not from tyler found, abort mission")
+        print("message not from tyler found, resetting variables")
         if tyler.get(message.channel.name, None) != None:
             tyler[message.channel.name].reset()
         if message.content == 'pee' or message.content == 'poo':
-            await message.channel.send("Stop saying pee and poo it's not as funny as you think it is.")
+            await message.channel.send("Stop saying pee and poo it's just not funny.")
 
 def botResponse(messages, message):
 
