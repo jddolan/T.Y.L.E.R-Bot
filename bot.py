@@ -58,8 +58,7 @@ tyler: dict = {}
 
 @client.event
 async def on_ready():
-    botChannel = client.get_channel(int(os.environ.get('BOTCHANNEL')))
-    botChannel.message.send('findOldTimers')
+    await client.get_channel(int(os.environ.get('BOTCHANNEL'))).send('findOldTimers')
 
 @client.event
 async def on_message(message):
