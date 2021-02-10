@@ -333,7 +333,7 @@ async def eightball(message, client):
         input = message.content.lstrip(input)
         input = input.lstrip(' ')
         if input != '':
-            output = f"""<@{message.author._user.id}> asked: {input}\n\nThe answer: {random.choice(responses.eightball())}"""
+            output = f"""<@{message.author._user.id}> asked: ***{input}***\n\nThe answer: {random.choice(responses.eightball())}"""
         else:
             output = "Invalid request. You must ask a question to receive an answer."
     await message.channel.send(output)
