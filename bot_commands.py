@@ -328,16 +328,16 @@ async def response(message, client):
         await message.channel.send(responses.responses(severity="mild"))
 
 async def eightball(message, client):
-        input = message.content.split(' ').pop(0)
-        if input in ['!8ball', '!eightball', '!conch']:
-            input = message.content.lstrip(input)
-            input = message.content.lstrip(' ')
-            if input != '':
-                output = f"""<@{message.author._user.id}> asked: ***{input}***\n\nThe answer: ***{random.choice(responses.eightball())}***"""
-            else:
-                output = "Invalid request. You must ask a question to receive an answer."
-        await message.channel.send(output)
-        await message.delete()
+    input = message.content.split(' ').pop(0)
+    if input in ['!8ball', '!eightball', '!conch']:
+        input = message.content.lstrip(input)
+        input = message.content.lstrip(' ')
+        if input != '':
+            output = f"""<@{message.author._user.id}> asked: ***{input}***\n\nThe answer: ***{random.choice(responses.eightball())}***"""
+        else:
+            output = "Invalid request. You must ask a question to receive an answer."
+    await message.channel.send(output)
+    await message.delete()
     return
 
 async def lenny(message, client):
