@@ -20,8 +20,7 @@ badUsers: list = [
     138712901404983296, # Harrison
     130402289755095041, # Tyler
     259193538384887809, # Micah
-    138358974071308289, # Scott
-    joeId
+    138358974071308289 # Scott
 ]
 
 async def command(message, client):
