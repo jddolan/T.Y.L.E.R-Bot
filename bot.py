@@ -23,7 +23,7 @@ guildIds = []
 guildIds.append(int(os.environ.get('THEBOYS')))
 guildIds.append(int(os.environ.get('FLATEARFRULES')))
 
-joeId: int = int(os.environ.get('JOEID'))
+adminId: int = int(os.environ.get('JOEID'))
 botId: int = int(os.environ.get('BOTID'))
 tylerId: int = int(os.environ.get('TYLERID'))
 
@@ -67,7 +67,7 @@ async def on_message(message):
         if message.content.startswith("findOldTimers"):
             for guildId in guildIds:
                 await findOldTimers(message, client, guildId)
-            await message.channel.send(f"all timers are set up again <@{joeId}>")
+            await message.channel.send(f"all timers are set up again <@{adminId}>")
         if message.content.startswith("!activateOldTimer"):
             content = message.content.split('|')
             print(f"content: {content}")

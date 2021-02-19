@@ -1,7 +1,7 @@
 import random
 import os
 
-joeId: int = int(os.environ.get('JOEID'))
+adminId: int = int(os.environ.get('JOEID'))
 
 def validCommands():
     return {
@@ -274,7 +274,7 @@ def eightball():
         "It is certain.",
         "It is decidedly so.",
         "Without a doubt.",
-        "Yes – definitely.",
+        "Yes – absolutely.",
         "You may rely on it.",
         "As I see it, yes.",
         "Most likely.",
@@ -293,12 +293,21 @@ def eightball():
         "I'm not completely sure but probably.",
         "Definitely.",
         "I think so.",
-        "You shouldn't have even needed to consult me, the answer is obviously yes.",
+        "You shouldn't have even consulted me, the answer is obviously yes.",
         "Of course.",
+        "I'm afraid so.",
         "It surely must be so.",
-        f"I'll leave that up to <@{joeId}>",
+        f"I'll leave that up to <@{adminId}>",
+        "I have no clue, sorry.",
         "Fuck if I know.",
         "Concentrate and ask again.",
+        f"Answer not definitive, but I'm leaning towards {if random.random() < 0.5 'yes' else 'no'}",
+        f"Let's flip a coin! Heads is yes, tails is no. Result: ***{if random.random() < 0.5 'Heads' else 'Tails'}***!",
+        "That could go either way, there are too many variables to say for sure.",
+        f"I'm not able to definitively answer that question, but if getting an answer will make you feel better, then {if random.random() < 0.5 'yes' else 'no'}.",
+        "Idk.",
+        r'¯\\_ツ_/¯',
+        "If only that were the case.",
         "Don't count on it.",
         "My reply is no.",
         "My sources say no.",
@@ -306,6 +315,10 @@ def eightball():
         "Very doubtful.",
         "Fuck no.",
         "No.",
+        "Nah.",
+        "Nope.",
+        "Unfortunately no.",
+        "Never.",
         "There's no way that that isn't not what the case is.",
         "No shot.",
         "Probably not.",

@@ -9,7 +9,7 @@ from time import sleep
 from datetime import datetime, timedelta, time
 from bad_words import badWords
 
-joeId: int = int(os.environ.get('JOEID'))
+adminId: int = int(os.environ.get('JOEID'))
 botId: int = int(os.environ.get('BOTID'))
 botChannel: int = int(os.environ.get('BOTCHANNEL'))
 
@@ -167,7 +167,7 @@ Adding the quote requires permission from the quote's source. <@{userId}>, pleas
 "{quote}" - <@{userId}>
 
 Permission to add this quote was approved!""")
-        await client.get_user(joeId).send(f"quote submission from {message.author._user.name}: {quote} - <@{userId}>")
+        await client.get_user(adminId).send(f"quote submission from {message.author._user.name}: {quote} - <@{userId}>")
     elif reaction.emoji.name == 'nay':
         await newMessage.edit(content=f"""<@{message.author._user.id}> submitted the following quote: 
 
@@ -422,7 +422,7 @@ async def timer(message, client, time, unit, prompt, options = [], ):
     print(f"timeout: {timeout}")
 
     def check(cancelMsg):
-        return cancelMsg.author.id == joeId and cancelMsg.content == "cancel reminders"
+        return cancelMsg.author.id == adminId and cancelMsg.content == "cancel reminders"
     
     def organize(results):
         for i in range(0, len(results) - 1):
@@ -601,7 +601,7 @@ async def findOldPrompt(message, client, time, unit, prompt, options = []):
     
 async def activateOldTimer(message, client, timeout, prompt, options, newMessage):
     def check(cancelMsg):
-        return cancelMsg.author.id == joeId and cancelMsg.content == "cancel reminders"
+        return cancelMsg.author.id == adminId and cancelMsg.content == "cancel reminders"
 
     def getWinners(results):
         winners = []
