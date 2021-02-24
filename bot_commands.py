@@ -346,7 +346,7 @@ async def lenny(message, client):
     if random.choice([1,2]) == 1:
         await message.channel.send(lennyface())
     else:
-        await message.channel.send(kao.create())
+        await message.channel.send(repr(kao.create()))
     return
 
 async def joke(message, client):
@@ -355,7 +355,8 @@ async def joke(message, client):
 
 async def test(message, client):
     string = kao.create()
-    await message.channel.send(string)
+    string = '¯\_( ´ ▽` )ノ'
+    await message.channel.send(repr(string))
     return
 
 async def crush(message, client):
