@@ -8,6 +8,7 @@ from lenny import lenny as lennyface
 from time import sleep
 from datetime import datetime, timedelta, time
 from bad_words import badWords
+from kaomoji.kaomoji import Kaomoji
 
 adminId: int = int(os.environ.get('JOEID'))
 botId: int = int(os.environ.get('BOTID'))
@@ -22,6 +23,8 @@ badUsers: list = [
     259193538384887809, # Micah
     138358974071308289 # Scott
 ]
+
+kao = Kaomoji()
 
 async def command(message, client):
     messageStr = message.content.split(' ')
@@ -340,7 +343,10 @@ async def eightball(message, client):
     return
 
 async def lenny(message, client):
-    await message.channel.send(lennyface())
+    if random.choice([1,2]) == 1:
+        await message.channel.send(lennyface())
+    else:
+        await message.channel.send(repr(kao.create()))
     return
 
 async def joke(message, client):
@@ -348,8 +354,9 @@ async def joke(message, client):
     return
 
 async def test(message, client):
-    string = ('¯\\\\_', '_/¯')
-    await message.channel.send(string[0] +  string[1])
+    string = kao.create()
+    string = '¯\_( ´ ▽` )ノ'
+    await message.channel.send(repr(string))
     return
 
 async def crush(message, client):
