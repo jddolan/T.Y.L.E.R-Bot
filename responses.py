@@ -216,7 +216,8 @@ def responses(severity: str = "mild", name: str = None, messages = None, lastRes
                 f"stfu {name}",
                 f"stfu Richard",
                 f"Shouldn't you be {random.choice(activities)} or something, {name}?",
-                f"{name}, try to be more positive. You are a good player, just dont insult other for nothing and you'll have better game"
+                f"{name}, try to be more positive. You are a good player, just dont insult other for nothing and you'll have better game",
+                f"He's just trying his best, {name}"
             ]
             responses['mild'] = responses['mild'] + tylerResponses
         
@@ -236,7 +237,7 @@ def responses(severity: str = "mild", name: str = None, messages = None, lastRes
         responses['moderate'] = responses['moderate'] + [
             f"Seriously, {name}, you need to stop",
             f"stfu {name}",
-            f"Nobody cares, {name}",
+            f"Nobody cares, {name}"
         ]
 
         responses['severe'] = responses['severe'] + [
