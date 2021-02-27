@@ -98,7 +98,7 @@ quote me on that
     "CLG doesn't lose a series this season during the playoffs - Tyler",
     "It's gonna depend on the draft - Tyler",
     "It sucks - Tyler",
-    "nice play fucking idiot"
+    "nice play fucking idiot - Tyler"
 ]
 
 def joe():
@@ -109,7 +109,8 @@ def joe():
     "If pp isnt back by the end of 2017 im gonna just work my ass off and replace him as the falco god - Joe",
     "Trist adc - Joe",
     "I put ketchup on my steaks - Joe (To be clear I don't do that anymore)",
-    "Why the fuck would you shorten peanut butter to pj - Joe after Ximing suggested shortening peanut butter to pj"
+    "Why the fuck would you shorten peanut butter to pj - Joe after Ximing suggested shortening peanut butter to pj",
+    "It's not gay to like cum, It's gay to like men. I don't like the men, I just like their cum. - Joe"
 ]
 
 def ximing():
