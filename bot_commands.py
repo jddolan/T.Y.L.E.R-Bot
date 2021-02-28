@@ -120,16 +120,27 @@ async def quote(message, client):
     }
     try:
         names = message.content.split('!quote ')[1].lower().split(' ')
-        print(f"names: {names}")
+        
+            print(f"names: {names}")
         try:
             quotes = []
-            for name in names:
-                func = funcNames.get(name, None)
+            if names[1].isdigit() == True:
+                index = int(names[1])
+                func = funcNames.get(names[0], None)
                 if func == None:
                     raise func
-                quotes = func() + quotes
+                quotes = func()
+                quote = quotes[index - 1]
                 print(f"quotes: {quotes}")
-            quote = random.choice(quotes)
+            else:
+                
+                for name in names:
+                    func = funcNames.get(name, None)
+                    if func == None:
+                        raise func
+                    quotes = func() + quotes
+                    print(f"quotes: {quotes}")
+                quote = random.choice(quotes)
         except:
             quote = "An invalid name was submitted. Valid options are tyler, joe, ximing, matt, matthew, micah, landon, and mango. Please try again with one of those names, or type just !quote to get a quote from a random person."
     except:
