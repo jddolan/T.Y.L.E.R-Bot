@@ -121,7 +121,7 @@ async def quote(message, client):
     try:
         names = message.content.split('!quote ')[1].lower().split(' ')
         
-            print(f"names: {names}")
+        print(f"names: {names}")
         try:
             quotes = []
             if names[1].isdigit() == True:
