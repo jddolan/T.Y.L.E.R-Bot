@@ -124,7 +124,7 @@ async def quote(message, client):
         print(f"names: {names}")
         try:
             quotes = []
-            if names[1].isdigit() == True:
+            if len(names) > 1 and names[1].isdigit() == True:
                 index = int(names[1])
                 func = funcNames.get(names[0], None)
                 if func == None:
@@ -133,7 +133,6 @@ async def quote(message, client):
                 quote = quotes[index - 1]
                 print(f"quotes: {quotes}")
             else:
-                
                 for name in names:
                     func = funcNames.get(name, None)
                     if func == None:
@@ -142,7 +141,7 @@ async def quote(message, client):
                     print(f"quotes: {quotes}")
                 quote = random.choice(quotes)
         except:
-            quote = "An invalid name was submitted. Valid options are tyler, joe, ximing, matt, matthew, micah, landon, and mango. Please try again with one of those names, or type just !quote to get a quote from a random person."
+            quote = "The name you entered was not found, or the format of your request was invalid. Examples of valid commands: !quote, !quote joe, !quote joe tyler, !quote joe 1"
     except:
         quote = random.choice(responses.quotes)
 

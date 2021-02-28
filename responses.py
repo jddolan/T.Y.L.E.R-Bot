@@ -19,7 +19,7 @@ def validCommands():
     discord server""",
         '!poll': """**!poll** <amount> <unit> "<prompt>" <answers> creates a poll that will end after the specified amount of time
         Example: !poll 1 day "Should we kick Mattbarry from the server?" Hell yeah, Yes, Definitely, Yep, For sure""",
-        '!quote': """**!quote** <name: Optional> provides a quote, if a name is not provided the
+        '!quote': """**!quote** [<name: Optional> <number: Optional>] provides a quote, if a name is not provided the
     quote will be randomly selected from all stored quotes""",
         '!reminder': """**!reminder** <amount> <unit> "<reminder>" sets a reminder that the bot will notify you about after the specified amount of time
         Example: !reminder 1 day "remind me to replace Tyler" """,
