@@ -130,7 +130,10 @@ async def quote(message, client):
                 if func == None:
                     raise func
                 quotes = func()
-                quote = quotes[index - 1]
+                try:
+                    quote = quotes[index - 1]
+                except:
+                    quote = f"Index out of bounds. {name} only has {len(quotes)} quote{'' if len(quotes) < 1 else 's'}"
                 print(f"quotes: {quotes}")
             else:
                 for name in names:
