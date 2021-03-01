@@ -536,6 +536,7 @@ Too many ears."""
     ]
 
 def crush():
+    # https://www.youtube.com/watch?v=G708_N5yQT8
     return [
         """we have a 15 year old wobbler that gets 5th place at our locals while smoking cigs outside the venue between every round and he can undoubtedly beat any of the grown ass men on vgbootcamp trying to tell you melee is a game of self expression""",
         """i’m the only decent player that doesn’t get asked by the hotel check-in person if i’m “here for the local video game expo""",
@@ -575,5 +576,24 @@ it devolves to marths/peaches/shieks corner/float/ledgestalling while foxes and 
         """i wish i wasn't a top player so i could spell competitive completely wrong in my bio and none of my 59 followers would call me out""",
         """tfw you have the most woke neutral game of all time but still lose to robots wearing bootcut jeans that have been spamming fadeback aerials and shieldgrab for the past decade""",
         """I deleted my Twitter. Finding my opinions became too easy.""",
-        """https://www.youtube.com/watch?v=G708_N5yQT8"""
+        """someone get me a fake id that says i'm > 25. i won't try to run for president i promise""",
+        """i swear i have the necessary clout to rent a car. the feds would never know""",
+        """if u put a non negligible amount of money on my compendium goal i promise to pretend to be interested when u tell me how u went 3-2 in pools""",
+        """all my acts of kindness to others can be attributed to me seeing myself in everyone""",
+        """it's honestly pretty crazy how much people's personalities (or lack thereof usually) are reflected in the way they play melee""",
+        """i wish people would put in as much effort into their compliments as i do in giving people reasons to compliment me""",
+        """who crosses out other people's signatures before signing their own? basically me and kanye west""",
+        """most cost-effective way to fill an entire wall with mirrors? asking for a friend""",
+        """don't really talk much cause i have trouble speaking in anything other than poetry""",
+        """i'm like king midas except everything i touch turns to xanax""",
+        """people still pretending that having low testosterone isn't an advantage in melee when the average height of the MIOM top 40 is 5'7""" + '"',
+        """lost a stock 4 times and made eye contact 3 times. made it out of my pool winners side""",
+        """to win in melee u must be very critical of who u are while somehow still having a completely delusional and exaggerated sense of self worth""",
+        """being a public figure is all about the balance of maintaining your mystique and bragging about drug use""",
+        """dropped from genesis red
+not plaing in tourneys ran by ppl who rig brackets/compromise the integrity of competition to get stream viewers""",
+        """beat nicholas m titty to make it out of pools. if the TOs have any sort of morals they'll reseed but if not peace out norcal""",
+        """@ seeders: there are so many imperfect things in this world for you to fuck up with your terrible standards. why's it gotta be melee?""",
+        """when I drink fiji water it's supposed to be self parody but nobody gets it so I just end up looking like more of an asshole""",
+        """vanilla ice cream is the sluttiest flavor and nothing else comes close. it's the most honest too"""
     ]
