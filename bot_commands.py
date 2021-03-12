@@ -133,7 +133,7 @@ async def quote(message, client):
                 try:
                     quote = quotes[index - 1]
                 except:
-                    quote = f"Index out of bounds. {name} only has {len(quotes)} quote{'' if len(quotes) < 1 else 's'}"
+                    quote = f"Index out of bounds. {name} only has {len(quotes)} quote{'' if len(quotes) <= 1 else 's'}"
                 print(f"quotes: {quotes}")
             else:
                 for name in names:
@@ -321,7 +321,18 @@ async def coinflip(message, client):
         await message.channel.send(f"<@{message.author.id}> the result was {result}.")
 
 async def link(message, client):
-    await message.channel.send(random.choice(responses.links()))
+    link = message.content.split('!link ')
+    links = responses.links()
+        
+    if len(link) > 1 and link[1].isdigit() == True:
+        try:
+            index = int(link[1])
+            link = links[index - 1]
+        except:
+            link = f"Index out of bounds. There {'is' if len(links) <= 1 else 'are'} only {len(links)} link{'' if len(links) <= 1 else 's'}"
+    else:
+        link = random.choice(links)
+    await message.channel.send(link)
     return
 
 async def response(message, client):
