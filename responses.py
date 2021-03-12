@@ -175,7 +175,9 @@ Don't make me get the *BRAP*""",
         """https://www.youtube.com/watch?v=kMlLz7stjwc
 She looked in my chest n she looked at a hundred diamonds""",
         """https://www.youtube.com/watch?v=d18s1VpnOHQ
-I love building bricks with minecrap"""
+I love building bricks with minecrap""",
+        """https://www.youtube.com/watch?v=Z0Uh3OJCx3o
+We can be pro Fornite gamers!"""
     ]
 
 def responses(severity: str = "mild", name: str = None, messages = None, lastResponse: str = None):     
