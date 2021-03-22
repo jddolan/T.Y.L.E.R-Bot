@@ -88,9 +88,7 @@ async def help(message, client):
             raise
     except:
         print("invalid command, presenting list of all valid commands")
-        output = output + "Valid Commands: \n\n"
-        for key in help.keys():
-            output = output + f"{help[key]}\n"
+        output = "Valid Commands: \n\n" + ', '.join(help.keys()) + '\n\nUse !help <command> to get more information about a specific command.'
     print("sending output...")
     await message.channel.send(output)
     print("output sent")
