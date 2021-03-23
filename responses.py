@@ -129,7 +129,8 @@ Yeah you should probably unplug yourself - Ximing 1 min later""",
 
 def matt():
     return [
-        "sasuke is cool - Matt"
+        "sasuke is cool - Matt",
+        "I make bombs - Matt"
     ]
 
 def matthew():
