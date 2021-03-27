@@ -217,11 +217,9 @@ def responses(severity: str = "mild", name: str = None, messages = None, lastRes
     if name != None:
         if name.lower() == 'tyler':
             tylerResponses = [
-                f"stfu {name}",
-                f"stfu Richard",
                 f"Shouldn't you be {random.choice(activities)} or something, {name}?",
                 f"{name}, try to be more positive. You are a good player, just dont insult other for nothing and you'll have better game",
-                f"He's just trying his best, {name}"
+                f"You're never going to get the fizz icon {name}"
             ]
             responses['mild'] = responses['mild'] + tylerResponses
         
@@ -235,7 +233,8 @@ def responses(severity: str = "mild", name: str = None, messages = None, lastRes
             f"I appreciate you taking the time to write that, {name}.",
             f"That's a cool story {name}, you should tell it at parties",
             f"That's not very Pog of you, {name}",
-            f"Looks like you got DonoWalled, {name}"
+            f"Looks like you got DonoWalled, {name}",
+            f"He's just trying his best"
         ]
 
         responses['moderate'] = responses['moderate'] + [
