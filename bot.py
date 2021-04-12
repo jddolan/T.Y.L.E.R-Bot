@@ -65,22 +65,36 @@ async def on_message(message):
     
     if message.author == client.user:
         if message.content.startswith("findOldTimers"):
-            for guildId in guildIds:
-                await findOldTimers(message, client, guildId)
-            await message.channel.send(f"all timers are set up again <@{adminId}>")
-        if message.content.startswith("!activateOldTimer"):
-            content = message.content.split('|')
-            print(f"content: {content}")
-            throwaway,message,channel,timeout,prompt,options,newMessage,newChannel = content
-            channel = client.get_channel(int(channel))
-            timeout = int(timeout)
-            newChannel = client.get_channel(int(newChannel))
-            message = await channel.fetch_message(int(message))
-            newMessage = await newChannel.fetch_message(int(newMessage))
-            options = options.strip('][').split(', ')
-            for option in options:
-                option.strip("'")
-            await activateOldTimer(message, client, timeout, prompt, options, newMessage)
+            try:
+                for guildId in guildIds:
+                    await findOldTimers(message, client, guildId)
+                print("all timers are set up again")
+                await message.delete()
+            except Exception as e:
+                print("an error occured while finding old timers, logging error...")
+                print(e)
+                message.channel.send("Error occured in findOldTimers <@{adminId}>")
+                await message.delete()
+        elif message.content.startswith("!activateOldTimer"):
+            try:
+                content = message.content.split('|')
+                print(f"content: {content}")
+                throwaway,message,channel,timeout,prompt,options,newMessage,newChannel = content
+                channel = client.get_channel(int(channel))
+                timeout = int(timeout)
+                newChannel = client.get_channel(int(newChannel))
+                message = await channel.fetch_message(int(message))
+                newMessage = await newChannel.fetch_message(int(newMessage))
+                options = options.strip('][').split(', ')
+                for option in options:
+                    option.strip("'")
+                await activateOldTimer(message, client, timeout, prompt, options, newMessage)
+                await message.delete()
+            except Exception as e:
+                print("an error occured while activating old timers, logging error...")
+                print(e)
+                message.channel.send("Error occured in activateOldTimers <@{adminId}>")
+                await message.delete()
         return
     try:
         if message.content[0] == '!':
