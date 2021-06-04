@@ -222,7 +222,7 @@ def responses(severity: str = "mild", name: str = None, messages = None, lastRes
             tylerResponses = [
                 f"Shouldn't you be {random.choice(activities)} or something, {name}?",
                 f"{name}, try to be more positive. You are a good player, just dont insult other for nothing and you'll have better game",
-                f"You're never going to get the fizz icon {name}"
+                f"Good job getting the Fizz icon {name}"
             ]
             responses['mild'] = responses['mild'] + tylerResponses
         
