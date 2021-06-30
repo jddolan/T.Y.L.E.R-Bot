@@ -97,7 +97,7 @@ async def on_message(message):
                 await message.delete()
         return
     try:
-        if message.content in responses.replies.keys():
+        if message.content.lower() in responses.replies.keys():
             await message.channel.send(responses.replies[message.content])
         elif message.content[0] == '!':
             await command(message, client)
