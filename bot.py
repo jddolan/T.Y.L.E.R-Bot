@@ -97,7 +97,9 @@ async def on_message(message):
                 await message.delete()
         return
     try:
-        if message.content[0] == '!':
+        if message.content in responses.replies.keys():
+            await message.channel.send(responses.replies[message.content])
+        elif message.content[0] == '!':
             await command(message, client)
     except Exception as e:
         print("error found! trying to log error...")
@@ -114,7 +116,7 @@ async def on_message(message):
         if tyler.get(message.channel.name, None) != None:
             tyler[message.channel.name].reset()
         if message.content == 'pee' or message.content == 'poo':
-            await message.channel.send("Stop saying pee and poo it's just not funny.")
+            await message.channel.send("Saying pee and poo is not funny.")
 
 def botResponse(messages, message):
 

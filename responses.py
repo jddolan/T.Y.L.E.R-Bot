@@ -34,6 +34,15 @@ def validCommands():
     related to something in development"""
     }
 
+replies = {
+        "yo": "yo",
+        "^": "^",
+        ".": ".",
+        "true": "true",
+        "xd": "hehe ecks dee",
+        "uwu": "nmn"
+}
+
 activities = [
     "playing runescape",
     "playing WoW",
