@@ -40,7 +40,8 @@ replies = {
         ".": ".",
         "true": "true",
         "xd": "hehe ecks dee",
-        "uwu": "nmn"
+        "uwu": "nmn",
+        "me": "me"
 }
 
 activities = [
