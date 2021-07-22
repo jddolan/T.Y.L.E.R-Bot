@@ -48,7 +48,6 @@ replies = {
 
 activities = [
     "playing runescape",
-    "playing WoW",
     "watching porn",
     "talking about Isreal",
     "playing league",
@@ -234,14 +233,13 @@ def responses(severity: str = "mild", name: str = None, messages = None, lastRes
             tylerResponses = [
                 f"Shouldn't you be {random.choice(activities)} or something, {name}?",
                 f"{name}, try to be more positive. You are a good player, just dont insult other for nothing and you'll have better game",
-                f"Good job getting the Fizz icon {name}"
+                f"Good job getting the Fizz icon {name}",
+                f"Fuck Blizzard, {name}"
             ]
             responses['mild'] = responses['mild'] + tylerResponses
         
         responses['mild'] = responses['mild'] + [
             f"Very cool, {name}",
-            f"That's {'fucking ' if random.random() < 0.5 else ''}{random.choice(adjectives)}, {name}",
-            f"That's {'fucking ' if random.random() < 0.5 else ''}{random.choice(adjectives)}, {name}",
             f"That's {'fucking ' if random.random() < 0.5 else ''}{random.choice(adjectives)}, {name}",
             f"What the fuck, {name}?",
             f"Let's fucking go, {name}!",
