@@ -42,6 +42,7 @@ replies = {
         "xd": "hehe ecks dee",
         "uwu": "nmn",
         "me": "me",
+        "same": "same",
         "prepare for trouble": "and make it double",
         "prepare for trouble!": "and make it double!"
 }
