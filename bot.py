@@ -96,7 +96,8 @@ async def on_message(message):
         return
     try:
         if message.content.lower() in responses.replies.keys():
-            await message.channel.send(responses.replies[message.content.lower()])
+            replyKey: str = message.content.lower()
+            await message.channel.send(responses.replies[replyKey])
         elif message.content[0] == '!':
             await command(message, client)
     except Exception as e:
