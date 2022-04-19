@@ -11,9 +11,7 @@ import os
 import discord
 import asyncio
 import datetime
-from datetime import datetime, timedelta, time
-import random
-import re
+from datetime import datetime
 
 import responses
 from bot_commands import command, findOldTimers, activateOldTimer

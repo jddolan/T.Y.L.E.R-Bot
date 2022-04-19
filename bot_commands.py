@@ -6,7 +6,7 @@ import asyncio
 from numbers import units, numbers, numberLink, emojiLink, numberEmojis
 from lenny import lenny as lennyface
 from time import sleep
-from datetime import datetime, timedelta, time
+from datetime import datetime
 from bad_words import badWords
 from kaomoji.kaomoji import Kaomoji
 
