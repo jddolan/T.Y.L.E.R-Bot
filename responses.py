@@ -122,7 +122,8 @@ def joe():
     "Trist adc - Joe",
     "I put ketchup on my steaks - Joe (To be clear I don't do that anymore)",
     "Why the fuck would you shorten peanut butter to pj - Joe after Ximing suggested shortening peanut butter to pj",
-    "It's not gay to like cum, It's gay to like men. I don't like the men, I just like their cum. - Joe"
+    "It's not gay to like cum, It's gay to like men. I don't like the men, I just like their cum. - Joe",
+    "I don't eat insurance, I eat ketchup. - Joe"
 ]
 
 def ximing():
