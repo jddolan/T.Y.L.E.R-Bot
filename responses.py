@@ -518,7 +518,7 @@ With a bullpen.""",
 You rocket.""",
         """What did the hurricane say to the island?
 I’ve got my eye on you!""",
-        """What do you all a fancy sea creature?
+        """What do you call a fancy sea creature?
 Sofishticated.""",
         """Why did the bones cross the street?
 They didn’t, the dogs ate them.""",
