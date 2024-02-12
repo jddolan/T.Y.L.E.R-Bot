@@ -31,7 +31,8 @@ def validCommands():
     it will serve no purpose without them. Will scan a server and find
     messages that contain the passed string.""",
         '!test': """**!test** this command will generally do nothing aside from showing a message
-    related to something in development"""
+    related to something in development""",
+        '!tony': """**!tony** generates a random Tony Romo Quote""",
     }
 
 replies = {
@@ -166,8 +167,12 @@ def mango():
     return [
         "This matchup is pretty much Fox Marth, but Falco Marth Falco Fox but Fox is Marth - Mang0 on falco v fox"
     ]
+def tony():
+    return [
+        "WELL JIM 3 IS DIFFERENT THAN 4"
+    ]
 
-quotes = tyler() + joe() + ximing() + matt() + matthew() + micah() + landon() + mango()
+quotes = tyler() + joe() + ximing() + matt() + matthew() + micah() + landon() + mango() + tony()
 
 def links():
     return [
@@ -613,4 +618,8 @@ not plaing in tourneys ran by ppl who rig brackets/compromise the integrity of c
         """@ seeders: there are so many imperfect things in this world for you to fuck up with your terrible standards. why's it gotta be melee?""",
         """when I drink fiji water it's supposed to be self parody but nobody gets it so I just end up looking like more of an asshole""",
         """vanilla ice cream is the sluttiest flavor and nothing else comes close. it's the most honest too"""
+    ]
+def tony():
+    return [
+        """WELL JIM 3 IS DIFFERENT THAN 4"""
     ]
