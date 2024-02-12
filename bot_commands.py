@@ -386,6 +386,10 @@ async def crush(message, client):
     await message.channel.send(random.choice(responses.crush()))
     return
 
+async def tony(message, client):
+    await message.channel.send(random.choice(responses.tony()))
+    return
+
 async def poll(message, client):
     try:
         match = re.match('(.*) (.*) "(.*)" (.*)', message.content.split('!poll ')[1])
