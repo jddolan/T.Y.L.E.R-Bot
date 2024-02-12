@@ -621,5 +621,6 @@ not plaing in tourneys ran by ppl who rig brackets/compromise the integrity of c
     ]
 def tony():
     return [
-        """WELL JIM 3 IS DIFFERENT THAN 4"""
+        """WELL JIM 3 IS DIFFERENT THAN 4""",
+        """THIS IS TOM BRADY RIGHT THERE JIM. I KNOW IT WASN'T HARD TO TELL. BUT THAT IS HIM, HE'S RIGHT THERE, AND RIGHT NOW, HOW ABOUT THAT RIGHT THERE"""
     ]
