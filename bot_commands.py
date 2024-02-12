@@ -48,7 +48,8 @@ async def command(message, client):
         '!roll': roll,
         '!rps': rps,
         '!scan': scan,
-        '!test': test
+        '!test': test,
+        '!tony': tony
     }
     if message.author.id in badUsers:
         print("testing the filter")
