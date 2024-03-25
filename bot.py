@@ -139,6 +139,10 @@ def botResponse(messages, message):
 
 async def tylerMessage(message):
     print("it's a message from tyler")
+    if "i hate white women" in message.content:
+        await message.channel.send("Just a daily reminder that Tyler doesn't actually hate white women.")
+        return
+    
     if tyler[message.channel.name].msgCount == 0:
         print("it's the first one")
         tyler[message.channel.name].channel = message.channel
