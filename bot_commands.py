@@ -58,7 +58,7 @@ async def command(message, client):
             if word in badWords:
                 print(f"filtering a message from {message.author.name}")
                 await message.author.send("""Your message triggered the language filter and was not processed as a result.
-If you don't know which word got caught in the filter, ping Joe (Wiz Biz) and he can look into it.""")
+If you don't know which word got caught in the filter, ping Lily (Wiz Biz) and he can look into it.""")
                 await message.delete()
                 return 
     commandStr = messageStr[0]
@@ -102,14 +102,14 @@ Yammering
 Loneliness
 Emergency
 Response
-T.Y.L.E.R. Bot was originally designed to respond to Tyler when other people weren't. It now does a lot of random stuff, type !help to see the list of commands the bot recognizes. Created by Joe Dolan."""
+T.Y.L.E.R. Bot was originally designed to respond to Tyler when other people weren't. It now does a lot of random stuff, type !help to see the list of commands the bot recognizes. Created by Lily Dolan."""
 )
     return
 
 async def quote(message, client):
     funcNames = {
         'tyler': responses.tyler,
-        'joe': responses.joe,
+        'lily': responses.lily,
         'ximing': responses.ximing,
         'matt': responses.matt,
         'matthew': responses.matthew,
