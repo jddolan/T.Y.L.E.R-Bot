@@ -21,7 +21,7 @@ guildIds = []
 guildIds.append(int(os.environ.get('THEBOYS')))
 guildIds.append(int(os.environ.get('FLATEARFRULES')))
 
-adminId: int = int(os.environ.get('JOEID'))
+adminId: int = int(os.environ.get('LILYID'))
 botId: int = int(os.environ.get('BOTID'))
 tylerId: int = int(os.environ.get('TYLERID'))
 
