@@ -8,7 +8,7 @@ def validCommands():
         '!8ball': """**!8ball** <question: Optional> provides an answer from the magic 8-ball""",
         '!about': """**!about** provides information about the bot""",
         '!addquote': """**!addquote** <quote> <user> submits the quote to be added to the bot's list of
-    randomly generated quotes. Must be approved by Joe and the person
+    randomly generated quotes. Must be approved by Lily and the person
     being quoted""",
         '!coinflip': """**!coinflip** <choice: Optional> flip a coin, optionally choose heads or tails""",
         '!crush': """**!crush** generates a random Crush tweet""",
@@ -96,7 +96,7 @@ quote it
     "this is the time g2 won't choke at an international event - Tyler",
     "you may have gotten more kills than me, - Tyler",
     "ill have it done by tonight quote me on that - Tyler",
-    "quote me on this im gonna win joe's family group - Tyler",
+    "quote me on this im gonna win lily's family group - Tyler",
     """corey we're playing tonight
 ok
 ?
@@ -114,17 +114,17 @@ quote me on that
     "nice play fucking idiot - Tyler"
 ]
 
-def joe():
+def lily():
     return [
-    "i will never play a shiek main on netplay again - Joe",
-    "im never playing a puff on netplay again - Joe",
-    "if phreak starts casting nba games ill never watch one again - Joe",
-    "If pp isnt back by the end of 2017 im gonna just work my ass off and replace him as the falco god - Joe",
-    "Trist adc - Joe",
-    "I put ketchup on my steaks - Joe (To be clear I don't do that anymore)",
-    "Why the fuck would you shorten peanut butter to pj - Joe after Ximing suggested shortening peanut butter to pj",
-    "It's not gay to like cum, It's gay to like men. I don't like the men, I just like their cum. - Joe",
-    "I don't eat insurance, I eat ketchup. - Joe"
+    "i will never play a shiek main on netplay again - Lily",
+    "im never playing a puff on netplay again - Lily",
+    "if phreak starts casting nba games ill never watch one again - Lily",
+    "If pp isnt back by the end of 2017 im gonna just work my ass off and replace him as the falco god - Lily",
+    "Trist adc - Lily",
+    "I put ketchup on my steaks - Lily (To be clear I don't do that anymore)",
+    "Why the fuck would you shorten peanut butter to pj - Lily after Ximing suggested shortening peanut butter to pj",
+    "It's not gay to like cum, It's gay to like men. I don't like the men, I just like their cum. - Lily",
+    "I don't eat insurance, I eat ketchup. - Lily"
 ]
 
 def ximing():
@@ -172,7 +172,7 @@ def tony():
         "WELL JIM 3 IS DIFFERENT THAN 4"
     ]
 
-quotes = tyler() + joe() + ximing() + matt() + matthew() + micah() + landon() + mango() + tony()
+quotes = tyler() + lily() + ximing() + matt() + matthew() + micah() + landon() + mango() + tony()
 
 def links():
     return [
