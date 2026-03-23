@@ -1,7 +1,7 @@
 import random
 import os
 
-adminId: int = int(os.environ.get('JOEID'))
+adminId: int = int(os.environ.get('LILYID'))
 
 def validCommands():
     return {
