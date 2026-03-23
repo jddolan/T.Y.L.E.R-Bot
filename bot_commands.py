@@ -143,7 +143,7 @@ async def quote(message, client):
                     print(f"quotes: {quotes}")
                 quote = random.choice(quotes)
         except:
-            quote = "The name you entered was not found, or the format of your request was invalid. Examples of valid commands: !quote, !quote joe, !quote joe tyler, !quote joe 1"
+            quote = "The name you entered was not found, or the format of your request was invalid. Examples of valid commands: !quote, !quote lily, !quote lily tyler, !quote lily 1"
     except:
         quote = random.choice(responses.quotes)
 
