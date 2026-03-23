@@ -10,7 +10,7 @@ from datetime import datetime
 from bad_words import badWords
 from kaomoji.kaomoji import Kaomoji
 
-adminId: int = int(os.environ.get('JOEID'))
+adminId: int = int(os.environ.get('LILYID'))
 botId: int = int(os.environ.get('BOTID'))
 botChannel: int = int(os.environ.get('BOTCHANNEL'))
 
