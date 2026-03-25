@@ -32,8 +32,6 @@ timeoutLength = 300
 intents = discord.Intents.all()
 client = discord.Client(intents=intents)
 
-client.change_presence(status=discord.Status.invisible, activity=None)
-
 class Tyler():
     msgCount: int = 0
     msgsSinceLastResponse: int = 0
@@ -58,6 +56,7 @@ tyler: dict = {}
 
 @client.event
 async def on_ready():
+    await client.change_presence(status=discord.Status.invisible, activity=None)
     await client.get_channel(int(os.environ.get('BOTCHANNEL'))).send('findOldTimers')
 
 @client.event
