@@ -32,6 +32,8 @@ timeoutLength = 300
 intents = discord.Intents.all()
 client = discord.Client(intents=intents)
 
+await client.change_presence(status=discord.Status.invisible, activity=None)
+
 class Tyler():
     msgCount: int = 0
     msgsSinceLastResponse: int = 0
