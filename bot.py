@@ -97,7 +97,7 @@ async def on_message(message):
         return
     try:
         for key in responses.loose_replies.keys():
-            if message.content.lower() in key:
+            if key in message.content.lower():
                 await message.channel.send(responses.loose_replies[key])
         if message.content.lower() in responses.strict_replies.keys():
             replyKey: str = message.content.lower()
