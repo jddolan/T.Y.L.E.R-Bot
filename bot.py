@@ -96,9 +96,12 @@ async def on_message(message):
                 await message.delete()
         return
     try:
-        if message.content.lower() in responses.replies.keys():
+        for key in responses.loose_replies.keys():
+            if message.content.lower() in key:
+                await message.channel.send(responses.loose_replies[key])
+        if message.content.lower() in responses.strict_replies.keys():
             replyKey: str = message.content.lower()
-            await message.channel.send(responses.replies[replyKey])
+            await message.channel.send(responses.strict_replies[replyKey])
         elif message.content[0] == '!':
             await command(message, client)
     except Exception as e:
