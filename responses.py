@@ -34,24 +34,25 @@ def validCommands():
     related to something in development""",
         '!tony': """**!tony** generates a random Tony Romo Quote""",
     }
-
-replies = {
-        "yo": "yo",
-        "^": "^",
-        ".": ".",
-        "true": "true",
-        "xd": "hehe ecks dee",
-        "uwu": "nmn",
-        "me": "me",
-        "same": "same",
-        "prepare for trouble": "and make it double",
-        "prepare for trouble!": "and make it double!"
+    
+strict_replies = {
+    "yo": "yo",
+    "^": "^",
+    ".": ".",
+    "me": "me",
+    "same": "same",
+}
+loose_replies = {
+    "xd": "hehe ecks dee",
+    "uwu": "nmn",
+    "true": "true",
+    "prepare for trouble": "and make it double",
+    "where are you": "AND I'M SO SORRY"
 }
 
 activities = [
     "playing runescape",
     "watching porn",
-    "talking about Isreal",
     "playing league",
     "flaking on people",
     "playing volleyball",
