@@ -98,6 +98,7 @@ async def on_message(message):
         return
     try:
         deduped_message = re.sub(r'([aeiouAEIOU])\1+', r'\1', message.content.lower())
+        print("deduped message: " + deduped_message)
         for key in responses.loose_replies.keys():
             if key in deduped_message:
                 await message.channel.send(responses.loose_replies[key])
